@@ -1,0 +1,53 @@
+<html>
+    <h1>NIGEL.COMPUTER, a completely unstyled and ugly website</h1>
+
+	<h3>2017-04-12 - Lessons in Error Handling with Node.js and Express</h3>
+	<p><a href="https://blog.about.me/2017/04/12/node/">This one is on the about.me blog</a></p>
+
+    <hr>
+
+    <h3>2016-03-11 - Node apps are memory hogs</h3>
+    <p>I have 4 small node apps running on a server with only 1GB of RAM. I was regularly running out of memory until I discovered running them with the v8 flag <code>--max-old-space-size 5</code>. I read somewhere that each node process will use up to 1GB of memory before running a garbage collection, but don't quote me on that.</p>
+    <p>Now they garbage collect more often, which hurts performance, but I don't care about performance in this case. The important thing to me is that they don't grow to use more memory that my server can handle.</p>
+
+    <hr>
+
+    <h3>2015-12-22 - Problems with PUT and PATCH requests in production</h3>
+    <p>When we put our first node.js feature into production at <a href=\"https://about.me\">about.me</a>, it was pretty exciting. It was fast, stable and everything was working great... except that we were getting persistent reports of problems from a small minority of our users.</p>
+    <p>We were unable to reproduce the problem, which prompted me to up the detail of our logs. After doing that I noticed that many of the errors were coming from Opera Turbo users. If you're unfamiliar with Opera Turbo, it attempts to speed up your web browsing by sending data through some kind of proxy that presumably compresses it. Requesting data was working just fine, but saving it was causing errors. I tracked it down to the PATCH requests having no Content-Length header so the body-parser express middleware couldn't properly read the request body.</p>
+    <p>I moved on to other things at that point because a small minority of users on an exotic browser wasn't a priority. As adoption of the feature grew, more reports of saving problems trickled in from non-Opera Turbo users. It was failing for them with any browser they tried. Also, I couldn't find their attempted saves in the node logs. I was baffled.</p>
+    <p>I found another clue when using a proxy service (Tunnelbear) to use the site from another country and attempting to save some changes. I got the same failure the users had been seeing! A strange fact of this though was that it didn't happen from all countries I proxied from.</p>
+    <p>I checked the node logs for my own failed saves and didn't see them. Another mysterious occurrence had been reproduced. Then I checked the Nginx logs (we have Nginx acting as a reverse proxy in front of our node servers) and saw that my requests were coming in not as PATCH requests but as METHOD_OTHER.</p>
+    <p>I tried performing other saves that used POST and they worked fine. Somewhere between these few users and our server, the PUT and PATCH methods were being changed to METHOD_OTHER.</p>
+    <p>We decided to work around the problem by sticking to the old standbys: GET and POST. We did this by using <a href=\"http://backbonejs.org/#Sync-emulateHTTP\">Backbone's emulateHTTP setting</a> on the frontend and a tiny node middleware on the backend which I'll post in its entirety here.  </p>
+    <pre><code>
+        app.use((req, res, next) =&gt; {
+            var overriddenMethod = req.get('X-HTTP-Method-Override');
+            if (overriddenMethod) {
+                req.method = overriddenMethod;
+            }
+            next();
+        });
+    </code></pre>
+    <p>After that, no more issues.</p>
+
+    <hr>
+
+    <h3>2014-06-04 - Controlling OS X system volume with a Griffin PowerMate</h3>
+    <p>I didn't like how the system volume wouldn't change smoothly by default when you turn it up or down with the PowerMate.  It goes a \"block\" at a time, just like if you hit the volume up or down buttons on your keyboard.  When you control just the iTunes volume, it's smooth; but I wanted to control the system volume so I could adjust it for Spotify, YouTube and whatever else makes noise.</p>
+    <p>Side note:  Why are so many volume controls not continuous?  Isn't that just better?</p>
+    <p>Anyway, with some AppleScript, I made it change smoothly, just like the knob on a good old-fashioned stereo.  Enjoy!</p>
+    <h4>Volume Up:</h4>
+    <pre><code>
+        set therecord to (get volume settings)
+        set theoutputvolume to output volume of therecord
+        set volume 7 * (theoutputvolume + 2) / 100
+    </code></pre>
+    <h4>Volume Down:</h4>
+    <pre><code>
+        set therecord to (get volume settings)
+        set theoutputvolume to output volume of therecord
+        set volume 7 * (theoutputvolume - 2) / 100
+    </code></pre>
+    <p>By the way, here's a really helpful post on <a href=\"http://hypertext.net/2011/09/applescript-powermate-media-apps\">how to get the PowerMate to intelligently play/pause iTunes or Spotify</a>, depending on which was last playing.</p>
+</html>
