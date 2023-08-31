@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENKEF9FK9N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ENKEF9FK9N');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riot Fest 2023 Schedule</title>
@@ -78,6 +87,7 @@
             right: 0;
             text-transform: capitalize;
         }
+
         .event.chosen {
             background-color: #E4094D
         }
@@ -90,6 +100,7 @@
             h3 {
                 min-height: 2em;
             }
+
             h3 span {
                 display: block;
             }
@@ -100,24 +111,24 @@
 </head>
 
 <body>
-    <img
-        src="https://riotfest.org/wp-content/uploads/2023/05/cropped-2023-RF-LOGO-HEADER-HORIZ.png"
-        style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px;"
-    />
+    <img src="https://riotfest.org/wp-content/uploads/2023/05/cropped-2023-RF-LOGO-HEADER-HORIZ.png"
+        style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px;" />
     <div class="schedule" id="schedule">
         <!-- Schedule visualization will be added here -->
     </div>
     <script>
-        const chosenEventsString = localStorage.getItem('chosenEvents') || '[]';
-        const chosenEvents = JSON.parse(chosenEventsString);
+        const chosenEvents = document.location.hash.replace('#', '')
+            .split(',')
+            .filter(x => x)
+            .map(x => parseInt(x));
 
         const scheduleContainer = document.getElementById('schedule');
 
         const minute_height = 2; // pixels
 
-        data.forEach(day => {
+        Object.entries(data).forEach(([day, stages]) => {
             const heading = document.createElement('h2');
-            heading.textContent = day.day;
+            heading.textContent = day;
             scheduleContainer.appendChild(heading);
 
             const dayContainer = document.createElement('div');
@@ -147,7 +158,7 @@
             }
             dayContainer.appendChild(timeColumn);
 
-            Object.entries(day).forEach(([stage, events]) => {
+            Object.entries(stages).forEach(([stage, events]) => {
                 if (stage !== 'day') {
                     const stageElement = document.createElement('div');
                     stageElement.classList.add('stage');
@@ -172,7 +183,7 @@
                         // if (event.interesting) {
                         //     eventElement.classList.add('chosen');
                         // }
-                        if (chosenEvents.includes(event.name)) {
+                        if (chosenEvents.includes(event.id)) {
                             eventElement.classList.add('chosen');
                         }
                         eventElement.innerHTML = event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end;
@@ -180,20 +191,18 @@
 
                         // when you click on an event, it will turn red
                         eventElement.addEventListener('click', () => {
-                            const chosenEventsString = localStorage.getItem('chosenEvents') || '[]';
-                            const chosenEvents = JSON.parse(chosenEventsString);
-                            console.log({chosenEvents})
+                            const chosenEvents = document.location.hash.replace('#', '').split(',').filter(x => x);
 
-                            if (eventElement.classList.contains('chosen')){
+                            if (eventElement.classList.contains('chosen')) {
                                 eventElement.classList.remove('chosen');
-                                chosenEvents.splice(chosenEvents.indexOf(event.name), 1);
+                                chosenEvents.splice(chosenEvents.indexOf(event.id), 1);
                             }
                             else {
                                 eventElement.classList.add('chosen');
-                                chosenEvents.push(event.name);
+                                chosenEvents.push(event.id);
                             }
 
-                            localStorage.setItem('chosenEvents', JSON.stringify(chosenEvents));
+                            document.location.hash = chosenEvents.join(',');
                         });
                     });
 
