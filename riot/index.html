@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Schedule Visualization</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            font-size: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .schedule {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .day {
+            border-radius: 5px;
+            margin-bottom: 100px;
+            /* display: flex; */
+            position: relative;
+            /* width: fit-content; */
+        }
+
+        .time-column {
+            /* width: 100%; */
+            padding: 0 1px;
+            flex-shrink: 0;
+        }
+
+        .time-column div {
+            font-size: .8em;
+            border-top: 1px solid #ccc;
+            padding: 0px 5px;
+        }
+
+        .stage-container {
+            display: flex;
+            padding-left: 45px;
+        }
+
+        .stage {
+            flex-grow: 1;
+            flex-basis: 150px;
+            padding: 0 0.2%;
+            border-radius: 5px;
+        }
+
+        .eventsContainer {
+            position: relative;
+        }
+
+        .event {
+            background-color: rgb(54, 54, 196);
+            color: white;
+            padding: 5%;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-transform: capitalize;
+        }
+        .event.chosen {
+            background-color: #dd0000;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 10px;
+            }
+
+            h3 {
+                min-height: 2em;
+            }
+            h3 span {
+                display: block;
+            }
+        }
+
+    </style>
+    <script src="data.js"></script>
+</head>
+
+<body>
+    <div class="schedule" id="schedule">
+        <!-- Schedule visualization will be added here -->
+    </div>
+    <script>
+        const chosenEventsString = localStorage.getItem('chosenEvents') || '[]';
+        const chosenEvents = JSON.parse(chosenEventsString);
+
+        const scheduleContainer = document.getElementById('schedule');
+
+        const minute_height = 2; // pixels
+
+        data.forEach(day => {
+            const heading = document.createElement('h2');
+            heading.textContent = day.day;
+            scheduleContainer.appendChild(heading);
+
+            const dayContainer = document.createElement('div');
+            dayContainer.classList.add('day');
+
+            const stageContainer = document.createElement('div');
+            stageContainer.classList.add('stage-container');
+
+            const timeColumn = document.createElement('div');
+            timeColumn.classList.add('time-column');
+            timeColumn.style.position = 'absolute';
+            timeColumn.style.width = '100%';
+
+            const timeHeading = document.createElement('h3');
+            timeHeading.innerHTML = '&nbsp;';
+            timeColumn.appendChild(timeHeading);
+
+            const increment = .25;
+            for (let i = 12; i < 22; i = i + increment) {
+                const timeSlot = document.createElement('div');
+                const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12;
+                const minutes = 60 * (i % 1)
+                timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`;
+                timeSlot.style.top = `${i * 60 * minute_height}px`;
+                timeSlot.style.height = `${60 * increment * minute_height}px`;
+                timeColumn.appendChild(timeSlot);
+            }
+            dayContainer.appendChild(timeColumn);
+
+            Object.entries(day).forEach(([stage, events]) => {
+                if (stage !== 'day') {
+                    const stageElement = document.createElement('div');
+                    stageElement.classList.add('stage');
+                    stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+
+                    const eventsContainer = document.createElement('div');
+                    eventsContainer.classList.add('eventsContainer');
+
+                    events.forEach(event => {
+                        const eventElement = document.createElement('div');
+                        eventElement.classList.add('event');
+
+                        let startHours = parseInt(event.start.split(':')[0]);
+                        if (startHours < 12) startHours += 12;
+                        let endHours = parseInt(event.end.split(':')[0]);
+                        if (endHours < 12) endHours += 12;
+
+                        const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1]);
+                        const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1]);
+                        eventElement.style.top = `${(startMinutes - 12 * 60) * minute_height}px`;
+                        eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`;
+                        // if (event.interesting) {
+                        //     eventElement.classList.add('chosen');
+                        // }
+                        if (chosenEvents.includes(event.name)) {
+                            eventElement.classList.add('chosen');
+                        }
+                        eventElement.innerHTML = event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end;
+                        eventsContainer.appendChild(eventElement);
+
+                        // when you click on an event, it will turn red
+                        eventElement.addEventListener('click', () => {
+                            const chosenEventsString = localStorage.getItem('chosenEvents') || '[]';
+                            const chosenEvents = JSON.parse(chosenEventsString);
+                            console.log({chosenEvents})
+
+                            if (eventElement.classList.contains('chosen')){
+                                eventElement.classList.remove('chosen');
+                                chosenEvents.splice(chosenEvents.indexOf(event.name), 1);
+                            }
+                            else {
+                                eventElement.classList.add('chosen');
+                                chosenEvents.push(event.name);
+                            }
+
+                            localStorage.setItem('chosenEvents', JSON.stringify(chosenEvents));
+                        });
+                    });
+
+                    stageElement.appendChild(eventsContainer);
+                    stageContainer.appendChild(stageElement);
+                }
+            });
+
+            // clone the time column and append it
+            const timeColumnClone = timeColumn.cloneNode(true);
+            timeColumnClone.style.position = '';
+            timeColumnClone.style.width = '';
+            stageContainer.appendChild(timeColumnClone);
+
+            dayContainer.appendChild(stageContainer);
+            scheduleContainer.appendChild(dayContainer);
+        });
+    </script>
+</body>
+
+</html>
