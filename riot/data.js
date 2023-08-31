@@ -6,7 +6,7 @@ data = [
             { name: 'YARD ACT', start: '2:15', end: '3:00', interesting: true },
             { name: 'THE INTERRUPTERS', start: '3:55', end: '4:40' },
             { name: 'THE BREEDERS', start: '5:50', end: '6:50', interesting: true },
-            { name: 'F00 FIGHTERS', start: '8:00', end: '10:00', interesting: true }
+            { name: 'FOO FIGHTERS', start: '8:00', end: '10:00', interesting: true }
         ],
         'Roots Stage': [
             { name: 'CALVA LOUISE', start: '12:15', end: '12:45' },
