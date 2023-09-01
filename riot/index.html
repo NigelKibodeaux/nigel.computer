@@ -63,7 +63,7 @@
 
         .stage-container {
             display: flex;
-            padding-left: 45px;
+            padding-left: 35px;
         }
 
         .stage {
@@ -103,6 +103,10 @@
 
             h3 span {
                 display: block;
+            }
+
+            .stage-container {
+                padding-left: 32px;
             }
         }
 
@@ -214,7 +218,7 @@
             // clone the time column and append it
             const timeColumnClone = timeColumn.cloneNode(true);
             timeColumnClone.style.position = '';
-            timeColumnClone.style.width = '';
+            timeColumnClone.style.width = '32px';
             stageContainer.appendChild(timeColumnClone);
 
             dayContainer.appendChild(stageContainer);
