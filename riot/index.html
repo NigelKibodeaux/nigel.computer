@@ -34,7 +34,25 @@
             text-align: center;
         }
 
-        .schedule {
+        td {
+            vertical-align: top;
+        }
+
+        table, th, tr, td {
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse;
+        }
+
+        thead {
+            height: 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #f5f5f5;
+        }
+
+        .xschedule {
             display: flex;
             flex-direction: column;
             max-width: 1000px;
@@ -62,11 +80,11 @@
         }
 
         .stage-container {
-            display: flex;
-            padding-left: 35px;
+            width: 100%;
+            /* padding-left: 35px; */
         }
 
-        .stage {
+        .xstage {
             flex-grow: 1;
             flex-basis: 150px;
             padding: 0 0.2%;
@@ -86,6 +104,7 @@
             left: 0;
             right: 0;
             text-transform: capitalize;
+            margin: 0 1px;
         }
 
         .event.chosen {
@@ -105,9 +124,9 @@
                 display: block;
             }
 
-            .stage-container {
+            /* .stage-container {
                 padding-left: 32px;
-            }
+            } */
         }
 
     </style>
@@ -138,17 +157,32 @@
             const dayContainer = document.createElement('div');
             dayContainer.classList.add('day');
 
-            const stageContainer = document.createElement('div');
+            const stageContainer = document.createElement('table');
             stageContainer.classList.add('stage-container');
+
+            // header row
+            const thead = document.createElement('thead');
+            const hr = document.createElement('tr');
+            thead.appendChild(hr);
+            const blank_th = document.createElement('th');
+            hr.appendChild(blank_th);
+            stageContainer.appendChild(thead);
+            Object.entries(stages).forEach(([stage, events]) => {
+                if (stage !== 'day') {
+                    const th = document.createElement('th');
+                    th.innerHTML = stage.split(' ').map(x => `${x}<br>`).join(' ');
+                    hr.appendChild(th);
+                }
+            });
+
+            const row = document.createElement('tr');
+            stageContainer.appendChild(row);
 
             const timeColumn = document.createElement('div');
             timeColumn.classList.add('time-column');
             timeColumn.style.position = 'absolute';
             timeColumn.style.width = '100%';
-
-            const timeHeading = document.createElement('h3');
-            timeHeading.innerHTML = '<span>&nbsp;</span><span>&nbsp;</span>';
-            timeColumn.appendChild(timeHeading);
+            timeColumn.style.marginTop = '50px';
 
             const increment = .25;
             for (let i = 12; i < 22; i = i + increment) {
@@ -162,11 +196,22 @@
             }
             dayContainer.appendChild(timeColumn);
 
+            // clone the time column and append it to the row to set the height
+            const timeColumnClone = timeColumn.cloneNode(true);
+            timeColumnClone.style.position = '';
+            timeColumnClone.style.width = '32px';
+            timeColumnClone.style.marginTop = '0';
+            const td = document.createElement('td');
+            td.style.width = '32px';
+            td.style.color = 'rgba(0, 0, 0, 0)';
+            td.appendChild(timeColumnClone);
+            row.appendChild(td);
+
             Object.entries(stages).forEach(([stage, events]) => {
                 if (stage !== 'day') {
-                    const stageElement = document.createElement('div');
+                    const stageElement = document.createElement('td');
                     stageElement.classList.add('stage');
-                    stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+                    // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
 
                     const eventsContainer = document.createElement('div');
                     eventsContainer.classList.add('eventsContainer');
@@ -211,15 +256,9 @@
                     });
 
                     stageElement.appendChild(eventsContainer);
-                    stageContainer.appendChild(stageElement);
+                    row.appendChild(stageElement);
                 }
             });
-
-            // clone the time column and append it
-            const timeColumnClone = timeColumn.cloneNode(true);
-            timeColumnClone.style.position = '';
-            timeColumnClone.style.width = '32px';
-            stageContainer.appendChild(timeColumnClone);
 
             dayContainer.appendChild(stageContainer);
             scheduleContainer.appendChild(dayContainer);
