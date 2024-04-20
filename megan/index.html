@@ -238,17 +238,6 @@
 
             document.body.addEventListener('click', clickHandler, false)
             document.body.addEventListener('touchstart', clickHandler, false)
-
-            // reload the page when the window is resized to optimize the layout
-            var resizeTimer
-            window.addEventListener('resize', function () {
-                clearTimeout(resizeTimer)
-                resizeTimer = setTimeout(function () {
-                    if (document.querySelectorAll('.matched').length === 0) {
-                        window.location.reload()
-                    }
-                }, 250)
-            })
         </script>
     </body>
 </html>
