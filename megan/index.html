@@ -1,0 +1,252 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=.7, minimum-scale=.7" />
+        <title>Nigel's Memory Game</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            h1 {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                height: 20px;
+                line-height: 20px;
+                font-size: 20px;
+                margin: 0;
+                padding: 5px;
+            }
+            #container {
+                margin: auto;
+            }
+            .card {
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                padding: 0px;
+                margin: 5px;
+                background-color: gray;
+                background-repeat: no-repeat;
+                background-position: 150px;
+            }
+            /* override to put more on the page */
+            .card {
+                width: 120px;
+                height: 120px;
+                background-position: 120px;
+                background-size: 120px 120px;
+            }
+            .front,
+            .matched {
+                background-position: 0px;
+            }
+
+            #left-arrow,
+            #right-arrow {
+                font-size: 1.5em;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            #left-arrow {
+                float: left;
+            }
+
+            #right-arrow {
+                float: right;
+            }
+
+            #left-arrow::before,
+            #right-arrow::before {
+                content: '';
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border-style: solid;
+            }
+
+            #right-arrow::before {
+                border-width: 10px 0 10px 15px;
+                border-color: transparent transparent transparent black;
+            }
+
+            #left-arrow::before {
+                border-width: 10px 15px 10px 0;
+                border-color: transparent black transparent transparent;
+            }
+        </style>
+        <script>
+            function shuffle(array) {
+                var currentIndex = array.length,
+                    temporaryValue,
+                    randomIndex
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex)
+                    currentIndex -= 1
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex]
+                    array[currentIndex] = array[randomIndex]
+                    array[randomIndex] = temporaryValue
+                }
+
+                return array
+            }
+
+            function hideAllUnmatched() {
+                var cards = document.querySelectorAll('.front')
+                for (i = 0; i < cards.length; i++) {
+                    card = cards[i]
+                    card.classList.remove('front')
+                }
+            }
+
+            // THE TIMER
+            clearTimer = null
+
+            function clickHandler(event) {
+                var card = false
+                if (event.srcElement.classList.contains('card')) card = event.srcElement
+
+                if (card) {
+                    // find other turned-over cards
+                    var otherCards = document.querySelectorAll('.front')
+
+                    // first card turned over
+                    if (otherCards.length == 0) {
+                        // turn card over
+                        card.classList.add('front')
+                    }
+                    // second card turned over
+                    else if (otherCards.length == 1 && otherCards[0] != card) {
+                        var otherCard = otherCards[0]
+                        var match = card.style.backgroundImage == otherCard.style.backgroundImage
+
+                        if (match) {
+                            card.classList.remove('front')
+                            card.classList.add('matched')
+                            otherCard.classList.remove('front')
+                            otherCard.classList.add('matched')
+
+                            // check for game over
+                            if (
+                                document.querySelectorAll('.matched').length ==
+                                document.querySelectorAll('.card').length
+                            ) {
+                                const messages = ['You won!']
+                                if (maxPics < images_in_album)
+                                    messages.push('Play again for a new assortment of pictures.')
+                                alert(messages.join('\n'))
+
+                                // reset the game by reloading the page
+                                window.location.reload()
+                            }
+                        } else {
+                            // turn card over
+                            card.classList.add('front')
+
+                            clearTimer = setTimeout(hideAllUnmatched, 1500)
+                        }
+                    }
+                    // third card clicked while 2 are shown
+                    // or second clicked twice
+                    else {
+                        if (clearTimer) clearTimeout(clearTimer)
+
+                        hideAllUnmatched()
+                        // turn this card over
+                        card.classList.add('front')
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <h1>
+                <a id="left-arrow"> </a>
+                <span id="title"></span>
+                <a id="right-arrow"> </a>
+            </h1>
+        </div>
+        <script>
+            // highest number of ?.JPG, starting at 1.JPG
+            const PAGES = [{ title: '', count: 19 }]
+
+            var IMAGE_SIZE = 120
+
+            // get the starting index from the query string or use 1
+            var page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1
+            var images_in_album = PAGES[page - 1]?.count
+
+            // set the title
+            var titleElement = document.querySelector('#title')
+            titleElement.textContent = PAGES[page - 1]?.title
+
+            // show or hide the left arrow
+            var leftArrow = document.querySelector('#left-arrow')
+            if (page > 1) {
+                leftArrow.style.display = 'inline'
+                leftArrow.href = '?page=' + (page - 1)
+            } else {
+                leftArrow.style.display = 'none'
+            }
+
+            // show or hide the right arrow
+            var rightArrow = document.querySelector('#right-arrow')
+            if (page < PAGES.length) {
+                rightArrow.style.display = 'inline'
+                rightArrow.href = '?page=' + (page + 1)
+            } else {
+                rightArrow.style.display = 'none'
+            }
+
+            var paddedSize = IMAGE_SIZE + 10
+
+            // wraps the whole shebang
+            var container = document.querySelector('#container')
+
+            var limit = window.innerHeight - document.querySelector('h1').offsetHeight - 5
+            var maxCols = Math.floor(window.innerWidth / paddedSize)
+            var maxRows = Math.floor(limit / paddedSize)
+            var maxCards = Math.min(maxCols * maxRows, images_in_album * 2)
+            var maxPics = Math.floor(maxCards / 2)
+
+            container.style.width = Math.min(1040, maxCols * paddedSize) + 'px'
+
+            cards = []
+            for (let i = 1; i <= maxPics; i++) {
+                cards.push(i + images_in_album * (page - 1) + '.JPG')
+            }
+
+            // make 2 of each card
+            cards = cards.concat(cards)
+
+            // shuffle
+            cards = shuffle(cards)
+
+            cards.forEach(function (o, i) {
+                var card = document.createElement('div')
+                card.classList.add('card')
+                card.style.backgroundImage = 'url(' + o + ')'
+
+                container.appendChild(card)
+            })
+
+            document.body.addEventListener('click', clickHandler, false)
+            document.body.addEventListener('touchstart', clickHandler, false)
+
+            // reload the page when the window is resized to optimize the layout
+            var resizeTimer
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer)
+                resizeTimer = setTimeout(function () {
+                    window.location.reload()
+                }, 250)
+            })
+        </script>
+    </body>
+</html>
