@@ -244,7 +244,9 @@
             window.addEventListener('resize', function () {
                 clearTimeout(resizeTimer)
                 resizeTimer = setTimeout(function () {
-                    window.location.reload()
+                    if (document.querySelectorAll('.matched').length === 0) {
+                        window.location.reload()
+                    }
                 }, 250)
             })
         </script>
