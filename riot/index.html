@@ -59,11 +59,13 @@
             }
 
             thead {
-                height: 50px;
                 position: sticky;
                 top: 0;
                 z-index: 1;
                 background-color: #f5f5f5;
+            }
+            thead tr {
+                height: 50px;
             }
 
             .day {
@@ -216,7 +218,7 @@
                     timeSlot.style.height = `${60 * increment * minute_height}px`
                     timeColumn.appendChild(timeSlot)
                 }
-                dayContainer.appendChild(timeColumn)
+                dayContainer.appendChild(timeColumn) 
 
                 // clone the time column and append it to the row to set the height
                 const timeColumnClone = timeColumn.cloneNode(true)
@@ -225,7 +227,7 @@
                 timeColumnClone.style.marginTop = '0'
                 const td = document.createElement('td')
                 td.classList.add('time-cell')
-                td.appendChild(timeColumnClone)
+                td.appendChild(timeColumnClone) 
                 row.appendChild(td)
 
                 Object.entries(stages).forEach(([stage, events]) => {
