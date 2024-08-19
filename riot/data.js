@@ -41,7 +41,7 @@ data = {
             {
                 name: 'POLARIS',
                 start: '1:20',
-                end: '1350',
+                end: '1:50',
             },
             {
                 name: 'POISON THE WELL',
