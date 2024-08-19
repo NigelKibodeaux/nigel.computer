@@ -220,7 +220,7 @@
                     timeSlot.style.height = `${60 * increment * minute_height}px`
                     timeColumn.appendChild(timeSlot)
                 }
-                dayContainer.appendChild(timeColumn) 
+                dayContainer.appendChild(timeColumn)
 
                 // clone the time column and append it to the row to set the height
                 const timeColumnClone = timeColumn.cloneNode(true)
@@ -229,7 +229,7 @@
                 timeColumnClone.style.marginTop = '0'
                 const td = document.createElement('td')
                 td.classList.add('time-cell')
-                td.appendChild(timeColumnClone) 
+                td.appendChild(timeColumnClone)
                 row.appendChild(td)
 
                 Object.entries(stages).forEach(([stage, events]) => {
@@ -272,20 +272,23 @@
 
                                 // when you click on an event, it will turn red
                                 eventElement.addEventListener('click', () => {
-                                    const chosenEvents = document.location.hash
-                                        .replace('#', '')
-                                        .split(',')
-                                        .filter((x) => x)
+                                    const chosenEvents = new Set(
+                                        document.location.hash
+                                            .replace('#', '')
+                                            .split(',')
+                                            .filter((x) => x)
+                                            .map((x) => parseInt(x)),
+                                    )
 
                                     if (eventElement.classList.contains('chosen')) {
                                         eventElement.classList.remove('chosen')
-                                        chosenEvents.splice(chosenEvents.indexOf(event.id), 1)
+                                        chosenEvents.delete(event.id)
                                     } else {
                                         eventElement.classList.add('chosen')
-                                        chosenEvents.push(event.id)
+                                        chosenEvents.add(event.id)
                                     }
 
-                                    document.location.hash = chosenEvents.join(',')
+                                    document.location.hash = Array.from(chosenEvents).join(',')
                                 })
                             } catch (e) {
                                 console.log(day)
