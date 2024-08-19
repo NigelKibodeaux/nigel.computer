@@ -59,9 +59,10 @@ data = {
                 end: '6:00',
             },
             {
-                name: 'ALBUM PLAY: THE OFFSPRING - SMASH',
+                name: 'THE OFFSPRING',
                 start: '7:10',
                 end: '8:10',
+                album: 'SMASH',
             },
         ],
         'NOFX World': [
@@ -101,7 +102,7 @@ data = {
                 end: '8:00',
             },
             {
-                name: 'NOFX : A FINAL FAREWELL',
+                name: 'NOFX: A FINAL FAREWELL',
                 start: '8:30',
                 end: '10:00',
             },
@@ -179,7 +180,7 @@ data = {
     Saturday: {
         'Cabaret Metro Stage': [
             {
-                name: 'VERBOTEN',
+                name: 'VERBÖTEN',
                 start: '11:30',
                 end: '12:00',
             },
@@ -199,9 +200,10 @@ data = {
                 end: '3:35',
             },
             {
-                name: 'ALBUM PLAY: MANCHESTER ORCHESTRA - COPE',
+                name: 'MANCHESTER ORCHESTRA - COPE',
                 start: '4:25',
                 end: '5:25',
+                album: 'COPE',
             },
             {
                 name: 'ST. VINCENT',
@@ -288,7 +290,7 @@ data = {
                 end: '8:00',
             },
             {
-                name: 'NOFX : A FINAL FAREWELL',
+                name: 'NOFX: A FINAL FAREWELL',
                 start: '8:30',
                 end: '10:00',
             },
@@ -391,9 +393,10 @@ data = {
                 end: '3:00',
             },
             {
-                name: 'ALBUM PLAY: MASTODON - LEVIATHAN',
+                name: 'MASTODON',
                 start: '3:50.',
                 end: '4:50',
+                album: 'LEVIATHAN',
             },
             {
                 name: 'LAMB OF GOD',
@@ -470,7 +473,7 @@ data = {
                 end: '8:00',
             },
             {
-                name: 'NOFX : A FINAL FAREWELL',
+                name: 'NOFX: A FINAL FAREWELL',
                 start: '8:30',
                 end: '10:00',
             },

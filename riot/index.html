@@ -12,6 +12,9 @@
 
             gtag('config', 'G-ENKEF9FK9N')
         </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Riot Fest 2024 Schedule</title>
@@ -26,6 +29,11 @@
                 font-size: 12px;
                 max-width: 1000px;
                 margin: auto;
+
+                font-family: 'Readex Pro', sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
             }
 
             h2 {
@@ -99,7 +107,8 @@
                 position: absolute;
                 left: 0;
                 right: 0;
-                text-transform: capitalize;
+                text-transform: uppercase;
+                text-align: center;
                 margin: 0 1px;
             }
 
@@ -108,8 +117,8 @@
             }
 
             @media only screen and (max-width: 600px) {
-                body {
-                    font-size: 10px;
+                .event {
+                    font-size: 0.8em;
                 }
 
                 h3 {
@@ -119,10 +128,6 @@
                 h3 span {
                     display: block;
                 }
-
-                /* .stage-container {
-                padding-left: 32px;
-            } */
             }
         </style>
         <script src="data.js"></script>
@@ -254,6 +259,11 @@
                                 }
                                 eventElement.innerHTML =
                                     event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end
+
+                                if (event.album) {
+                                    eventElement.innerHTML += '<br>Album Play: ' + event.album
+                                }
+
                                 eventsContainer.appendChild(eventElement)
 
                                 // when you click on an event, it will turn red
