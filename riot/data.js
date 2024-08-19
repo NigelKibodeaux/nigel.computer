@@ -1,5 +1,5 @@
 data = {
-    Friday: {
+    'Friday, September 20': {
         'Cabaret Metro Stage': [
             {
                 name: 'WINONA FIGHTER',
@@ -204,7 +204,7 @@ data = {
             },
         ],
     },
-    Saturday: {
+    'Saturday, September 21': {
         'Cabaret Metro Stage': [
             {
                 name: 'VERBÖTEN',
@@ -439,7 +439,7 @@ data = {
             },
         ],
     },
-    Sunday: {
+    'Sunday, September 22': {
         'Cabaret Metro Stage': [
             {
                 name: 'NEKROGOBLIKON',

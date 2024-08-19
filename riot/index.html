@@ -40,6 +40,9 @@
             h2 {
                 text-align: center;
                 margin: 0;
+                font-size: 3em;
+                font-weight: 900;
+                color: black;
             }
 
             h3 {
@@ -64,6 +67,7 @@
                 top: 0;
                 z-index: 1;
                 background-color: #fff;
+                text-transform: uppercase;
             }
             thead tr {
                 height: 50px;
@@ -75,6 +79,9 @@
                 /* display: flex; */
                 position: relative;
                 /* width: fit-content; */
+            }
+            .day:last-of-type {
+                margin-bottom: 50px;
             }
 
             .time-column {
@@ -119,6 +126,24 @@
                 background-color: #e1182c;
             }
 
+            .instructions {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 1.5em;
+
+                button {
+                    display: block;
+                    margin: auto;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    background-color: #e1182c;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+
             @media only screen and (max-width: 600px) {
                 .event {
                     font-size: 0.75em;
@@ -142,6 +167,12 @@
             src="https://riotfest.org/wp-content/uploads/2024/06/cropped-riot-fest-2024-logo.png"
             style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px"
         />
+
+        <div class="instructions">
+            <p>Tap shows to select them. Link to this page to share your picks.</p>
+            <button onclick="copy()">Copy Link</button>
+        </div>
+
         <div class="schedule" id="schedule">
             <!-- Schedule visualization will be added here -->
         </div>
@@ -194,9 +225,6 @@
                     if (stage !== 'day') {
                         const th = document.createElement('th')
                         th.innerHTML = stage
-                            .split(' ')
-                            .map((x) => `${x}<br>`)
-                            .join(' ')
                         hr.appendChild(th)
                     }
                 })
@@ -306,6 +334,33 @@
                 dayContainer.appendChild(stageContainer)
                 scheduleContainer.appendChild(dayContainer)
             })
+
+            function copy() {
+                try {
+                    const el = document.createElement('textarea')
+                    el.value = document.location.href
+                    document.body.appendChild(el)
+                    el.select()
+                    const successful = document.execCommand('copy')
+                    document.body.removeChild(el)
+
+                    if (successful) {
+                        // replace button text with success message
+                        const button = document.querySelector('.instructions button')
+                        button.textContent = 'Link Copied!'
+
+                        // reset button text after 2 seconds
+                        setTimeout(() => {
+                            button.textContent = 'Copy Link'
+                        }, 2000)
+                    } else {
+                        throw new Error('Copy command was unsuccessful')
+                    }
+                } catch (err) {
+                    console.error('Failed to copy the link: ', err)
+                    alert('Failed to copy the link but you can manually copy it from the address bar')
+                }
+            }
         </script>
     </body>
 </html>
