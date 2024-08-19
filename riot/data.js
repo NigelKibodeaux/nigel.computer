@@ -314,7 +314,7 @@ data = {
                 id: 48,
             },
             {
-                name: 'D.0.A.',
+                name: 'D.O.A.',
                 start: '3:30',
                 end: '4:00',
                 id: 49,
