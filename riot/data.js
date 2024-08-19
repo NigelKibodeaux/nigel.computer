@@ -109,11 +109,6 @@ data = {
         ],
         'Rise Stage': [
             {
-                name: 'LIQUID MIKE',
-                start: '11:45',
-                end: '12:15',
-            },
-            {
                 name: 'PEOPLE R UGLY',
                 start: '1:05',
                 end: '1:35',
@@ -200,7 +195,7 @@ data = {
                 end: '3:35',
             },
             {
-                name: 'MANCHESTER ORCHESTRA - COPE',
+                name: 'MANCHESTER ORCHESTRA',
                 start: '4:25',
                 end: '5:25',
                 album: 'COPE',
