@@ -1,271 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENKEF9FK9N"></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
 
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENKEF9FK9N"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+            gtag('config', 'G-ENKEF9FK9N')
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Riot Fest 2024 Schedule</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
 
-        gtag('config', 'G-ENKEF9FK9N');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riot Fest 2023 Schedule</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            font-size: 12px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin: 0;
-        }
-
-        h3 {
-            text-align: center;
-        }
-
-        td {
-            vertical-align: top;
-        }
-
-        table, th, tr, td {
-            padding: 0;
-            margin: 0;
-            border-collapse: collapse;
-        }
-
-        thead {
-            height: 50px;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            background-color: #f5f5f5;
-        }
-
-        .xschedule {
-            display: flex;
-            flex-direction: column;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .day {
-            border-radius: 5px;
-            margin-bottom: 100px;
-            /* display: flex; */
-            position: relative;
-            /* width: fit-content; */
-        }
-
-        .time-column {
-            /* width: 100%; */
-            padding: 0 1px;
-            flex-shrink: 0;
-        }
-
-        .time-column div {
-            font-size: .8em;
-            border-top: 1px solid #ccc;
-            padding: 0px 5px;
-        }
-
-        .stage-container {
-            width: 100%;
-            /* padding-left: 35px; */
-        }
-
-        .xstage {
-            flex-grow: 1;
-            flex-basis: 150px;
-            padding: 0 0.2%;
-            border-radius: 5px;
-        }
-
-        .eventsContainer {
-            position: relative;
-        }
-
-        .event {
-            background-color: rgb(0, 157, 219);
-            color: white;
-            padding: 5%;
-            border-radius: 5px;
-            position: absolute;
-            left: 0;
-            right: 0;
-            text-transform: capitalize;
-            margin: 0 1px;
-        }
-
-        .event.chosen {
-            background-color: #E4094D
-        }
-
-        @media only screen and (max-width: 600px) {
             body {
-                font-size: 10px;
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                font-size: 12px;
+                max-width: 1000px;
+                margin: auto;
+            }
+
+            h2 {
+                text-align: center;
+                margin: 0;
             }
 
             h3 {
-                min-height: 2em;
+                text-align: center;
             }
 
-            h3 span {
-                display: block;
+            td {
+                vertical-align: top;
             }
 
-            /* .stage-container {
+            table,
+            th,
+            tr,
+            td {
+                padding: 0;
+                margin: 0;
+                border-collapse: collapse;
+            }
+
+            thead {
+                height: 50px;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: #f5f5f5;
+            }
+
+            .day {
+                border-radius: 5px;
+                margin-bottom: 100px;
+                /* display: flex; */
+                position: relative;
+                /* width: fit-content; */
+            }
+
+            .time-column {
+                /* width: 100%; */
+                padding: 0 1px;
+                flex-shrink: 0;
+            }
+
+            .time-column div {
+                font-size: 0.8em;
+                border-top: 1px solid #ccc;
+                padding: 0px 5px;
+            }
+
+            .stage-container {
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            td.time-cell {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            .eventsContainer {
+                position: relative;
+            }
+
+            .event {
+                background-color: rgb(0, 157, 219);
+                color: white;
+                padding: 5%;
+                border-radius: 5px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                text-transform: capitalize;
+                margin: 0 1px;
+            }
+
+            .event.chosen {
+                background-color: #e4094d;
+            }
+
+            @media only screen and (max-width: 600px) {
+                body {
+                    font-size: 10px;
+                }
+
+                h3 {
+                    min-height: 2em;
+                }
+
+                h3 span {
+                    display: block;
+                }
+
+                /* .stage-container {
                 padding-left: 32px;
             } */
-        }
-
-    </style>
-    <script src="data.js"></script>
-</head>
-
-<body>
-    <img src="https://riotfest.org/wp-content/uploads/2023/05/cropped-2023-RF-LOGO-HEADER-HORIZ.png"
-        style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px;" />
-    <div class="schedule" id="schedule">
-        <!-- Schedule visualization will be added here -->
-    </div>
-    <script>
-        const chosenEvents = document.location.hash.replace('#', '')
-            .split(',')
-            .filter(x => x)
-            .map(x => parseInt(x));
-
-        const scheduleContainer = document.getElementById('schedule');
-
-        const minute_height = 2; // pixels
-
-        Object.entries(data).forEach(([day, stages]) => {
-            const heading = document.createElement('h2');
-            heading.textContent = day;
-            scheduleContainer.appendChild(heading);
-
-            const dayContainer = document.createElement('div');
-            dayContainer.classList.add('day');
-
-            const stageContainer = document.createElement('table');
-            stageContainer.classList.add('stage-container');
-
-            // header row
-            const thead = document.createElement('thead');
-            const hr = document.createElement('tr');
-            thead.appendChild(hr);
-            const blank_th = document.createElement('th');
-            hr.appendChild(blank_th);
-            stageContainer.appendChild(thead);
-            Object.entries(stages).forEach(([stage, events]) => {
-                if (stage !== 'day') {
-                    const th = document.createElement('th');
-                    th.innerHTML = stage.split(' ').map(x => `${x}<br>`).join(' ');
-                    hr.appendChild(th);
-                }
-            });
-
-            const row = document.createElement('tr');
-            stageContainer.appendChild(row);
-
-            const timeColumn = document.createElement('div');
-            timeColumn.classList.add('time-column');
-            timeColumn.style.position = 'absolute';
-            timeColumn.style.width = '100%';
-            timeColumn.style.marginTop = '50px';
-
-            const increment = .25;
-            for (let i = 12; i < 22; i = i + increment) {
-                const timeSlot = document.createElement('div');
-                const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12;
-                const minutes = 60 * (i % 1)
-                timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`;
-                timeSlot.style.top = `${i * 60 * minute_height}px`;
-                timeSlot.style.height = `${60 * increment * minute_height}px`;
-                timeColumn.appendChild(timeSlot);
             }
-            dayContainer.appendChild(timeColumn);
+        </style>
+        <script src="data.js"></script>
+    </head>
 
-            // clone the time column and append it to the row to set the height
-            const timeColumnClone = timeColumn.cloneNode(true);
-            timeColumnClone.style.position = '';
-            timeColumnClone.style.width = '32px';
-            timeColumnClone.style.marginTop = '0';
-            const td = document.createElement('td');
-            td.style.width = '32px';
-            td.style.color = 'rgba(0, 0, 0, 0)';
-            td.appendChild(timeColumnClone);
-            row.appendChild(td);
+    <body>
+        <img
+            src="https://riotfest.org/wp-content/uploads/2024/06/cropped-riot-fest-2024-logo.png"
+            style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px"
+        />
+        <div class="schedule" id="schedule">
+            <!-- Schedule visualization will be added here -->
+        </div>
+        <script>
+            const chosenEvents = document.location.hash
+                .replace('#', '')
+                .split(',')
+                .filter((x) => x)
+                .map((x) => parseInt(x))
 
-            Object.entries(stages).forEach(([stage, events]) => {
-                if (stage !== 'day') {
-                    const stageElement = document.createElement('td');
-                    stageElement.classList.add('stage');
-                    // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+            const scheduleContainer = document.getElementById('schedule')
 
-                    const eventsContainer = document.createElement('div');
-                    eventsContainer.classList.add('eventsContainer');
+            const minute_height = 2 // pixels
+            const day_start_time = 11.5 // 11:30am
+            const day_end_time = 22 // 10:00pm
 
-                    events.forEach(event => {
-                        const eventElement = document.createElement('div');
-                        eventElement.classList.add('event');
+            Object.entries(data).forEach(([day, stages]) => {
+                const heading = document.createElement('h2')
+                heading.textContent = day
+                scheduleContainer.appendChild(heading)
 
-                        let startHours = parseInt(event.start.split(':')[0]);
-                        if (startHours < 12) startHours += 12;
-                        let endHours = parseInt(event.end.split(':')[0]);
-                        if (endHours < 12) endHours += 12;
+                const dayContainer = document.createElement('div')
+                dayContainer.classList.add('day')
 
-                        const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1]);
-                        const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1]);
-                        eventElement.style.top = `${(startMinutes - 12 * 60) * minute_height}px`;
-                        eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`;
-                        // if (event.interesting) {
-                        //     eventElement.classList.add('chosen');
-                        // }
-                        if (chosenEvents.includes(event.id)) {
-                            eventElement.classList.add('chosen');
-                        }
-                        eventElement.innerHTML = event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end;
-                        eventsContainer.appendChild(eventElement);
+                const stageContainer = document.createElement('table')
+                stageContainer.classList.add('stage-container')
 
-                        // when you click on an event, it will turn red
-                        eventElement.addEventListener('click', () => {
-                            const chosenEvents = document.location.hash.replace('#', '').split(',').filter(x => x);
+                // colgroups to set width
+                const colgroup = document.createElement('colgroup')
+                const timeCol = document.createElement('col')
+                timeCol.style.width = `${32}px`
+                colgroup.appendChild(timeCol)
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const col = document.createElement('col')
+                        col.style.width = `${20}%`
+                        colgroup.appendChild(col)
+                    }
+                })
+                stageContainer.appendChild(colgroup)
 
-                            if (eventElement.classList.contains('chosen')) {
-                                eventElement.classList.remove('chosen');
-                                chosenEvents.splice(chosenEvents.indexOf(event.id), 1);
-                            }
-                            else {
-                                eventElement.classList.add('chosen');
-                                chosenEvents.push(event.id);
-                            }
+                // header row
+                const thead = document.createElement('thead')
+                const hr = document.createElement('tr')
+                thead.appendChild(hr)
+                const blank_th = document.createElement('th')
+                hr.appendChild(blank_th)
+                stageContainer.appendChild(thead)
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const th = document.createElement('th')
+                        th.innerHTML = stage
+                            .split(' ')
+                            .map((x) => `${x}<br>`)
+                            .join(' ')
+                        hr.appendChild(th)
+                    }
+                })
 
-                            document.location.hash = chosenEvents.join(',');
-                        });
-                    });
+                const row = document.createElement('tr')
+                stageContainer.appendChild(row)
 
-                    stageElement.appendChild(eventsContainer);
-                    row.appendChild(stageElement);
+                const timeColumn = document.createElement('div')
+                timeColumn.classList.add('time-column')
+                timeColumn.style.position = 'absolute'
+                timeColumn.style.width = '100%'
+                timeColumn.style.marginTop = '50px'
+
+                const increment = 0.25
+                for (let i = day_start_time; i < day_end_time; i = i + increment) {
+                    const timeSlot = document.createElement('div')
+                    const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
+                    const minutes = 60 * (i % 1)
+                    timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`
+                    timeSlot.style.top = `${i * 60 * minute_height}px`
+                    timeSlot.style.height = `${60 * increment * minute_height}px`
+                    timeColumn.appendChild(timeSlot)
                 }
-            });
+                dayContainer.appendChild(timeColumn)
 
-            dayContainer.appendChild(stageContainer);
-            scheduleContainer.appendChild(dayContainer);
-        });
-    </script>
-</body>
+                // clone the time column and append it to the row to set the height
+                const timeColumnClone = timeColumn.cloneNode(true)
+                timeColumnClone.style.position = ''
+                timeColumnClone.style.width = '32px'
+                timeColumnClone.style.marginTop = '0'
+                const td = document.createElement('td')
+                td.classList.add('time-cell')
+                td.appendChild(timeColumnClone)
+                row.appendChild(td)
 
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const stageElement = document.createElement('td')
+                        // stageElement.classList.add('stage')
+                        // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+
+                        const eventsContainer = document.createElement('div')
+                        eventsContainer.classList.add('eventsContainer')
+
+                        events.forEach((event) => {
+                            try {
+                                const eventElement = document.createElement('div')
+                                eventElement.classList.add('event')
+
+                                let startHours = parseInt(event.start.split(':')[0])
+                                if (startHours < 11) startHours += 12
+                                let endHours = parseInt(event.end.split(':')[0])
+                                if (endHours < 11) endHours += 12
+
+                                const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
+                                const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
+                                eventElement.style.top = `${(startMinutes - day_start_time * 60) * minute_height}px`
+                                eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`
+                                // if (event.interesting) {
+                                //     eventElement.classList.add('chosen');
+                                // }
+                                if (chosenEvents.includes(event.id)) {
+                                    eventElement.classList.add('chosen')
+                                }
+                                eventElement.innerHTML =
+                                    event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end
+                                eventsContainer.appendChild(eventElement)
+
+                                // when you click on an event, it will turn red
+                                eventElement.addEventListener('click', () => {
+                                    const chosenEvents = document.location.hash
+                                        .replace('#', '')
+                                        .split(',')
+                                        .filter((x) => x)
+
+                                    if (eventElement.classList.contains('chosen')) {
+                                        eventElement.classList.remove('chosen')
+                                        chosenEvents.splice(chosenEvents.indexOf(event.id), 1)
+                                    } else {
+                                        eventElement.classList.add('chosen')
+                                        chosenEvents.push(event.id)
+                                    }
+
+                                    document.location.hash = chosenEvents.join(',')
+                                })
+                            } catch (e) {
+                                console.log(day)
+                                console.log(stage)
+                                console.log(event)
+                                console.log(e)
+                            }
+                        })
+
+                        stageElement.appendChild(eventsContainer)
+                        row.appendChild(stageElement)
+                    }
+                })
+
+                dayContainer.appendChild(stageContainer)
+                scheduleContainer.appendChild(dayContainer)
+            })
+        </script>
+    </body>
 </html>

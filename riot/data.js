@@ -1,620 +1,538 @@
 data = {
-    "Friday": {
-        "Riot Stage": [
+    Friday: {
+        'Cabaret Metro Stage': [
             {
-                "name": "OLIVIA JEAN",
-                "start": "12:50",
-                "end": "1:20",
-                "id": 0
+                name: 'WINONA FIGHTER',
+                start: '12:45',
+                end: '1:15',
             },
             {
-                "name": "YARD ACT",
-                "start": "2:15",
-                "end": "3:00",
-                "id": 1
+                name: 'THE WARNING',
+                start: '1:55',
+                end: '2:25',
             },
             {
-                "name": "THE INTERRUPTERS",
-                "start": "3:55",
-                "end": "4:40",
-                "id": 2
+                name: 'THE ACES',
+                start: '3:05',
+                end: '3:35',
             },
             {
-                "name": "THE BREEDERS",
-                "start": "5:50",
-                "end": "6:50",
-                "id": 3
+                name: 'HOT MULLIGAN',
+                start: '4:15',
+                end: '4:55',
             },
             {
-                "name": "FOO FIGHTERS",
-                "start": "8:00",
-                "end": "10:00",
-                "id": 4
-            }
+                name: 'SUM 41',
+                start: '6:05',
+                end: '7:05',
+            },
+            {
+                name: 'FALL OUT BOY',
+                start: '8:15',
+                end: '10:00',
+            },
         ],
-        "Roots Stage": [
+        'AAA Stage': [
             {
-                "name": "CALVA LOUISE",
-                "start": "12:15",
-                "end": "12:45",
-                "id": 5
+                name: 'ACTION/ADVENTURE',
+                start: '12:10',
+                end: '12:40',
             },
             {
-                "name": "QUASI",
-                "start": "1:25",
-                "end": "2:10",
-                "id": 6
+                name: 'POLARIS',
+                start: '1:20',
+                end: '1350',
             },
             {
-                "name": "CODE ORANGE",
-                "start": "3:05",
-                "end": "3:50",
-                "id": 7
+                name: 'POISON THE WELL',
+                start: '2:30',
+                end: '3:00',
             },
             {
-                "name": "ALBUM PLAY: QUICKSAND -- SLIP",
-                "start": "4:45",
-                "end": "5:45",
-                "id": 8
+                name: 'STATE CHAMPS',
+                start: '3:40',
+                end: '4:10',
             },
             {
-                "name": "TURNSTILE",
-                "start": "6:55",
-                "end": "7:55",
-                "id": 9
-            }
+                name: 'NEW FOUND GLORY',
+                start: '5:00',
+                end: '6:00',
+            },
+            {
+                name: 'ALBUM PLAY: THE OFFSPRING - SMASH',
+                start: '7:10',
+                end: '8:10',
+            },
         ],
-        "Radical Stage": [
+        'NOFX World': [
             {
-                "name": "YOUNG CULTURE",
-                "start": "12:00",
-                "end": "12:30",
-                "id": 10
+                name: 'GET DEAD',
+                start: '12:00',
+                end: '12:30',
             },
             {
-                "name": "ORIGAMI ANGEL",
-                "start": "12:50",
-                "end": "1:20",
-                "id": 11
+                name: 'THE EXPLOITED',
+                start: '1:00',
+                end: '130',
             },
             {
-                "name": "THE WRECKS",
-                "start": "2:30",
-                "end": "3:00",
-                "id": 12
+                name: 'THE DEFIANT',
+                start: '2:00',
+                end: '2:30',
             },
             {
-                "name": "HAWTHORNE HEIGHTS",
-                "start": "1:40",
-                "end": "2:10",
-                "id": 13
+                name: 'ALL',
+                start: '3:00',
+                end: '3:30',
             },
             {
-                "name": "SILVERSTEIN",
-                "start": "3:30",
-                "end": "4:15",
-                "id": 14
+                name: 'FACE TO FACE',
+                start: '4:00',
+                end: '5:00',
             },
             {
-                "name": "BAYSIDE",
-                "start": "4:45",
-                "end": "5:30",
-                "id": 15
+                name: 'THE LAWRENCE ARMS',
+                start: '5:30',
+                end: '6:30',
             },
             {
-                "name": "SAY ANYTHING",
-                "start": "6:00",
-                "end": "7:00",
-                "id": 16
-            }
+                name: 'CIRCLE JERKS',
+                start: '7:00',
+                end: '8:00',
+            },
+            {
+                name: 'NOFX : A FINAL FAREWELL',
+                start: '8:30',
+                end: '10:00',
+            },
         ],
-        "Rise Stage": [
+        'Rise Stage': [
             {
-                "name": "THE AQUADOLLS",
-                "start": "12:00",
-                "end": "12:30",
-                "id": 17
+                name: 'LIQUID MIKE',
+                start: '11:45',
+                end: '12:15',
             },
             {
-                "name": "PINKSHIFT",
-                "start": "12:50",
-                "end": "1:20",
-                "id": 18
+                name: 'PEOPLE R UGLY',
+                start: '1:05',
+                end: '1:35',
             },
             {
-                "name": "PARLIAMENT FUNKADELIC FT. GEORGE CLINTON",
-                "start": "1:50",
-                "end": "2:50",
-                "id": 19
+                name: 'JHARIAH',
+                start: '2:15',
+                end: '2:45',
             },
             {
-                "name": "KIM GORDON",
-                "start": "3:20",
-                "end": "4:20",
-                "id": 20
+                name: 'THE CHISEL',
+                start: '3:25',
+                end: '3:55',
             },
             {
-                "name": "AN DIFRANCO",
-                "start": "5:00",
-                "end": "6:00",
-                "id": 21
+                name: 'TORNILLO',
+                start: '4:45',
+                end: '5:25',
             },
             {
-                "name": "TEGAN AND SARA",
-                "start": "7:00",
-                "end": "8:00",
-                "id": 22
-            }
+                name: 'CYPRESS HILL',
+                start: '6:20',
+                end: '7:20',
+            },
+            {
+                name: 'THE MARLEY BROTHERS PERFORMING BOB MARLEY',
+                start: '8:30',
+                end: '10:00',
+            },
         ],
-        "Rebel Stage": [
+        'Radical Stage': [
             {
-                "name": "FEA",
-                "start": "12:00",
-                "end": "12:30",
-                "id": 23
+                name: 'ZHEANI',
+                start: '12:30',
+                end: '1:00',
             },
             {
-                "name": "THE BOBBY LEES",
-                "start": "12:55",
-                "end": "1:25",
-                "id": 24
+                name: 'HOME FRONT',
+                start: '1:40',
+                end: '2:10',
             },
             {
-                "name": "BEARINGS",
-                "start": "1:50",
-                "end": "2:20",
-                "id": 25
+                name: 'SPIRITUAL CRAMP',
+                start: '2:50',
+                end: '3:20',
             },
             {
-                "name": "OSO OSO",
-                "start": "2:45",
-                "end": "3:15",
-                "id": 26
+                name: 'DRUG CHURCH',
+                start: '4:00',
+                end: '4:40',
             },
             {
-                "name": "JUST FRIENDS",
-                "start": "3:45",
-                "end": "4:15",
-                "id": 27
+                name: 'SOULS OF MISCHIEF',
+                start: '5:30',
+                end: '6:15',
             },
             {
-                "name": "SCREAMING FEMALES",
-                "start": "4:50",
-                "end": "5:30",
-                "id": 28
+                name: 'PUBLIC ENEMY',
+                start: '7:25',
+                end: '8:25',
             },
-            {
-                "name": "ALBUM PLAY: BRAID -- FRAME & CANVAS",
-                "start": "6:00",
-                "end": "7:00",
-                "id": 29
-            },
-            {
-                "name": "FAKE NAMES",
-                "start": "7:30",
-                "end": "8:15",
-                "id": 30
-            },
-            {
-                "name": "SLUDGEWORTH",
-                "start": "8:45",
-                "end": "9:45",
-                "id": 31
-            }
-        ]
+        ],
     },
-    "Saturday": {
-        "Riot Stage": [
+    Saturday: {
+        'Cabaret Metro Stage': [
             {
-                "name": "POOL KIDS",
-                "start": "12:10",
-                "end": "12:40",
-                "id": 32
+                name: 'VERBOTEN',
+                start: '11:30',
+                end: '12:00',
             },
             {
-                "name": "WARPAINT",
-                "start": "1:20",
-                "end": "2:05",
-                "id": 33
+                name: 'BRUTUS',
+                start: '12:35',
+                end: '1:05',
             },
             {
-                "name": "WHITE REAPER",
-                "start": "3:00",
-                "end": "3:45",
-                "id": 34
+                name: 'BUZZCOCKS',
+                start: '1:45',
+                end: '2:15',
             },
             {
-                "name": "HEAD AUTOMATICA",
-                "start": "4:40",
-                "end": "5:40",
-                "id": 35
+                name: 'THE HIVES',
+                start: '2:55',
+                end: '3:35',
             },
             {
-                "name": "ALBUM PLAY: DEATH CAB FOR CUTIE -- TRANSATLANTICISM",
-                "start": "6:50",
-                "end": "7:50",
-                "id": 36
+                name: 'ALBUM PLAY: MANCHESTER ORCHESTRA - COPE',
+                start: '4:25',
+                end: '5:25',
             },
             {
-                "name": "ALBUM PLAY: THE POSTAL SERVICE -- GIVE UP",
-                "start": "9:00",
-                "end": "10:00",
-                "id": 37
-            }
+                name: 'ST. VINCENT',
+                start: '6:35',
+                end: '7:35',
+            },
+            {
+                name: 'BECK',
+                start: '8:45',
+                end: '10:00',
+            },
         ],
-        "Roots Stage": [
+        'AAA Stage': [
             {
-                "name": "ENOLA GAY",
-                "start": "12:45",
-                "end": "1:15",
-                "id": 38
+                name: 'PIXEL GRIP',
+                start: '12:00',
+                end: '12:30',
             },
             {
-                "name": "JEHNNY BETH",
-                "start": "2:10",
-                "end": "2:55",
-                "id": 39
+                name: 'PRINCESS GOES',
+                start: '1:10',
+                end: '1:40',
             },
             {
-                "name": "VIAGRA BOYS",
-                "start": "3:50",
-                "end": "4:35",
-                "id": 40
+                name: 'SIR CHLOE',
+                start: '2:20',
+                end: '2:50',
             },
             {
-                "name": "DEATH GRIPS",
-                "start": "5:45",
-                "end": "6:45",
-                "id": 41
+                name: 'HEALTH',
+                start: '3:40',
+                end: '4:20',
             },
             {
-                "name": "QUEENS OF THE STONE AGE",
-                "start": "7:55",
-                "end": "8:55",
-                "id": 42
-            }
+                name: 'SPOON',
+                start: '5:30',
+                end: '6:30',
+            },
+            {
+                name: 'PAVEMENT',
+                start: '7:40',
+                end: '8:40',
+            },
         ],
-        "Radical Stage": [
+        'NOFX World': [
             {
-                "name": "CASSYETTE",
-                "start": "12:10",
-                "end": "12:40",
-                "id": 43
+                name: 'URETHANE',
+                start: '12:00',
+                end: '12:30',
             },
             {
-                "name": "DRAIN",
-                "start": "1:00",
-                "end": "1:30",
-                "id": 44
+                name: 'CODEFENDANTS',
+                start: '12:50',
+                end: '1:20',
             },
             {
-                "name": "BOWLING FOR SOUP",
-                "start": "2:00",
-                "end": "2:30",
-                "id": 45
+                name: 'THE DEAD MILKMEN',
+                start: '1:40',
+                end: '2:10',
             },
             {
-                "name": "NOTHING, NOWHERE.",
-                "start": "3:00",
-                "end": "3:45",
-                "id": 46
+                name: 'THE DICKIES',
+                start: '2:30',
+                end: '3:00',
             },
             {
-                "name": "THE EXPLOITED",
-                "start": "4:15",
-                "end": "5:00",
-                "id": 47
+                name: 'D.0.A.',
+                start: '3:30',
+                end: '4:00',
             },
             {
-                "name": "070 SHAKE",
-                "start": "5:30",
-                "end": "6:30",
-                "id": 48
+                name: 'DILLINGER FOUR',
+                start: '4:30',
+                end: '5:15',
             },
             {
-                "name": "100 GECS",
-                "start": "7:00",
-                "end": "8:00",
-                "id": 49
-            }
+                name: 'LAGWAGON',
+                start: '5:45',
+                end: '6:30',
+            },
+            {
+                name: 'DESCENDENTS',
+                start: '7:00',
+                end: '8:00',
+            },
+            {
+                name: 'NOFX : A FINAL FAREWELL',
+                start: '8:30',
+                end: '10:00',
+            },
         ],
-        "Rise Stage": [
+        'Rise Stage': [
             {
-                "name": "TOTAL CHAOS",
-                "start": "12:00",
-                "end": "12:30",
-                "id": 50
+                name: 'LIQUID MIKE',
+                start: '11:45',
+                end: '12:15',
             },
             {
-                "name": "PLOSIVS",
-                "start": "12:55",
-                "end": "1:25",
-                "id": 51
+                name: 'LORD OF THE LOST',
+                start: '12:45',
+                end: '1:15',
             },
             {
-                "name": "SNAPCASE",
-                "start": "1:50",
-                "end": "2:20",
-                "id": 52
+                name: 'SWEET PILL',
+                start: '1:50',
+                end: '2:20',
             },
             {
-                "name": "ALBUM PLAY: RIVAL SCHOOLS -- UNITED BY FATE",
-                "start": "2:50",
-                "end": "3:20",
-                "id": 53
+                name: 'THE ARMED',
+                start: '3:00',
+                end: '3:30',
             },
             {
-                "name": "ENTER SHIKARI",
-                "start": "3:50",
-                "end": "4:30",
-                "id": 54
+                name: 'SINCERE ENGINEER',
+                start: '4:10',
+                end: '4:40',
             },
             {
-                "name": "FRANK TURNER & THE SLEEPING SOULS",
-                "start": "5:00",
-                "end": "5:40",
-                "id": 55
+                name: 'BEACH BUNNY',
+                start: '5:30',
+                end: '6:10',
             },
             {
-                "name": "PUP",
-                "start": "6:10",
-                "end": "6:55",
-                "id": 56
+                name: 'LS DUNES',
+                start: '7:05',
+                end: '7:50',
             },
             {
-                "name": "PENNYWISE",
-                "start": "7:25",
-                "end": "8:25",
-                "id": 57
+                name: 'TAKING BACK SUNDAY',
+                start: '9:00',
+                end: '10:00',
             },
-            {
-                "name": "MR. BUNGLE",
-                "start": "8:55",
-                "end": "9:55",
-                "id": 58
-            }
         ],
-        "Rebel Stage": [
+        'Radical Stage': [
             {
-                "name": "1300cadoe",
-                "start": "1:15",
-                "end": "1:45",
-                "id": 59
+                name: 'HEART ATTACK MAN',
+                start: '12:15',
+                end: '12:45',
             },
             {
-                "name": "COREY FELDMAN",
-                "start": "2:15",
-                "end": "2:45",
-                "id": 60
+                name: 'JACK KAYS',
+                start: '1:15',
+                end: '1:45',
             },
             {
-                "name": "HIGH VIS",
-                "start": "3:15",
-                "end": "3:45",
-                "id": 61
+                name: 'RIVAL SONS',
+                start: '2:25',
+                end: '2:55',
             },
             {
-                "name": "SPITALFIELD",
-                "start": "4:10",
-                "end": "4:40",
-                "id": 62
+                name: 'CLUTCH',
+                start: '3:35',
+                end: '4:05',
             },
             {
-                "name": "STEVE IGNORANT BAND/CRASS",
-                "start": "5:05",
-                "end": "5:35",
-                "id": 63
+                name: 'BASEMENT',
+                start: '4:45',
+                end: '5:25',
             },
             {
-                "name": "ESHU TUNE",
-                "start": "6:00",
-                "end": "6:45",
-                "id": 64
+                name: 'WAXAHATCHEE',
+                start: '6:15',
+                end: '7:00',
             },
             {
-                "name": "SLEEP TOKEN",
-                "start": "7:15",
-                "end": "8:00",
-                "id": 65
+                name: 'BRIGHT EYES',
+                start: '7:55',
+                end: '8:55',
             },
-            {
-                "name": "INSANE CLOWN POSSE",
-                "start": "8:30",
-                "end": "9:30",
-                "id": 66
-            }
-        ]
+        ],
     },
-    "Sunday": {
-        "Riot Stage": [
+    Sunday: {
+        'Cabaret Metro Stage': [
             {
-                "name": "HOTLINE TNT",
-                "start": "12:05",
-                "end": "12:35",
-                "id": 67
+                name: 'NEKROGOBLIKON',
+                start: '12:10',
+                end: '12:40',
             },
             {
-                "name": "JUST MUSTARD",
-                "start": "1:15",
-                "end": "1:45",
-                "id": 68
+                name: 'SPRINTS',
+                start: '1:20',
+                end: '1:50',
             },
             {
-                "name": "CULTS",
-                "start": "2:25",
-                "end": "2:55",
-                "id": 69
+                name: 'GEL',
+                start: '2:30',
+                end: '3:00',
             },
             {
-                "name": "RIDE",
-                "start": "3:35",
-                "end": "4:20",
-                "id": 70
+                name: 'ALBUM PLAY: MASTODON - LEVIATHAN',
+                start: '3:50.',
+                end: '4:50',
             },
             {
-                "name": "THE DRESDEN DOLLS",
-                "start": "5:30",
-                "end": "6:30",
-                "id": 71
+                name: 'LAMB OF GOD',
+                start: '6:00',
+                end: '7:00',
             },
             {
-                "name": "THE CURE",
-                "start": "7:40",
-                "end": "9:55",
-                "id": 72
-            }
+                name: 'SLAYER',
+                start: '8:15',
+                end: '10:00',
+            },
         ],
-        "Roots Stage": [
+        'AAA Stage': [
             {
-                "name": "SMOKING POPES",
-                "start": "12:40",
-                "end": "1:10",
-                "id": 73
+                name: 'HUGE EUGE',
+                start: '12:45',
+                end: '1:15',
             },
             {
-                "name": "NOTHING",
-                "start": "1:50",
-                "end": "2:20",
-                "id": 74
+                name: 'SUNAMI',
+                start: '1:55',
+                end: '2:25',
             },
             {
-                "name": "THE BLACK ANGEL",
-                "start": "3:00",
-                "end": "3:30",
-                "id": 75
+                name: 'GWAR',
+                start: '3:05',
+                end: '3:45',
             },
             {
-                "name": "AFI",
-                "start": "4:25",
-                "end": "5:25",
-                "id": 76
+                name: 'SUICIDAL TENDENCIES',
+                start: '4:55',
+                end: '5:55',
             },
             {
-                "name": "THE MARS VOLTA",
-                "start": "6:35",
-                "end": "7:35",
-                "id": 77
-            }
+                name: 'ROB ZOMBIE',
+                start: '7:05',
+                end: '8:10',
+            },
         ],
-        "Radical Stage": [
+        'NOFX World': [
             {
-                "name": "FREE THROW",
-                "start": "12:00",
-                "end": "12:30",
-                "id": 78
+                name: 'DOOM SCROLL',
+                start: '12:30',
+                end: '1:00',
             },
             {
-                "name": "MICROWAVE",
-                "start": "12:50",
-                "end": "1:20",
-                "id": 79
+                name: 'COBRA SKULLS',
+                start: '1:30',
+                end: '2:00',
             },
             {
-                "name": "THURSDAY",
-                "start": "1:40",
-                "end": "2:30",
-                "id": 80
+                name: 'SWINGIN UTTERS',
+                start: '2:30',
+                end: '3:00',
             },
             {
-                "name": "BALANCE AND COMPOSURE",
-                "start": "2:55",
-                "end": "3:40",
-                "id": 81
+                name: 'STRUNG OUT',
+                start: '3:30',
+                end: '4:00',
             },
             {
-                "name": "L.S. DUNES",
-                "start": "4:05",
-                "end": "4:50",
-                "id": 82
+                name: 'THE VANDALS',
+                start: '4:30',
+                end: '5:15',
             },
             {
-                "name": "FINCH",
-                "start": "5:15",
-                "end": "6:00",
-                "id": 83
+                name: 'LAURA JANE GRACE WITH CATBITE',
+                start: '5:45',
+                end: '6:30',
             },
             {
-                "name": "THE USED",
-                "start": "6:30",
-                "end": "7:30",
-                "id": 84
-            }
+                name: 'PENNYWISE',
+                start: '7:00',
+                end: '8:00',
+            },
+            {
+                name: 'NOFX : A FINAL FAREWELL',
+                start: '8:30',
+                end: '10:00',
+            },
         ],
-        "Rise Stage": [
+        'Rise Stage': [
             {
-                "name": "FADE EM ALL",
-                "start": "12:15",
-                "end": "12:45",
-                "id": 85
+                name: 'SAXSQUATCH',
+                start: '1:00',
+                end: '1:30',
             },
             {
-                "name": "EMPIRE STATE BASTARD",
-                "start": "1:15",
-                "end": "1:45",
-                "id": 86
+                name: 'FIDDLEHEAD',
+                start: '2:10',
+                end: '2:50',
             },
             {
-                "name": "EARTH CRISIS",
-                "start": "2:15",
-                "end": "3:00",
-                "id": 87
+                name: 'CURSIVE',
+                start: '3:30',
+                end: '4:10',
             },
             {
-                "name": "THE BRONX",
-                "start": "3:30",
-                "end": "4:15",
-                "id": 88
+                name: 'TIERRA WHACK',
+                start: '5:00',
+                end: '5:40',
             },
             {
-                "name": "FLOGGING MOLLY",
-                "start": "4:45",
-                "end": "5:45",
-                "id": 89
+                name: 'OLIVER TREE',
+                start: '6:50',
+                end: '7:50',
             },
             {
-                "name": "THE GASLIGHT ANTHEM",
-                "start": "6:30",
-                "end": "7:30",
-                "id": 90
-            }
+                name: 'SUBLIME',
+                start: '9:00',
+                end: '10:00',
+            },
         ],
-        "Rebel Stage": [
+        'Radical Stage': [
             {
-                "name": "THROUGH N THROUGH",
-                "start": "12:40",
-                "end": "1:05",
-                "id": 91
+                name: 'GAMES WE PLAY',
+                start: '1:35',
+                end: '2:05',
             },
             {
-                "name": "FUTURE NOBODIES",
-                "start": "2:05",
-                "end": "2:35",
-                "id": 92
+                name: 'MAGNOLIA PARK',
+                start: '2:55',
+                end: '3:25',
             },
             {
-                "name": "FLESHWATER",
-                "start": "3:05",
-                "end": "3:45",
-                "id": 93
+                name: 'SLAUGHTER BEACH, DOG',
+                start: '4:15',
+                end: '4:55',
             },
             {
-                "name": "H20",
-                "start": "4:15",
-                "end": "5:00",
-                "id": 94
+                name: 'SOMETHING CORPORATE',
+                start: '5:45',
+                end: '6:45',
             },
             {
-                "name": "ALBUM PLAY: GORILLA BISCUITS -- START TODAY",
-                "start": "5:30",
-                "end": "6:30",
-                "id": 95
+                name: 'DR. DOG',
+                start: '7:55',
+                end: '8:55',
             },
-            {
-                "name": "GODSPEED YOU! BLACK EMPEROR",
-                "start": "7:00",
-                "end": "7:45",
-                "id": 96
-            }
-        ]
-    }
+        ],
+    },
 }
