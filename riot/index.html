@@ -311,8 +311,8 @@
                                         document.location.hash
                                             .replace('#', '')
                                             .split(',')
-                                            .filter((x) => x)
-                                            .map((x) => parseInt(x)),
+                                            .map((x) => parseInt(x))
+                                            .filter((x) => !isNaN(x)),
                                     )
 
                                     if (eventElement.classList.contains('chosen')) {
@@ -323,7 +323,7 @@
                                         chosenEvents.add(event.id)
                                     }
 
-                                    document.location.hash = Array.from(chosenEvents).join(',')
+                                    document.location.hash = chosenEvents.size > 0 ? Array.from(chosenEvents).join(',') : 'x'
                                 })
                             } catch (e) {
                                 console.log(day)
