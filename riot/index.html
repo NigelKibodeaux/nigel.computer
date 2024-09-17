@@ -192,10 +192,9 @@
                 .map((x) => parseInt(x))
 
             const scheduleContainer = document.getElementById('schedule')
-
-            const minute_height = 2 // pixels
-            const day_start_time = 11.25 // 11:30am
-            const day_end_time = 22 // 10:00pm
+            
+            const minute_height = 2 // pixels per minute
+            const increment = 0.25 // 15 minutes per horizontal line
 
             // Error if there are duplicate event IDs
             const eventIds = new Set()
@@ -211,6 +210,18 @@
                     })
                 })
             })
+
+            function calculateStartAndEndMinutes(event) {
+                let startHours = parseInt(event.start.split(':')[0])
+                if (startHours < 11) startHours += 12
+                let endHours = parseInt(event.end.split(':')[0])
+                if (endHours < 11) endHours += 12
+
+                const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
+                const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
+
+                return { startMinutes, endMinutes }
+            }
 
             Object.entries(data).forEach(([day, stages]) => {
                 const heading = document.createElement('h2')
@@ -261,8 +272,22 @@
                 timeColumn.style.width = '100%'
                 timeColumn.style.marginTop = '50px'
 
-                const increment = 0.25
-                for (let i = day_start_time; i < day_end_time; i = i + increment) {
+                // Calculate where the day starts and ends
+                let day_start_time
+                let day_end_time
+                for (const [stage, events] of Object.entries(stages)) {
+                    for (const event of events) {
+                        const {startMinutes, endMinutes} = calculateStartAndEndMinutes(event)
+                        if (!day_start_time || startMinutes < day_start_time * 60) {
+                            day_start_time = startMinutes / 60
+                        }
+                        if (!day_end_time || endMinutes > day_end_time * 60) {
+                            day_end_time = endMinutes / 60
+                        }
+                    }
+                }
+
+                for (let i = day_start_time; i <= day_end_time; i = i + increment) {
                     const timeSlot = document.createElement('div')
                     const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
                     const minutes = 60 * (i % 1)
@@ -297,13 +322,7 @@
                                 const eventElement = document.createElement('div')
                                 eventElement.classList.add('event')
 
-                                let startHours = parseInt(event.start.split(':')[0])
-                                if (startHours < 11) startHours += 12
-                                let endHours = parseInt(event.end.split(':')[0])
-                                if (endHours < 11) endHours += 12
-
-                                const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
-                                const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
+                                const {startMinutes, endMinutes} = calculateStartAndEndMinutes(event)
                                 eventElement.style.top = `${(startMinutes - day_start_time * 60) * minute_height}px`
                                 eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`
                                 // if (event.interesting) {
