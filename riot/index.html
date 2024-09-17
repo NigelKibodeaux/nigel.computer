@@ -194,8 +194,23 @@
             const scheduleContainer = document.getElementById('schedule')
 
             const minute_height = 2 // pixels
-            const day_start_time = 11.5 // 11:30am
+            const day_start_time = 11.25 // 11:30am
             const day_end_time = 22 // 10:00pm
+
+            // Error if there are duplicate event IDs
+            const eventIds = new Set()
+            Object.values(data).forEach((stages) => {
+                Object.values(stages).forEach((events) => {
+                    events.forEach((event) => {
+                        if (eventIds.has(event.id)) {
+                            alert(`Duplicate event ID: ${event.id}`)
+                            throw new Error(`Duplicate event ID: ${event.id}`)
+                        } else {
+                            eventIds.add(event.id)
+                        }
+                    })
+                })
+            })
 
             Object.entries(data).forEach(([day, stages]) => {
                 const heading = document.createElement('h2')

@@ -130,27 +130,33 @@ data = {
         'Rise Stage': [
             {
                 name: 'PEOPLE R UGLY',
-                start: '1:05',
-                end: '1:35',
-                id: 20,
+                start: '12:00',
+                end: '12:30',
+                id: 99,
             },
             {
                 name: 'JHARIAH',
-                start: '2:15',
-                end: '2:45',
-                id: 21,
+                start: '1:05',
+                end: '1:35',
+                id: 100,
             },
             {
                 name: 'THE CHISEL',
-                start: '3:25',
-                end: '3:55',
-                id: 22,
+                start: '2:15',
+                end: '2:45',
+                id: 101,
             },
             {
                 name: 'TORNILLO',
+                start: '3:25',
+                end: '3:55',
+                id: 102,
+            },
+            {
+                name: 'SUICIDAL TENDENCIES',
                 start: '4:45',
                 end: '5:25',
-                id: 23,
+                id: 103,
             },
             {
                 name: 'CYPRESS HILL',
@@ -396,6 +402,12 @@ data = {
         ],
         'Radical Stage': [
             {
+                name: 'DAT_BOY_ZACH',
+                start: '11:15',
+                end: '11:45',
+                id: 104,
+            },
+            {
                 name: 'HEART ATTACK MAN',
                 start: '12:15',
                 end: '12:45',
@@ -442,22 +454,16 @@ data = {
     'Sunday, September 22': {
         'Cabaret Metro Stage': [
             {
-                name: 'NEKROGOBLIKON',
-                start: '12:10',
-                end: '12:40',
-                id: 69,
-            },
-            {
                 name: 'SPRINTS',
                 start: '1:20',
                 end: '1:50',
                 id: 70,
             },
             {
-                name: 'GEL',
+                name: 'SUNAMI',
                 start: '2:30',
                 end: '3:00',
-                id: 71,
+                id: 106,
             },
             {
                 name: 'MASTODON',
@@ -487,22 +493,22 @@ data = {
                 id: 75,
             },
             {
-                name: 'SUNAMI',
+                name: 'NEKROGOBLIKON',
                 start: '1:55',
                 end: '2:25',
-                id: 76,
+                id: 105,
+            },
+            {
+                name: 'GEL',
+                start: '3:05',
+                end: '3:45',
+                id: 107,
             },
             {
                 name: 'GWAR',
-                start: '3:05',
-                end: '3:45',
-                id: 77,
-            },
-            {
-                name: 'SUICIDAL TENDENCIES',
                 start: '4:55',
                 end: '5:55',
-                id: 78,
+                id: 108,
             },
             {
                 name: 'ROB ZOMBIE',
@@ -563,6 +569,12 @@ data = {
         ],
         'Rise Stage': [
             {
+                name: 'VII',
+                start: '12:00',
+                end: '12:30',
+                id: 109,
+            },
+            {
                 name: 'SAXSQUATCH',
                 start: '1:00',
                 end: '1:30',
@@ -600,6 +612,12 @@ data = {
             },
         ],
         'Radical Stage': [
+            {
+                name: 'ALENIA',
+                start: '12:30',
+                end: '1:00',
+                id: 110,
+            },
             {
                 name: 'GAMES WE PLAY',
                 start: '1:35',
