@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes hue {
+            from { filter:hue-rotate(360deg); } 
+            to { filter:hue-rotate(0deg); }
+        }
+        @keyframes rotate {
+            from { transform:rotate(0deg) } 
+            25% { transform:rotate(-.1deg) } 
+            75% { transform:rotate(.1deg) } 
+            to { transform:rotate(0deg) }
+        }
+        @keyframes scale {
+            from { transform:scale(1); } 
+            50% {transform:scale(1.005)} 
+            to { transform:scale(1); }
+        }
+        @keyframes bgcolor {
+            from { background-color: var(--bg-color); } 
+            to { background-color:blue; }
+        }
+        .weird iframe { 
+			animation: hue 5s linear infinite; 
+            animation: scale 5s ease-in-out infinite;
+			/* animation: rotate 5s ease-in-out infinite; */
+            margin:   0;
+            overflow: hidden;
+        }
+
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+        iframe {
+            height:   100%;
+            left:     0;
+            position: absolute;
+            top:      0;
+            width:    100%;
+            border:   none;
+        }
+
+        #overlay {
+            position: absolute;
+            background-color: white;
+            padding: 0 1em;
+            top: 20px;
+			left: 20px;
+            font-family: sans-serif;
+            border-color: gray;
+            border-width: 0 2px 2px 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px black;
+        }
+
+        body { background-color: gray; }
+    </style>
+
+	<script>
+		function getUrl(url) {
+			if (!url.startsWith('https://')) {
+				url = 'https://' + url;
+			}
+			return url;
+		}
+
+		function formSubmit() {
+			const url = getUrl(document.querySelector('input').value);
+			document.querySelector('form').action = url;
+			// window.onhashchange = null;
+
+			document.querySelector('iframe').src = url;
+			document.body.className = 'weird';
+		}
+
+		function doIt() { 
+			console.log('doin\' it')
+			url = document.location.hash && document.location.hash.substr(1);
+
+			if (document.location.hash) {
+				if (url) {
+					url = getUrl(url);
+
+					document.getElementsByTagName('iframe')[0].src = url;
+					document.body.className = 'weird'
+					document.getElementById('overlay').style.display = 'none';
+				}
+			}
+			else {
+				document.getElementById('overlay').style.display = 'block';
+				document.body.className = ''
+				document.getElementById('overlay').style.display = 'block';
+			}
+		}
+
+		window.onhashchange = doIt;
+		window.onload = doIt;
+	</script>
+</head>
+<body>
+
+	<iframe name="iframe"></iframe>
+	<div id="overlay" style="display:none">
+		<h3>Enter a website that wants to do drugs or whatever</h3>
+		<p>Disclaimer: Lots of websites won't do drugs</p>
+		<form action="http://example.com" onsubmit="return formSubmit()" target="iframe">
+			<input></input>
+			<input type="submit" value="do it"></input>
+		</form>
+		<p>
+			examples: 
+			<a href="#example.org">example.org</a>
+			<a href="#bloomberg.com">bloomberg.com</a>
+			<a href="#pepsi.com">pepsi.com</a>
+		</p>
+	</div>
+</body>
+</html>
