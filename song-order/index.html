@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Song Order</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            textarea {
+                width: 100%;
+                height: 200px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            .config {
+                margin-top: 20px;
+            }
+            #log {
+                margin-top: 20px;
+                border: 1px solid #ddd;
+                padding: 10px;
+                height: 200px;
+                overflow-y: scroll;
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Song Order</h1>
+        <textarea id="input" placeholder="Paste your input data here...">
+last	first	song 1	song 2	rules	rank
+Joe	Smith	Lunar Eclipse	Waltz	Second	1
+Fred	Jones	Amazing Grace	Roman Trumpets		1
+Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
+        >
+        <br />
+        <div class="config">
+            <label for="method">Method:</label>
+            <select id="method">
+                <!-- <option value="procedural">Procedural</option> -->
+                <option value="random" selected>Random</option>
+                <!-- <option value="permutations">Permutations</option> -->
+            </select>
+            <br />
+            <label for="iterations">Random Iterations:</label>
+            <input type="number" id="iterations" value="100000" />
+            <br />
+            <label for="preventLargeSkillDifference">Prevent Large Skill Difference:</label>
+            <input type="checkbox" id="preventLargeSkillDifference" />
+            <br />
+            <label for="preventNoSkillDifference">Prevent No Skill Difference:</label>
+            <input type="checkbox" id="preventNoSkillDifference" />
+        </div>
+        <br />
+        <button onclick="processData()">Process Data</button>
+        <h2>Ordered Songs</h2>
+        <table id="outputTable">
+            <thead>
+                <tr>
+                    <th>Last</th>
+                    <th>First</th>
+                    <th>Song 1</th>
+                    <th>Song 2</th>
+                    <th>Rules</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <script>
+            function* getPermutations(arr, n = arr.length) {
+                if (n === 1) {
+                    yield arr.slice()
+                } else {
+                    for (let i = 0; i < n; i++) {
+                        yield* getPermutations(arr, n - 1)
+                        const swapIndex = n % 2 === 0 ? i : 0
+                        ;[arr[swapIndex], arr[n - 1]] = [arr[n - 1], arr[swapIndex]] // Swap
+                    }
+                }
+            }
+
+            function formatCell(cellText) {
+                return cellText
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\b\w/g, (char) => char.toUpperCase())
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1))
+                    ;[array[i], array[j]] = [array[j], array[i]]
+                }
+                return array
+            }
+
+            const parseInput = (input) => {
+                const rows = input
+                    .trim()
+                    .split('\n')
+                    .map((row) => row.split('\t'))
+                    .map((row) => row.map(formatCell))
+                const headers = rows.shift()
+                return { headers, rows }
+            }
+
+            const orderRows = (rows) => {
+                const METHOD = document.getElementById('method').value
+                const RANDOM_ITERATIONS = parseInt(document.getElementById('iterations').value, 10)
+                const PREVENT_LARGE_SKILL_DIFFERENCE = document.getElementById('preventLargeSkillDifference').checked
+                const PREVENT_NO_SKILL_DIFFERENCE = document.getElementById('preventNoSkillDifference').checked
+
+                const orderRules = {
+                    First: 0,
+                    Second: 1,
+                    Third: 2,
+                    Fourth: 3,
+                    Fifth: 4,
+                    Sixth: 5,
+                    Seventh: 6,
+                    Eighth: 7,
+                    Ninth: 8,
+                    Tenth: 9,
+                    Eleventh: 10,
+                    Twelfth: 11,
+                    Thirteenth: 12,
+                    Fourteenth: 13,
+                    Fifteenth: 14,
+                    Sixteenth: 15,
+                    Seventeenth: 16,
+                    Eighteenth: 17,
+                    Nineteenth: 18,
+                    Twentieth: 19,
+                    '2nd To Last': rows.length - 2,
+                    Last: rows.length - 1,
+                }
+
+                const orderedRows = Array(rows.length).fill(null)
+                const remainingRows = []
+
+                function checkOrderedRows() {
+                    for (const [index, row] of orderedRows.entries()) {
+                        if (!isValidPlacement(row, index)) {
+                            return false
+                        }
+                    }
+                    return true
+                }
+
+                rows.forEach((row) => {
+                    const orderRule = row[4].trim()
+                    if (!orderRule) {
+                        remainingRows.push(row)
+                        return
+                    }
+
+                    if (orderRules.hasOwnProperty(orderRule)) {
+                        orderedRows[orderRules[orderRule]] = row
+                    } else {
+                        throw new Error(`Invalid order rule: ${orderRule}`)
+                    }
+                })
+
+                function isValidPlacement(row, index) {
+                    if (row[4] !== '') {
+                        return orderRules[row[4]] === index
+                    }
+
+                    const prevRow = orderedRows[index - 1]
+                    const nextRow = orderedRows[index + 1]
+
+                    if (prevRow) {
+                        const sharesSongsWithPrevRow =
+                            row[2] === prevRow[2] ||
+                            row[3] === prevRow[3] ||
+                            row[2] === prevRow[3] ||
+                            row[3] === prevRow[2]
+
+                        if (sharesSongsWithPrevRow) return false
+
+                        const largeSkillDifference = Math.abs(prevRow[5] - row[5]) > 1
+
+                        if (PREVENT_LARGE_SKILL_DIFFERENCE && largeSkillDifference) return false
+
+                        const noSkillDifference = Math.abs(prevRow[5] - row[5]) === 0
+                        if (PREVENT_NO_SKILL_DIFFERENCE && noSkillDifference) return false
+                    }
+
+                    if (nextRow) {
+                        const sharesSongsWithNextRow =
+                            row[2] === nextRow[2] ||
+                            row[3] === nextRow[3] ||
+                            row[2] === nextRow[3] ||
+                            row[3] === nextRow[2]
+
+                        if (sharesSongsWithNextRow) return false
+
+                        const largeSkillDifference = Math.abs(nextRow[5] - row[5]) > 1
+                        if (PREVENT_LARGE_SKILL_DIFFERENCE && largeSkillDifference) return false
+
+                        const noSkillDifference = Math.abs(nextRow[5] - row[5]) === 0
+                        if (PREVENT_NO_SKILL_DIFFERENCE && noSkillDifference) return false
+                    }
+
+                    return true
+                }
+
+                if (METHOD === 'procedural') {
+                    for (const [i, row] of orderedRows.entries()) {
+                        if (!row) {
+                            for (const [j, remainingRow] of remainingRows.entries()) {
+                                if (isValidPlacement(remainingRow, i)) {
+                                    orderedRows[i] = remainingRows.splice(j, 1)[0]
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    if (remainingRows.length > 0) {
+                        for (const [index, row] of orderedRows.entries()) {
+                            if (!row && remainingRows.length > 0) {
+                                orderedRows[index] = remainingRows.shift()
+                            }
+                        }
+                    }
+
+                    if (remainingRows.length > 0) {
+                        console.warn('Some rows could not be placed:', remainingRows)
+                    }
+                } else if (METHOD === 'random') {
+                    let iterations = 1
+                    const remainingIndexes = Array.from({ length: orderedRows.length }, (_, i) => i).filter(
+                        (i) => !orderedRows[i],
+                    )
+
+                    const solutions = []
+                    do {
+                        if (iterations % 1_000_000 === 0) console.log('Iteration:', iterations++)
+
+                        shuffleArray(remainingIndexes)
+
+                        for (const [i, index] of remainingIndexes.entries()) {
+                            orderedRows[index] = remainingRows[i]
+                        }
+
+                        if (
+                            checkOrderedRows() &&
+                            !solutions.some((solution) => solution.every((row, i) => row === orderedRows[i]))
+                        ) {
+                            solutions.push(orderedRows.slice())
+                        }
+                    } while (iterations++ < RANDOM_ITERATIONS)
+
+                    console.log('Solutions:', solutions.length)
+
+                    const bestSolution = solutions.reduce(
+                        (acc, solution) => {
+                            let sameAdjacentLevels = 0
+                            for (let i = 1; i < solution.length; i++) {
+                                if (solution[i][5] === solution[i - 1][5]) {
+                                    sameAdjacentLevels++
+
+                                    if (i > 1 && solution[i][5] === solution[i - 2][5]) {
+                                        sameAdjacentLevels++
+                                    }
+                                }
+                            }
+
+                            if (sameAdjacentLevels < acc.sameAdjacentLevels) {
+                                acc.sameAdjacentLevels = sameAdjacentLevels
+                                acc.solution = solution
+                            }
+
+                            return acc
+                        },
+                        { sameAdjacentLevels: Infinity, solution: null },
+                    )
+
+                    console.log('Lowest number of adjacent levels:', bestSolution.sameAdjacentLevels)
+
+                    return bestSolution.solution
+                } else if (METHOD === 'permutations') {
+                    const start = new Date()
+                    const remainingIndexes = Array.from({ length: orderedRows.length }, (_, i) => i).filter(
+                        (i) => !orderedRows[i],
+                    )
+
+                    const totalPermutations = remainingIndexes.reduce((acc, _, i) => acc * (i + 1), 1)
+                    console.log('Total permutations to evaluate:', totalPermutations.toLocaleString())
+
+                    const permutations = getPermutations(shuffleArray(remainingIndexes))
+
+                    const successful_permutations = []
+                    let permutation_counter = 0
+                    for (const permutation of permutations) {
+                        permutation_counter++
+                        if (permutation_counter % 10_000_000 === 0) {
+                            console.log('Permutations so far:', permutation_counter.toLocaleString())
+                            console.log(
+                                'Percentage:',
+                                ((permutation_counter / totalPermutations) * 100).toFixed(2) + '%',
+                            )
+                            console.log(
+                                'Time remaining (hours):',
+                                (((new Date() - start) / permutation_counter) *
+                                    (totalPermutations - permutation_counter)) /
+                                    3600000,
+                            )
+                            console.log(permutation.join(', '))
+                            console.log('Successful permutations:', successful_permutations.length.toLocaleString())
+                            console.table(successful_permutations.at(-1))
+                        }
+                    }
+                    console.log('Total permutations:', permutation_counter.toLocaleString())
+
+                    return successful_permutations
+                }
+
+                const success = checkOrderedRows()
+                if (!success) {
+                    console.error('Failed to order rows')
+                }
+
+                return orderedRows
+            }
+
+            const formatOutput = ({ headers, rows }) => {
+                const formattedRows = rows.map((row) => row.join(',')).join('\n')
+                return `${headers.join(',')}\n${formattedRows}`
+            }
+
+            function processData() {
+                const button = document.querySelector('button')
+                try {
+                    button.disabled = true
+                    const input = document.getElementById('input').value
+                    const { headers, rows } = parseInput(input)
+
+                    if (
+                        JSON.stringify(headers) !==
+                        JSON.stringify(['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank'])
+                    ) {
+                        throw new Error('Invalid headers')
+                    }
+
+                    const orderedRows = orderRows(rows)
+                    const output = formatOutput({ headers, rows: orderedRows })
+
+                    const outputTableBody = document.getElementById('outputTable').getElementsByTagName('tbody')[0]
+                    outputTableBody.innerHTML = ''
+
+                    orderedRows.forEach((row) => {
+                        const tr = document.createElement('tr')
+                        row.forEach((cell) => {
+                            const td = document.createElement('td')
+                            td.textContent = cell
+                            tr.appendChild(td)
+                        })
+                        outputTableBody.appendChild(tr)
+                    })
+
+                    // console.log(output)
+                } catch (error) {
+                    console.error(error)
+                } finally {
+                    button.disabled = false
+                }
+            }
+        </script>
+    </body>
+</html>
