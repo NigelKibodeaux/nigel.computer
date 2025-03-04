@@ -120,12 +120,13 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                 return { headers, rows }
             }
 
-            const orderRows = (rows) => {
-                const METHOD = document.getElementById('method').value
-                const RANDOM_ITERATIONS = parseInt(document.getElementById('iterations').value, 10)
-                const PREVENT_LARGE_SKILL_DIFFERENCE = document.getElementById('preventLargeSkillDifference').checked
-                const PREVENT_NO_SKILL_DIFFERENCE = document.getElementById('preventNoSkillDifference').checked
-
+            const orderRows = (
+                rows,
+                method,
+                randomIterations,
+                preventLargeSkillDifference,
+                preventNoSkillDifference,
+            ) => {
                 const orderRules = {
                     First: 0,
                     Second: 1,
@@ -196,10 +197,10 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
 
                         const largeSkillDifference = Math.abs(prevRow[5] - row[5]) > 1
 
-                        if (PREVENT_LARGE_SKILL_DIFFERENCE && largeSkillDifference) return false
+                        if (preventLargeSkillDifference && largeSkillDifference) return false
 
                         const noSkillDifference = Math.abs(prevRow[5] - row[5]) === 0
-                        if (PREVENT_NO_SKILL_DIFFERENCE && noSkillDifference) return false
+                        if (preventNoSkillDifference && noSkillDifference) return false
                     }
 
                     if (nextRow) {
@@ -212,16 +213,16 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                         if (sharesSongsWithNextRow) return false
 
                         const largeSkillDifference = Math.abs(nextRow[5] - row[5]) > 1
-                        if (PREVENT_LARGE_SKILL_DIFFERENCE && largeSkillDifference) return false
+                        if (preventLargeSkillDifference && largeSkillDifference) return false
 
                         const noSkillDifference = Math.abs(nextRow[5] - row[5]) === 0
-                        if (PREVENT_NO_SKILL_DIFFERENCE && noSkillDifference) return false
+                        if (preventNoSkillDifference && noSkillDifference) return false
                     }
 
                     return true
                 }
 
-                if (METHOD === 'procedural') {
+                if (method === 'procedural') {
                     for (const [i, row] of orderedRows.entries()) {
                         if (!row) {
                             for (const [j, remainingRow] of remainingRows.entries()) {
@@ -244,7 +245,7 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                     if (remainingRows.length > 0) {
                         console.warn('Some rows could not be placed:', remainingRows)
                     }
-                } else if (METHOD === 'random') {
+                } else if (method === 'random') {
                     let iterations = 1
                     const remainingIndexes = Array.from({ length: orderedRows.length }, (_, i) => i).filter(
                         (i) => !orderedRows[i],
@@ -266,7 +267,7 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                         ) {
                             solutions.push(orderedRows.slice())
                         }
-                    } while (iterations++ < RANDOM_ITERATIONS)
+                    } while (iterations++ < randomIterations)
 
                     console.log('Solutions:', solutions.length)
 
@@ -296,7 +297,7 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                     console.log('Lowest number of adjacent levels:', bestSolution.sameAdjacentLevels)
 
                     return bestSolution.solution
-                } else if (METHOD === 'permutations') {
+                } else if (method === 'permutations') {
                     const start = new Date()
                     const remainingIndexes = Array.from({ length: orderedRows.length }, (_, i) => i).filter(
                         (i) => !orderedRows[i],
@@ -360,7 +361,12 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                         throw new Error('Invalid headers. Expecting: Last, First, Song 1, Song 2, Rules, Rank')
                     }
 
-                    const orderedRows = orderRows(rows)
+
+                    const method = document.getElementById('method').value
+                    const randomIterations = parseInt(document.getElementById('iterations').value)
+                    const preventLargeSkillDifference = document.getElementById('preventLargeSkillDifference').checked
+                    const preventNoSkillDifference = document.getElementById('preventNoSkillDifference').checked
+                    const orderedRows = orderRows(rows, method, randomIterations, preventLargeSkillDifference, preventNoSkillDifference);
                     const output = formatOutput({ headers, rows: orderedRows })
 
                     const outputTableBody = document.getElementById('outputTable').getElementsByTagName('tbody')[0]
