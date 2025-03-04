@@ -357,7 +357,7 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
                         JSON.stringify(headers) !==
                         JSON.stringify(['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank'])
                     ) {
-                        throw new Error('Invalid headers')
+                        throw new Error('Invalid headers. Expecting: Last, First, Song 1, Song 2, Rules, Rank')
                     }
 
                     const orderedRows = orderRows(rows)
@@ -378,7 +378,7 @@ Mary	Black	Yankee Doodle and Friends	Symphony	Last	3</textarea
 
                     // console.log(output)
                 } catch (error) {
-                    console.error(error)
+                    alert(error)
                 } finally {
                     button.disabled = false
                 }
