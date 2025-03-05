@@ -146,6 +146,11 @@ const orderRows = (rows, method, randomIterations, preventLargeSkillDifference, 
 
         const bestSolution = findBestSolution(solutions)
 
+        if (!bestSolution) {
+            console.error('Failed to find best solution')
+            return null
+        }
+
         console.log('Lowest number of adjacent levels:', bestSolution.sameAdjacentLevels)
 
         return bestSolution.solution

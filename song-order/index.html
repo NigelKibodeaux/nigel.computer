@@ -39,31 +39,13 @@
             }
         </style>
         <script type="module" src="main.mjs"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     </head>
     <body>
         <h1>Song Order</h1>
-        <textarea id="input" placeholder="Paste your input data here...">
-last	first	song 1	song 2	rules	rank
-Smith	John	Catch a Falling Star	Midnight Ride 		2
-Johnson	Jane	Yankee Doodle 	Midnight Ride 		3
-Williams	Emily	Shining Stars	Ode To Joy		2
-Brown	Michael	russian folk song	roman trumpets		2
-Jones	Sarah	Midnight Ride	Chasing Kou		2
-Garcia	David	Eine Kleine	Shining Stars		1
-Martinez	Laura	A Little Night Music	Jingle Bells		1
-Rodriguez	James	New World Symphony	Midnight Ride	First	1
-Hernandez	Mary	Happy birthday	Yankee Doodle		2
-Lopez	Robert	Ode to joy	Jingle Bells		2
-Gonzalez	Linda	Russian folk song	Yankee Doodle 		2
-Wilson	Barbara	Moon on the Water	Hungarian Dance	Last	1
-Anderson	Paul	River Flows In You	Camp town Races		3
-Thomas	Patricia	New world symphony 	Musette	Fifth	2
-Taylor	Christopher	ode to joy	midnight ride		3
-Moore	Jennifer	amazing grace	clock tower bells	Second	3
-Jackson	Charles	chant of the monks	Evelyn Evelyn 		1
-Martin	Margaret	amazing grace 	catch a falling star		2
-    </textarea
-        >
+        <div id="hot"></div>
+ 
         <br />
         <div class="config">
             <label for="method">Method:</label>
@@ -74,7 +56,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
             </select>
             <br />
             <label for="iterations">Random Iterations:</label>
-            <input type="number" id="iterations" value="1000000" />
+            <input type="number" id="iterations" value="100000" />
             <br />
             <label for="preventLargeSkillDifference">Prevent Large Skill Difference:</label>
             <input type="checkbox" id="preventLargeSkillDifference" />

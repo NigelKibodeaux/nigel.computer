@@ -1,5 +1,42 @@
 import findBestSolution from './findBestSolution.mjs'
 
+const data = [
+    ['Smith', 'John', 'Catch a Falling Star', 'Midnight Ride', '', '2'],
+    ['Johnson', 'Jane', 'Yankee Doodle', 'Midnight Ride', '', '3'],
+    ['Williams', 'Emily', 'Shining Stars', 'Ode To Joy', '', '2'],
+    ['Brown', 'Michael', 'russian folk song', 'roman trumpets', '', '2'],
+    ['Jones', 'Sarah', 'Midnight Ride', 'Chasing Kou', '', '2'],
+    ['Garcia', 'David', 'Eine Kleine', 'Shining Stars', '', '1'],
+    ['Martinez', 'Laura', 'A Little Night Music', 'Jingle Bells', '', '1'],
+    ['Rodriguez', 'James', 'New World Symphony', 'Midnight Ride', 'First', '1'],
+    ['Hernandez', 'Mary', 'Happy birthday', 'Yankee Doodle', '', '2'],
+    ['Lopez', 'Robert', 'Ode to joy', 'Jingle Bells', '', '2'],
+    ['Gonzalez', 'Linda', 'Russian folk song', 'Yankee Doodle', '', '2'],
+    ['Wilson', 'Barbara', 'Moon on the Water', 'Hungarian Dance', 'Last', '1'],
+    ['Anderson', 'Paul', 'River Flows In You', 'Camp town Races', '', '3'],
+    ['Thomas', 'Patricia', 'New world symphony', 'Musette', 'Fifth', '2'],
+    ['Taylor', 'Christopher', 'ode to joy', 'midnight ride', '', '3'],
+    ['Moore', 'Jennifer', 'amazing grace', 'clock tower bells', 'Second', '3'],
+    ['Jackson', 'Charles', 'chant of the monks', 'Evelyn Evelyn', '', '1'],
+    ['Martin', 'Margaret', 'amazing grace', 'catch a falling star', '', '2'],
+]
+
+const container = document.getElementById('hot')
+const hot = new Handsontable(container, {
+    data: data,
+    colHeaders: ['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank'],
+    rowHeaders: true,
+    contextMenu: true,
+    manualRowResize: true,
+    manualColumnResize: true,
+    columns: [{ data: 0 }, { data: 1 }, { data: 2 }, { data: 3 }, { data: 4 }, { data: 5, type: 'numeric' }],
+    licenseKey: 'non-commercial-and-evaluation',
+})
+
+function parseTable() {
+    return hot.getData()
+}
+
 function formatCell(cellText) {
     return cellText
         .trim()
@@ -42,12 +79,8 @@ window.processData = () => {
         cancelButton.style.display = 'inline'
         progress.value = 0
 
-        const input = document.getElementById('input').value
-        const { headers, rows } = parseInput(input)
-
-        if (JSON.stringify(headers) !== JSON.stringify(['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank'])) {
-            throw new Error('Invalid headers. Expecting: Last, First, Song 1, Song 2, Rules, Rank')
-        }
+        const rows = parseTable()
+        const headers = ['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank']
 
         const method = document.getElementById('method').value
         const randomIterations = parseInt(document.getElementById('iterations').value)
@@ -61,7 +94,7 @@ window.processData = () => {
         // Create new workers
         const numCores = navigator.hardwareConcurrency || 4
         const iterationsPerWorker = Math.ceil(randomIterations / numCores)
-        console.log({iterationsPerWorker})
+        console.log({ iterationsPerWorker })
         let iterationsCompleted = 0
         let completedWorkers = 0
         let solutions = []
@@ -69,14 +102,23 @@ window.processData = () => {
         function handleWorkerMessage(e) {
             if (e.data.iterations !== undefined) {
                 iterationsCompleted += e.data.iterations
-                progress.value = (iterationsCompleted / randomIterations)
+                progress.value = iterationsCompleted / randomIterations
             } else {
                 solutions.push(e.data.result)
                 completedWorkers++
 
                 if (completedWorkers === numCores) {
                     // Find the best solution
-                    const best = findBestSolution(solutions)
+                    const best = findBestSolution(solutions.filter(Boolean))
+
+                    if (!best) {
+                        alert('No solutions found')
+                        button.disabled = false
+                        progress.style.display = 'none'
+                        cancelButton.style.display = 'none'
+                        return
+                    }
+                    
                     console.log('Best of the best same adjacent:', best.sameAdjacentLevels)
                     const rows = best.solution
 

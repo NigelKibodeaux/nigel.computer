@@ -1,4 +1,8 @@
 export default function findBestSolution(solutions) {
+    if (solutions.length === 0) {
+        return null
+    }
+
     const best = solutions.reduce(
         (acc, solution) => {
             let sameAdjacentLevels = 0
