@@ -82,6 +82,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
         </div>
         <br />
         <button onclick="processData()">Process Data</button>
+        <progress id="progress" value="0" max="100" style="display: none"></progress>
         <h2>Ordered Songs</h2>
         <table id="outputTable">
             <thead>
@@ -98,7 +99,6 @@ Martin	Margaret	amazing grace 	catch a falling star		2
         </table>
 
         <script>
-
             function formatCell(cellText) {
                 return cellText
                     .trim()
@@ -129,11 +129,16 @@ Martin	Margaret	amazing grace 	catch a falling star		2
                 return `${headers.join(',')}\n${formattedRows}`
             }
 
-            let currentWorkers = []
+            let currentWorker = null
+
             function processData() {
                 const button = document.querySelector('button')
+                const progress = document.getElementById('progress')
                 try {
                     button.disabled = true
+                    progress.style.display = 'inline'
+                    progress.value = 0
+
                     const input = document.getElementById('input').value
                     const { headers, rows } = parseInput(input)
 
@@ -149,27 +154,31 @@ Martin	Margaret	amazing grace 	catch a falling star		2
                     const preventLargeSkillDifference = document.getElementById('preventLargeSkillDifference').checked
                     const preventNoSkillDifference = document.getElementById('preventNoSkillDifference').checked
 
+                    // Terminate any old worker
+                    if (currentWorker) {
+                        currentWorker.terminate()
+                    }
 
-                    // Terminate old workers
-                    currentWorkers.forEach((worker) => worker.terminate())
+                    // Create a new worker
+                    currentWorker = new Worker('worker.js')
+                    currentWorker.postMessage({
+                        rows,
+                        method,
+                        randomIterations,
+                        preventLargeSkillDifference,
+                        preventNoSkillDifference,
+                    })
 
-                    // Create a new worker for each processor core
-                    const coreCount = 1 // navigator.hardwareConcurrency || 1
-                    for (let i = 0; i < coreCount; i++) {
-                        const worker = new Worker('worker.js')
-                        worker.postMessage({
-                            rows,
-                            method,
-                            randomIterations,
-                            preventLargeSkillDifference,
-                            preventNoSkillDifference,
-                        })
-
-                        worker.onmessage = function (e) {
-                            const orderedRows = e.data
+                    currentWorker.onmessage = function (e) {
+                        if (e.data.progress !== undefined) {
+                            progress.value = e.data.progress
+                        } else {
+                            const orderedRows = e.data.result
                             const output = formatOutput({ headers, rows: orderedRows })
 
-                            const outputTableBody = document.getElementById('outputTable').getElementsByTagName('tbody')[0]
+                            const outputTableBody = document
+                                .getElementById('outputTable')
+                                .getElementsByTagName('tbody')[0]
                             outputTableBody.innerHTML = ''
 
                             orderedRows.forEach((row) => {
@@ -183,18 +192,19 @@ Martin	Margaret	amazing grace 	catch a falling star		2
                             })
 
                             button.disabled = false
+                            progress.style.display = 'none'
                         }
+                    }
 
-                        worker.onerror = function (error) {
-                            alert(error.message)
-                            button.disabled = false
-                        }
-
-                        currentWorkers.push(worker)
+                    currentWorker.onerror = function (error) {
+                        alert(error.message)
+                        button.disabled = false
+                        progress.style.display = 'none'
                     }
                 } catch (error) {
                     alert(error)
                     button.disabled = false
+                    progress.style.display = 'none'
                 }
             }
         </script>

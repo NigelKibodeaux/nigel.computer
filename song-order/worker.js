@@ -142,6 +142,11 @@ self.onmessage = function (e) {
                 ) {
                     solutions.push(orderedRows.slice());
                 }
+
+                // Send progress update
+                if (iterations % 1000 === 0) {
+                    self.postMessage({ progress: (iterations / randomIterations) * 100 });
+                }
             } while (iterations++ < randomIterations);
 
             console.log('Solutions:', solutions.length);
@@ -218,7 +223,7 @@ self.onmessage = function (e) {
     };
 
     const result = orderRows(rows, method, randomIterations, preventLargeSkillDifference, preventNoSkillDifference);
-    self.postMessage(result);
+    self.postMessage({result});
 };
 
 function* getPermutations(arr, n = arr.length) {
