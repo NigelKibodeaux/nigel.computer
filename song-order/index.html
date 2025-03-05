@@ -38,6 +38,7 @@
                 background-color: #f9f9f9;
             }
         </style>
+        <script type="module" src="main.mjs"></script>
     </head>
     <body>
         <h1>Song Order</h1>
@@ -73,7 +74,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
             </select>
             <br />
             <label for="iterations">Random Iterations:</label>
-            <input type="number" id="iterations" value="100000" />
+            <input type="number" id="iterations" value="1000000" />
             <br />
             <label for="preventLargeSkillDifference">Prevent Large Skill Difference:</label>
             <input type="checkbox" id="preventLargeSkillDifference" />
@@ -83,7 +84,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
         </div>
         <br />
         <button onclick="processData()">Process Data</button>
-        <progress id="progress" value="0" max="100" style="display: none"></progress>
+        <progress id="progress" value="0" max="1" style="display: none"></progress>
         <button id="cancelButton" onclick="cancelProcessing()" style="display: none">Cancel</button>
         <h2>Ordered Songs</h2>
         <table id="outputTable">
@@ -100,133 +101,5 @@ Martin	Margaret	amazing grace 	catch a falling star		2
             <tbody></tbody>
         </table>
 
-        <script>
-            function formatCell(cellText) {
-                return cellText
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\b\w/g, (char) => char.toUpperCase())
-            }
-
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1))
-                    ;[array[i], array[j]] = [array[j], array[i]]
-                }
-                return array
-            }
-
-            const parseInput = (input) => {
-                const rows = input
-                    .trim()
-                    .split('\n')
-                    .map((row) => row.split('\t'))
-                    .map((row) => row.map(formatCell))
-                const headers = rows.shift()
-                return { headers, rows }
-            }
-
-            const formatOutput = ({ headers, rows }) => {
-                const formattedRows = rows.map((row) => row.join(',')).join('\n')
-                return `${headers.join(',')}\n${formattedRows}`
-            }
-
-            let currentWorker = null
-
-            function processData() {
-                const button = document.querySelector('button')
-                const progress = document.getElementById('progress')
-                const cancelButton = document.getElementById('cancelButton')
-                try {
-                    button.disabled = true
-                    progress.style.display = 'inline'
-                    cancelButton.style.display = 'inline'
-                    progress.value = 0
-
-                    const input = document.getElementById('input').value
-                    const { headers, rows } = parseInput(input)
-
-                    if (
-                        JSON.stringify(headers) !==
-                        JSON.stringify(['Last', 'First', 'Song 1', 'Song 2', 'Rules', 'Rank'])
-                    ) {
-                        throw new Error('Invalid headers. Expecting: Last, First, Song 1, Song 2, Rules, Rank')
-                    }
-
-                    const method = document.getElementById('method').value
-                    const randomIterations = parseInt(document.getElementById('iterations').value)
-                    const preventLargeSkillDifference = document.getElementById('preventLargeSkillDifference').checked
-                    const preventNoSkillDifference = document.getElementById('preventNoSkillDifference').checked
-
-                    // Terminate any old worker
-                    if (currentWorker) {
-                        currentWorker.terminate()
-                    }
-
-                    // Create a new worker
-                    currentWorker = new Worker('worker.js')
-                    currentWorker.postMessage({
-                        rows,
-                        method,
-                        randomIterations,
-                        preventLargeSkillDifference,
-                        preventNoSkillDifference,
-                    })
-
-                    currentWorker.onmessage = function (e) {
-                        if (e.data.progress !== undefined) {
-                            progress.value = e.data.progress
-                        } else {
-                            const orderedRows = e.data.result
-                            const output = formatOutput({ headers, rows: orderedRows })
-
-                            const outputTableBody = document
-                                .getElementById('outputTable')
-                                .getElementsByTagName('tbody')[0]
-                            outputTableBody.innerHTML = ''
-
-                            orderedRows.forEach((row) => {
-                                const tr = document.createElement('tr')
-                                row.forEach((cell) => {
-                                    const td = document.createElement('td')
-                                    td.textContent = cell
-                                    tr.appendChild(td)
-                                })
-                                outputTableBody.appendChild(tr)
-                            })
-
-                            button.disabled = false
-                            progress.style.display = 'none'
-                            cancelButton.style.display = 'none'
-                        }
-                    }
-
-                    currentWorker.onerror = function (error) {
-                        alert(error.message)
-                        button.disabled = false
-                        progress.style.display = 'none'
-                        cancelButton.style.display = 'none'
-                    }
-                } catch (error) {
-                    alert(error)
-                    button.disabled = false
-                    progress.style.display = 'none'
-                    cancelButton.style.display = 'none'
-                }
-            }
-
-            function cancelProcessing() {
-                if (currentWorker) {
-                    currentWorker.terminate()
-                    currentWorker = null
-                }
-                const button = document.querySelector('button')
-                const progress = document.getElementById('progress')
-                const cancelButton = document.getElementById('cancelButton')
-                button.disabled = false
-                progress.style.display = 'none'
-                cancelButton.style.display = 'none'
-            }
-        </script>
     </body>
 </html>
