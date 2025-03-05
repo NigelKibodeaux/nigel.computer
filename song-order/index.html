@@ -61,7 +61,8 @@ Taylor	Christopher	ode to joy	midnight ride		3
 Moore	Jennifer	amazing grace	clock tower bells	Second	3
 Jackson	Charles	chant of the monks	Evelyn Evelyn 		1
 Martin	Margaret	amazing grace 	catch a falling star		2
-        </textarea>
+    </textarea
+        >
         <br />
         <div class="config">
             <label for="method">Method:</label>
@@ -83,6 +84,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
         <br />
         <button onclick="processData()">Process Data</button>
         <progress id="progress" value="0" max="100" style="display: none"></progress>
+        <button id="cancelButton" onclick="cancelProcessing()" style="display: none">Cancel</button>
         <h2>Ordered Songs</h2>
         <table id="outputTable">
             <thead>
@@ -134,9 +136,11 @@ Martin	Margaret	amazing grace 	catch a falling star		2
             function processData() {
                 const button = document.querySelector('button')
                 const progress = document.getElementById('progress')
+                const cancelButton = document.getElementById('cancelButton')
                 try {
                     button.disabled = true
                     progress.style.display = 'inline'
+                    cancelButton.style.display = 'inline'
                     progress.value = 0
 
                     const input = document.getElementById('input').value
@@ -193,6 +197,7 @@ Martin	Margaret	amazing grace 	catch a falling star		2
 
                             button.disabled = false
                             progress.style.display = 'none'
+                            cancelButton.style.display = 'none'
                         }
                     }
 
@@ -200,12 +205,27 @@ Martin	Margaret	amazing grace 	catch a falling star		2
                         alert(error.message)
                         button.disabled = false
                         progress.style.display = 'none'
+                        cancelButton.style.display = 'none'
                     }
                 } catch (error) {
                     alert(error)
                     button.disabled = false
                     progress.style.display = 'none'
+                    cancelButton.style.display = 'none'
                 }
+            }
+
+            function cancelProcessing() {
+                if (currentWorker) {
+                    currentWorker.terminate()
+                    currentWorker = null
+                }
+                const button = document.querySelector('button')
+                const progress = document.getElementById('progress')
+                const cancelButton = document.getElementById('cancelButton')
+                button.disabled = false
+                progress.style.display = 'none'
+                cancelButton.style.display = 'none'
             }
         </script>
     </body>
