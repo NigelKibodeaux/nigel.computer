@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENKEF9FK9N"></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+
+            gtag('config', 'G-ENKEF9FK9N')
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Riot Fest 2025 Schedule</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #fff;
+                color: #4a4a4a;
+                font-size: 12px;
+                max-width: 1000px;
+                margin: auto;
+
+                font-family: 'Readex Pro', sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            h2 {
+                text-align: center;
+                margin: 0;
+                font-size: 3em;
+                font-weight: 900;
+                color: black;
+            }
+
+            h3 {
+                text-align: center;
+            }
+
+            td {
+                vertical-align: top;
+            }
+
+            table,
+            th,
+            tr,
+            td {
+                padding: 0;
+                margin: 0;
+                border-collapse: collapse;
+            }
+
+            thead {
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: #fff;
+                text-transform: uppercase;
+            }
+            thead tr {
+                height: 50px;
+            }
+
+            .day {
+                border-radius: 5px;
+                margin-bottom: 100px;
+                /* display: flex; */
+                position: relative;
+                /* width: fit-content; */
+            }
+            .day:last-of-type {
+                margin-bottom: 50px;
+            }
+
+            .time-column {
+                /* width: 100%; */
+                padding: 0 1px;
+                flex-shrink: 0;
+            }
+
+            .time-column div {
+                font-size: 0.8em;
+                border-top: 1px solid #ccc;
+                padding: 0px 5px;
+            }
+
+            .stage-container {
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            td.time-cell {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            .eventsContainer {
+                position: relative;
+            }
+
+            .event {
+                background-color: rgb(57, 57, 57);
+                color: white;
+                padding: 5%;
+                border-radius: 5px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                text-transform: uppercase;
+                text-align: center;
+                margin: 0 1px;
+                cursor: pointer;
+            }
+
+            .event.friend {
+                background-color: #3302c7;
+            }
+            .event.chosen {
+                background-color: #e1182c;
+            }
+            .event.friend.chosen {
+                background-image: repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 15px,
+                    #3302c7 15px,
+                    #3302c7 30px
+                );
+            }
+
+            .instructions {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 50px;
+                font-size: 1.5em;
+
+                button {
+                    display: block;
+                    margin: auto;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    background-color: #e1182c;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                input {
+                    display: block;
+                    margin: auto;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                    max-width: 300px;
+                }
+
+                .input-button-container {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    margin: auto;
+                    margin-bottom: 20px;
+
+                    input {
+                        flex: 1;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        margin: 0;
+                    }
+
+                    button {
+                        flex: 0 1;
+                        margin: 0;
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+                .event {
+                    font-size: 0.75em;
+                    word-wrap: break-word;
+                    hyphens: auto;
+                }
+
+                h2 {
+                    font-size: 2em;
+                }
+
+                h3 {
+                    min-height: 2em;
+                }
+
+                h3 span {
+                    display: block;
+                }
+            }
+        </style>
+        <script src="data.js"></script>
+    </head>
+
+    <body>
+        <img
+            src="https://riotfest.org/wp-content/uploads/2025/04/cropped-TEST-Logo.png"
+            style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px"
+        />
+
+        <div class="instructions">
+            <p>Tap shows to select them. Link to this page to share your picks.</p>
+            <button onclick="copy()">Copy Link</button>
+            <div class="input-button-container">
+                <input id="import" type="text" placeholder="Paste a friend's link to show their picks in blue" />
+                <button onclick="friendImport()">Import</button>
+            </div>
+            <button onclick="document.location.href=document.location.origin+document.location.pathname">Clear Selections</button>
+        </div>
+
+        <div class="schedule" id="schedule">
+            <!-- Schedule visualization will be added here -->
+        </div>
+        <script>
+            const chosenEvents = getMyEventsFromUrl(window.location.href)
+
+            // Get friend events from the query string
+            const friendEvents = []
+            const url = new URL(window.location.href)
+            const friendEventsFromQuery = url.searchParams.get('friend')
+            if (friendEventsFromQuery) {
+                friendEventsFromQuery
+                    .split('.')
+                    .map((x) => parseInt(x))
+                    .filter((x) => !isNaN(x))
+                    .forEach((x) => friendEvents.push(x))
+            }
+
+            const scheduleContainer = document.getElementById('schedule')
+
+            const minute_height = 2 // pixels per minute
+            const increment = 0.25 // 15 minutes per horizontal line
+
+            // Error if there are duplicate event IDs
+            const eventIds = new Set()
+            Object.values(data).forEach((stages) => {
+                Object.values(stages).forEach((events) => {
+                    events.forEach((event) => {
+                        if (eventIds.has(event.id)) {
+                            alert(`Duplicate event ID: ${event.id}`)
+                            throw new Error(`Duplicate event ID: ${event.id}`)
+                        } else {
+                            eventIds.add(event.id)
+                        }
+                    })
+                })
+            })
+
+            function calculateStartAndEndMinutes(event) {
+                let startHours = parseInt(event.start.split(':')[0])
+                if (startHours < 11) startHours += 12
+                let endHours = parseInt(event.end.split(':')[0])
+                if (endHours < 11) endHours += 12
+
+                const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
+                const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
+
+                return { startMinutes, endMinutes }
+            }
+
+            Object.entries(data).forEach(([day, stages]) => {
+                const heading = document.createElement('h2')
+                heading.textContent = day
+                scheduleContainer.appendChild(heading)
+
+                const dayContainer = document.createElement('div')
+                dayContainer.classList.add('day')
+
+                const stageContainer = document.createElement('table')
+                stageContainer.classList.add('stage-container')
+
+                // colgroups to set width
+                const colgroup = document.createElement('colgroup')
+                const timeCol = document.createElement('col')
+                timeCol.style.width = `${32}px`
+                colgroup.appendChild(timeCol)
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const col = document.createElement('col')
+                        col.style.width = `${20}%`
+                        colgroup.appendChild(col)
+                    }
+                })
+                stageContainer.appendChild(colgroup)
+
+                // header row
+                const thead = document.createElement('thead')
+                const hr = document.createElement('tr')
+                thead.appendChild(hr)
+                const blank_th = document.createElement('th')
+                hr.appendChild(blank_th)
+                stageContainer.appendChild(thead)
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const th = document.createElement('th')
+                        th.innerHTML = stage
+                        hr.appendChild(th)
+                    }
+                })
+
+                const row = document.createElement('tr')
+                stageContainer.appendChild(row)
+
+                const timeColumn = document.createElement('div')
+                timeColumn.classList.add('time-column')
+                timeColumn.style.position = 'absolute'
+                timeColumn.style.width = '100%'
+                timeColumn.style.marginTop = '50px'
+
+                // Calculate where the day starts and ends
+                let day_start_time
+                let day_end_time
+                for (const [stage, events] of Object.entries(stages)) {
+                    for (const event of events) {
+                        const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
+                        if (!day_start_time || startMinutes < day_start_time * 60) {
+                            day_start_time = startMinutes / 60
+                        }
+                        if (!day_end_time || endMinutes > day_end_time * 60) {
+                            day_end_time = endMinutes / 60
+                        }
+                    }
+                }
+
+                for (let i = day_start_time; i <= day_end_time; i = i + increment) {
+                    const timeSlot = document.createElement('div')
+                    const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
+                    const minutes = 60 * (i % 1)
+                    timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`
+                    timeSlot.style.top = `${i * 60 * minute_height}px`
+                    timeSlot.style.height = `${60 * increment * minute_height}px`
+                    timeColumn.appendChild(timeSlot)
+                }
+                dayContainer.appendChild(timeColumn)
+
+                // clone the time column and append it to the row to set the height
+                const timeColumnClone = timeColumn.cloneNode(true)
+                timeColumnClone.style.position = ''
+                timeColumnClone.style.width = '32px'
+                timeColumnClone.style.marginTop = '0'
+                const td = document.createElement('td')
+                td.classList.add('time-cell')
+                td.appendChild(timeColumnClone)
+                row.appendChild(td)
+
+                Object.entries(stages).forEach(([stage, events]) => {
+                    if (stage !== 'day') {
+                        const stageElement = document.createElement('td')
+                        // stageElement.classList.add('stage')
+                        // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+
+                        const eventsContainer = document.createElement('div')
+                        eventsContainer.classList.add('eventsContainer')
+
+                        events.forEach((event) => {
+                            try {
+                                const eventElement = document.createElement('div')
+                                eventElement.classList.add('event')
+
+                                const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
+                                eventElement.style.top = `${(startMinutes - day_start_time * 60) * minute_height}px`
+                                eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`
+                                if (chosenEvents.includes(event.id)) {
+                                    eventElement.classList.add('chosen')
+                                }
+                                if (friendEvents.includes(event.id)) {
+                                    eventElement.classList.add('friend')
+                                }
+                                eventElement.innerHTML =
+                                    event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end
+
+                                if (event.album) {
+                                    eventElement.innerHTML += '<br>Album Play: ' + event.album
+                                }
+
+                                eventsContainer.appendChild(eventElement)
+
+                                // when you click on an event, it will turn red
+                                eventElement.addEventListener('click', () => {
+                                    const urlParams = new URLSearchParams(window.location.search)
+                                    const chosenEvents = new Set(
+                                        (urlParams.get('mine') || '')
+                                            .split('.')
+                                            .map((x) => parseInt(x))
+                                            .filter((x) => !isNaN(x)),
+                                    )
+
+                                    if (eventElement.classList.contains('chosen')) {
+                                        eventElement.classList.remove('chosen')
+                                        chosenEvents.delete(event.id)
+                                    } else {
+                                        eventElement.classList.add('chosen')
+                                        chosenEvents.add(event.id)
+                                    }
+
+                                    if (chosenEvents.size > 0) {
+                                        urlParams.set('mine', Array.from(chosenEvents).join('.'))
+                                    } else {
+                                        urlParams.delete('mine')
+                                    }
+                                    window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
+                                })
+                            } catch (e) {
+                                console.log(day)
+                                console.log(stage)
+                                console.log(event)
+                                console.log(e)
+                            }
+                        })
+
+                        stageElement.appendChild(eventsContainer)
+                        row.appendChild(stageElement)
+                    }
+                })
+
+                dayContainer.appendChild(stageContainer)
+                scheduleContainer.appendChild(dayContainer)
+            })
+
+            function copy() {
+                try {
+                    const el = document.createElement('textarea')
+                    el.value = document.location.href
+                    document.body.appendChild(el)
+                    el.select()
+                    const successful = document.execCommand('copy')
+                    document.body.removeChild(el)
+
+                    if (successful) {
+                        // replace button text with success message
+                        const button = document.querySelector('.instructions button')
+                        button.textContent = 'Link Copied!'
+
+                        // reset button text after 2 seconds
+                        setTimeout(() => {
+                            button.textContent = 'Copy Link'
+                        }, 2000)
+                    } else {
+                        throw new Error('Copy command was unsuccessful')
+                    }
+                } catch (err) {
+                    console.error('Failed to copy the link: ', err)
+                    alert('Failed to copy the link but you can manually copy it from the address bar')
+                }
+            }
+
+            function friendImport() {
+                event.preventDefault()
+
+                const myEvents = getMyEventsFromUrl(document.location.href)
+                const friendEvents = getMyEventsFromUrl(document.getElementById('import').value)
+                const urlParams = new URLSearchParams(window.location.search)
+
+                if (friendEvents.length > 0) {
+                    urlParams.set('friend', Array.from(friendEvents).join('.'))
+                } else {
+                    urlParams.delete('friend')
+                }
+
+                if (myEvents.length > 0) {
+                    urlParams.set('mine', Array.from(myEvents).join('.'))
+                } else {
+                    urlParams.delete('mine')
+                }
+                
+                // Reload the page with the friend's events in the URL
+                window.location.search = urlParams
+            }
+
+            function getMyEventsFromUrl(url_string) {
+                const chosenEvents = []
+                const url_object = new URL(url_string)
+
+                // Get the chosen events from the URL hash
+                const hash = url_object.hash
+                if (hash) {
+                    hash
+                        .replace('#', '')
+                        .split(',')
+                        .filter((x) => x)
+                        .map((x) => parseInt(x))
+                        .forEach((x) => chosenEvents.push(x))
+                }
+
+                // Get chosen events from the query string
+                const chosenEventsFromQuery = url_object.searchParams.get('mine')
+                if (chosenEventsFromQuery) {
+                    chosenEventsFromQuery.split('.').forEach((x) => chosenEvents.push(parseInt(x)))
+                }
+
+                return chosenEvents
+            }
+        </script>
+
+        <div class="instructions">
+            <p>Tap shows to select them. Link to this page to share your picks.</p>
+            <button onclick="copy()">Copy Link</button>
+            <button onclick="document.location.href=document.location.origin+document.location.pathname">Clear Selections</button>
+        </div>
+    </body>
+</html>
