@@ -345,7 +345,7 @@
                 for (let i = day_start_time; i <= day_end_time; i = i + increment) {
                     const timeSlot = document.createElement('div')
                     const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
-                    const minutes = 60 * (i % 1)
+                    const minutes = Math.round(60 * (i % 1))
                     timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`
                     timeSlot.style.top = `${i * 60 * minute_height}px`
                     timeSlot.style.height = `${60 * increment * minute_height}px`
@@ -398,12 +398,7 @@
                                 // when you click on an event, it will turn red
                                 eventElement.addEventListener('click', () => {
                                     const urlParams = new URLSearchParams(window.location.search)
-                                    const chosenEvents = new Set(
-                                        (urlParams.get('mine') || '')
-                                            .split('.')
-                                            .map((x) => parseInt(x))
-                                            .filter((x) => !isNaN(x)),
-                                    )
+                                    const chosenEvents = new Set((urlParams.get('mine') || '').split('.').filter(Boolean))
 
                                     if (eventElement.classList.contains('chosen')) {
                                         eventElement.classList.remove('chosen')
@@ -491,21 +486,10 @@
                 const chosenEvents = []
                 const url_object = new URL(url_string)
 
-                // Get the chosen events from the URL hash
-                const hash = url_object.hash
-                if (hash) {
-                    hash
-                        .replace('#', '')
-                        .split(',')
-                        .filter((x) => x)
-                        .map((x) => parseInt(x))
-                        .forEach((x) => chosenEvents.push(x))
-                }
-
                 // Get chosen events from the query string
                 const chosenEventsFromQuery = url_object.searchParams.get('mine')
                 if (chosenEventsFromQuery) {
-                    chosenEventsFromQuery.split('.').forEach((x) => chosenEvents.push(parseInt(x)))
+                    chosenEventsFromQuery.split('.').forEach((x) => chosenEvents.push())
                 }
 
                 return chosenEvents
