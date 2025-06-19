@@ -489,7 +489,7 @@
                 // Get chosen events from the query string
                 const chosenEventsFromQuery = url_object.searchParams.get('mine')
                 if (chosenEventsFromQuery) {
-                    chosenEventsFromQuery.split('.').forEach((x) => chosenEvents.push())
+                    chosenEventsFromQuery.split('.').filter(Boolean).forEach((x) => chosenEvents.push(x))
                 }
 
                 return chosenEvents
