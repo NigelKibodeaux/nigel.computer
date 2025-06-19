@@ -241,8 +241,7 @@
             if (friendEventsFromQuery) {
                 friendEventsFromQuery
                     .split('.')
-                    .map((x) => parseInt(x))
-                    .filter((x) => !isNaN(x))
+                    .filter(Boolean)
                     .forEach((x) => friendEvents.push(x))
             }
 
