@@ -21,6 +21,11 @@
         <style>
             * {
                 box-sizing: border-box;
+
+                --my-pick-color: #e10337;
+                --friend-pick-color: #2fb2e6;
+                --button-color: #f3bf08;
+                --button-text-color: #000;
             }
 
             body {
@@ -124,18 +129,18 @@
             }
 
             .event.friend {
-                background-color: #3302c7;
+                background-color: var(--friend-pick-color);
             }
             .event.chosen {
-                background-color: #e1182c;
+                background-color: var(--my-pick-color);
             }
             .event.friend.chosen {
                 background-image: repeating-linear-gradient(
                     -45deg,
                     transparent,
                     transparent 15px,
-                    #3302c7 15px,
-                    #3302c7 30px
+                    var(--friend-pick-color) 15px,
+                    var(--friend-pick-color) 30px
                 );
             }
 
@@ -148,13 +153,19 @@
                 button {
                     display: block;
                     margin: auto;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
                     padding: 10px;
-                    background-color: #e1182c;
-                    color: white;
+                    background-color: var(--button-color);
+                    color: var(--button-text-color);
                     border: none;
                     border-radius: 5px;
                     cursor: pointer;
+                }
+
+                button.secondary {
+                    background-color: transparent;
+                    color: black;
+                    border: 1px solid var(--button-color);
                 }
 
                 input {
@@ -164,7 +175,6 @@
                     border: 1px solid #ccc;
                     border-radius: 5px;
                     margin-bottom: 20px;
-                    max-width: 300px;
                 }
 
                 .input-button-container {
@@ -172,7 +182,7 @@
                     justify-content: center;
                     gap: 10px;
                     margin: auto;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
 
                     input {
                         flex: 1;
@@ -213,19 +223,22 @@
     </head>
 
     <body>
-        <img
-            src="logo.png"
-            style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px"
-        />
+        <img src="logo.png" style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px" />
 
         <div class="instructions">
-            <p>Tap shows to select them. Link to this page to share your picks.</p>
-            <button onclick="copy()">Copy Link</button>
-            <div class="input-button-container">
-                <input id="import" type="text" placeholder="Paste a friend's link to show their picks in blue" />
+            <h3>Tap shows to select them</h3>
+            <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
+            <div class="input-button-container" style="width: 250px">
+                <input id="import" type="text" placeholder="Paste friend's link" />
                 <button onclick="friendImport()">Import</button>
             </div>
-            <button onclick="document.location.href=document.location.origin+document.location.pathname">Clear Selections</button>
+            <button
+                style="width: 250px"
+                class="secondary"
+                onclick="document.location.href=document.location.origin+document.location.pathname"
+            >
+                Clear Selections
+            </button>
         </div>
 
         <div class="schedule" id="schedule">
@@ -397,7 +410,9 @@
                                 // when you click on an event, it will turn red
                                 eventElement.addEventListener('click', () => {
                                     const urlParams = new URLSearchParams(window.location.search)
-                                    const chosenEvents = new Set((urlParams.get('mine') || '').split('.').filter(Boolean))
+                                    const chosenEvents = new Set(
+                                        (urlParams.get('mine') || '').split('.').filter(Boolean),
+                                    )
 
                                     if (eventElement.classList.contains('chosen')) {
                                         eventElement.classList.remove('chosen')
@@ -431,8 +446,24 @@
                 scheduleContainer.appendChild(dayContainer)
             })
 
-            function copy() {
+            function copy(event, button) {
+                event.preventDefault()
+
                 try {
+                    // Make sure they have picks
+                    const chosenEvents = getMyEventsFromUrl(document.location.href)
+                    if (chosenEvents.length === 0) {
+                        const originalText = button.textContent
+
+                        // replace button text with success message
+                        button.textContent = 'Select some shows first!'
+
+                        // reset button text after 2 seconds
+                        setTimeout(() => button.textContent = originalText, 2000)
+
+                        return
+                    }
+
                     const el = document.createElement('textarea')
                     el.value = document.location.href
                     document.body.appendChild(el)
@@ -441,14 +472,13 @@
                     document.body.removeChild(el)
 
                     if (successful) {
+                        const originalText = button.textContent
+
                         // replace button text with success message
-                        const button = document.querySelector('.instructions button')
                         button.textContent = 'Link Copied!'
 
                         // reset button text after 2 seconds
-                        setTimeout(() => {
-                            button.textContent = 'Copy Link'
-                        }, 2000)
+                        setTimeout(() => button.textContent = originalText, 2000)
                     } else {
                         throw new Error('Copy command was unsuccessful')
                     }
@@ -476,7 +506,7 @@
                 } else {
                     urlParams.delete('mine')
                 }
-                
+
                 // Reload the page with the friend's events in the URL
                 window.location.search = urlParams
             }
@@ -488,7 +518,10 @@
                 // Get chosen events from the query string
                 const chosenEventsFromQuery = url_object.searchParams.get('mine')
                 if (chosenEventsFromQuery) {
-                    chosenEventsFromQuery.split('.').filter(Boolean).forEach((x) => chosenEvents.push(x))
+                    chosenEventsFromQuery
+                        .split('.')
+                        .filter(Boolean)
+                        .forEach((x) => chosenEvents.push(x))
                 }
 
                 return chosenEvents
@@ -496,9 +529,15 @@
         </script>
 
         <div class="instructions">
-            <p>Tap shows to select them. Link to this page to share your picks.</p>
-            <button onclick="copy()">Copy Link</button>
-            <button onclick="document.location.href=document.location.origin+document.location.pathname">Clear Selections</button>
+            <h3>Tap shows to select them</h3>
+            <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
+            <button
+                style="width: 250px"
+                class="secondary"
+                onclick="document.location.href=document.location.origin+document.location.pathname"
+            >
+                Clear Selections
+            </button>
         </div>
     </body>
 </html>
