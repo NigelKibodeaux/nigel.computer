@@ -42,6 +42,19 @@
                 font-style: normal;
             }
 
+            header {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                align-items: center;
+                margin-bottom: 20px;
+
+                img {
+                    width: 100%;
+                    max-width: 600px;
+                }
+            }
+
             h2 {
                 text-align: center;
                 margin: 0;
@@ -148,7 +161,15 @@
                 text-align: center;
                 margin-top: 20px;
                 margin-bottom: 50px;
-                font-size: 1.5em;
+                
+                h3 {
+                    font-size: 1.7em;
+                    margin-bottom: 0px;
+                }
+
+                p {
+                    margin: 10px;
+                }
 
                 button {
                     display: block;
@@ -205,41 +226,32 @@
                     word-wrap: break-word;
                     hyphens: auto;
                 }
-
-                h2 {
-                    font-size: 2em;
-                }
-
-                h3 {
-                    min-height: 2em;
-                }
-
-                h3 span {
-                    display: block;
-                }
             }
         </style>
         <script src="data.js"></script>
     </head>
 
     <body>
-        <img src="logo.png" style="margin: auto; display: block; width: 100%; max-width: 600px; margin-bottom: 20px" />
+        <header>
+            <img src="logo.png" />
 
-        <div class="instructions">
-            <h3>Tap shows to select them</h3>
-            <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
-            <div class="input-button-container" style="width: 250px">
-                <input id="import" type="text" placeholder="Paste friend's link" />
-                <button onclick="friendImport()">Import</button>
+            <div class="instructions">
+                <h3>Tap shows to select them</h3>
+                <p>Your picks are red, friend picks are blue</p>
+                <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
+                <div class="input-button-container" style="width: 250px">
+                    <input id="import" type="text" placeholder="Paste friend's link" />
+                    <button onclick="friendImport()">Import</button>
+                </div>
+                <button
+                    style="width: 250px"
+                    class="secondary"
+                    onclick="document.location.href=document.location.origin+document.location.pathname"
+                >
+                    Clear Selections
+                </button>
             </div>
-            <button
-                style="width: 250px"
-                class="secondary"
-                onclick="document.location.href=document.location.origin+document.location.pathname"
-            >
-                Clear Selections
-            </button>
-        </div>
+        </header>
 
         <div class="schedule" id="schedule">
             <!-- Schedule visualization will be added here -->
@@ -459,13 +471,22 @@
                         button.textContent = 'Select some shows first!'
 
                         // reset button text after 2 seconds
-                        setTimeout(() => button.textContent = originalText, 2000)
+                        setTimeout(() => {
+                            button.textContent = originalText
+                        }, 2000)
 
                         return
                     }
 
+                    // Make a friend link out of "my" events
+                    // turn mine into friend, remove friend if it exists
+                    const currentUrl = new URL(document.location.href)
+                    currentUrl.searchParams.set('friend', currentUrl.searchParams.get('mine'))
+                    currentUrl.searchParams.delete('mine')
+                    const linkForFriend = currentUrl.toString()
+
                     const el = document.createElement('textarea')
-                    el.value = document.location.href
+                    el.value = linkForFriend
                     document.body.appendChild(el)
                     el.select()
                     const successful = document.execCommand('copy')
@@ -478,7 +499,9 @@
                         button.textContent = 'Link Copied!'
 
                         // reset button text after 2 seconds
-                        setTimeout(() => button.textContent = originalText, 2000)
+                        setTimeout(() => {
+                            button.textContent = originalText
+                        }, 2000)
                     } else {
                         throw new Error('Copy command was unsuccessful')
                     }
@@ -489,26 +512,64 @@
             }
 
             function friendImport() {
-                event.preventDefault()
+                try {
+                    const importInput = document.getElementById('import')
+                    const friendUrl = importInput.value.trim()
 
-                const myEvents = getMyEventsFromUrl(document.location.href)
-                const friendEvents = getMyEventsFromUrl(document.getElementById('import').value)
-                const urlParams = new URLSearchParams(window.location.search)
+                    // Validate the URL
+                    if (!friendUrl) {
+                        alert('Please enter a valid URL.')
+                        return
+                    }
 
-                if (friendEvents.length > 0) {
-                    urlParams.set('friend', Array.from(friendEvents).join('.'))
-                } else {
-                    urlParams.delete('friend')
+                    // Check if the URL is valid
+                    new URL(friendUrl) // This will throw an error if the URL is invalid
+
+                    // Get friend's events from the URL
+                    const friendEvents = getFriendEventsFromUrl(friendUrl)
+
+                    if (friendEvents.length === 0) {
+                        alert('No events found in the provided link.')
+                        return
+                    }
+
+                    const myEvents = getMyEventsFromUrl(document.location.href)
+                    const urlParams = new URLSearchParams(window.location.search)
+
+                    if (friendEvents.length > 0) {
+                        urlParams.set('friend', Array.from(friendEvents).join('.'))
+                    } else {
+                        urlParams.delete('friend')
+                    }
+
+                    if (myEvents.length > 0) {
+                        urlParams.set('mine', Array.from(myEvents).join('.'))
+                    } else {
+                        urlParams.delete('mine')
+                    }
+
+                    // Reload the page with the friend's events in the URL
+                    window.location.search = urlParams
+                } catch (error) {
+                    console.error('Invalid URL:', error)
+                    alert('Please enter a valid URL.')
+                }
+            }
+
+            function getFriendEventsFromUrl(url_string) {
+                const friendEvents = []
+                const url_object = new URL(url_string)
+
+                // If there is a "friend" parameter and no "mine", they are sharing a link created by the copy button
+                if (url_object.searchParams.has('friend') && !url_object.searchParams.has('mine')) {
+                    // Switch "friend" to "mine"
+                    const friendEventsFromQuery = url_object.searchParams.get('friend')
+                    if (friendEventsFromQuery) {
+                        url_object.searchParams.set('mine', friendEventsFromQuery)
+                    }
                 }
 
-                if (myEvents.length > 0) {
-                    urlParams.set('mine', Array.from(myEvents).join('.'))
-                } else {
-                    urlParams.delete('mine')
-                }
-
-                // Reload the page with the friend's events in the URL
-                window.location.search = urlParams
+                return getMyEventsFromUrl(url_object.toString())
             }
 
             function getMyEventsFromUrl(url_string) {
