@@ -44,14 +44,85 @@
 
             header {
                 display: flex;
+                gap: 10px;
                 justify-content: space-around;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 align-items: center;
                 margin-bottom: 20px;
 
-                img {
-                    width: 100%;
-                    max-width: 600px;
+                .logo {
+                    flex: 1 1 auto; 
+                    min-width: 250px;
+
+                    img {
+                        min-width: 300px;
+                        display: block;
+                        width: 100%;
+                    }
+                }
+
+                .instructions {
+                    flex: 0 0 auto;
+                    text-align: center;
+                    margin-top: 20px;
+                    margin-bottom: 50px;
+
+                    h3 {
+                        font-size: 1.7em;
+                        margin-bottom: 0px;
+                    }
+
+                    p {
+                        margin: 10px;
+                    }
+
+                    button {
+                        display: block;
+                        margin: auto;
+                        margin-bottom: 10px;
+                        padding: 10px;
+                        background-color: var(--button-color);
+                        color: var(--button-text-color);
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+
+                    button.secondary {
+                        background-color: transparent;
+                        color: black;
+                        border: 1px solid var(--button-color);
+                    }
+
+                    input {
+                        display: block;
+                        margin: auto;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+
+                    .input-button-container {
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                        margin: auto;
+                        margin-bottom: 10px;
+
+                        input {
+                            flex: 1;
+                            padding: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            margin: 0;
+                        }
+
+                        button {
+                            flex: 0 1;
+                            margin: 0;
+                        }
+                    }
                 }
             }
 
@@ -157,70 +228,11 @@
                 );
             }
 
-            .instructions {
-                text-align: center;
-                margin-top: 20px;
-                margin-bottom: 50px;
-                
-                h3 {
-                    font-size: 1.7em;
-                    margin-bottom: 0px;
-                }
-
-                p {
-                    margin: 10px;
-                }
-
-                button {
-                    display: block;
-                    margin: auto;
-                    margin-bottom: 10px;
-                    padding: 10px;
-                    background-color: var(--button-color);
-                    color: var(--button-text-color);
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-
-                button.secondary {
-                    background-color: transparent;
-                    color: black;
-                    border: 1px solid var(--button-color);
-                }
-
-                input {
-                    display: block;
-                    margin: auto;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    margin-bottom: 20px;
-                }
-
-                .input-button-container {
-                    display: flex;
-                    justify-content: center;
-                    gap: 10px;
-                    margin: auto;
-                    margin-bottom: 10px;
-
-                    input {
-                        flex: 1;
-                        padding: 10px;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        margin: 0;
-                    }
-
-                    button {
-                        flex: 0 1;
-                        margin: 0;
-                    }
-                }
-            }
-
             @media only screen and (max-width: 600px) {
+                header {
+                    flex-wrap: wrap;
+                }
+
                 .event {
                     font-size: 0.75em;
                     word-wrap: break-word;
@@ -233,18 +245,18 @@
 
     <body>
         <header>
-            <img src="logo.png" />
+            <div class="logo"><img src="logo.png" /></div>
 
             <div class="instructions">
                 <h3>Tap shows to select them</h3>
                 <p>Your picks are red, friend picks are blue</p>
-                <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
-                <div class="input-button-container" style="width: 250px">
-                    <input id="import" type="text" placeholder="Paste friend's link" />
-                    <button onclick="friendImport()">Import</button>
+                <button onclick="copy(event, this)" style="width: 200px">Share your picks</button>
+                <div class="input-button-container" style="width: 200px">
+                    <input id="import" type="text" style="width: 100%" placeholder="Paste friend's link" />
+                    <button onclick="friendImport()">Go</button>
                 </div>
                 <button
-                    style="width: 250px"
+                    style="width: 200px; margin-bottom: 0;"
                     class="secondary"
                     onclick="document.location.href=document.location.origin+document.location.pathname"
                 >
@@ -591,9 +603,9 @@
 
         <div class="instructions">
             <h3>Tap shows to select them</h3>
-            <button onclick="copy(event, this)" style="width: 250px">Share your picks</button>
+            <button onclick="copy(event, this)" style="width: 200px">Share your picks</button>
             <button
-                style="width: 250px"
+                style="width: 200px"
                 class="secondary"
                 onclick="document.location.href=document.location.origin+document.location.pathname"
             >
