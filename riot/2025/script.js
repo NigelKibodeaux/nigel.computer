@@ -107,11 +107,17 @@ Object.entries(data).forEach(([day, stages]) => {
         }
     }
 
+    // Round start time (in decimal hours) down to the neareest quarter hour
+    day_start_time = Math.floor(day_start_time * 4) / 4
+    // Round end time up to the nearest quarter hour
+    day_end_time = Math.ceil(day_end_time * 4) / 4
+
+    // Create time slots
     for (let i = day_start_time; i <= day_end_time; i = i + increment) {
         const timeSlot = document.createElement('div')
         const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
-        const minutes = Math.round(60 * (i % 1))
-        timeSlot.textContent = `${hour}:${minutes ? minutes : '00'}`
+        const minutes = 60 * (i % 1)
+        timeSlot.textContent = `${hour}:${Math.round(minutes).toString().padStart(2, "0")}`
         timeSlot.style.top = `${i * 60 * minute_height}px`
         timeSlot.style.height = `${60 * increment * minute_height}px`
         timeColumn.appendChild(timeSlot)
