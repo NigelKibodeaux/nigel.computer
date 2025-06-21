@@ -107,17 +107,17 @@ Object.entries(data).forEach(([day, stages]) => {
         }
     }
 
-    // Round start time (in decimal hours) down to the neareest quarter hour
-    day_start_time = Math.floor(day_start_time * 4) / 4
-    // Round end time up to the nearest quarter hour
-    day_end_time = Math.ceil(day_end_time * 4) / 4
+    // Round start time (in decimal hours) down to the nearest increment
+    day_start_time = Math.floor(day_start_time / increment) * increment
+    // Round end time up to the nearest increment
+    day_end_time = Math.ceil(day_end_time / increment) * increment
 
     // Create time slots
     for (let i = day_start_time; i <= day_end_time; i = i + increment) {
         const timeSlot = document.createElement('div')
         const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
         const minutes = 60 * (i % 1)
-        timeSlot.textContent = `${hour}:${Math.round(minutes).toString().padStart(2, "0")}`
+        timeSlot.textContent = `${hour}:${Math.round(minutes).toString().padStart(2, '0')}`
         timeSlot.style.top = `${i * 60 * minute_height}px`
         timeSlot.style.height = `${60 * increment * minute_height}px`
         timeColumn.appendChild(timeSlot)
@@ -231,10 +231,9 @@ async function copy(event, button) {
         setTimeout(() => {
             button.textContent = originalText
         }, 2000)
-
     } catch (err) {
         console.error('Failed to copy the link: ', err)
-        
+
         // Fallback to the old method if clipboard API fails
         try {
             const el = document.createElement('textarea')
@@ -243,7 +242,7 @@ async function copy(event, button) {
             el.select()
             const successful = document.execCommand('copy')
             document.body.removeChild(el)
-            
+
             if (successful) {
                 const originalText = button.textContent
                 button.textContent = 'Link Copied!'
