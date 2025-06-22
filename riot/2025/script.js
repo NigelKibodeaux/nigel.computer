@@ -92,7 +92,7 @@ Object.entries(data).forEach(([day, stages]) => {
     timeColumn.style.width = '100%'
     timeColumn.style.marginTop = '50px'
 
-    // Calculate where the day starts and ends
+    // Calculate where the day starts and ends (in decimal hours)
     let day_start_time
     let day_end_time
     for (const [stage, events] of Object.entries(stages)) {
