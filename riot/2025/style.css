@@ -62,6 +62,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            min-height: 34px;
         }
 
         button.secondary {
@@ -77,6 +78,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-bottom: 20px;
+            min-height: 34px;
         }
 
         .input-button-container {
