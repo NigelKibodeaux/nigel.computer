@@ -7,14 +7,13 @@
     --button-color: #f3bf08;
     --button-text-color: #000;
 
-    font-family: Arial, sans-serif;
+    font-family: 'Readex Pro', Arial, sans-serif;
     background-color: #fff;
     color: #4a4a4a;
     font-size: 12px;
     max-width: 1000px;
     margin: auto;
 
-    font-family: 'Readex Pro', sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -86,6 +85,7 @@
             gap: 10px;
             margin: auto;
             margin-bottom: 10px;
+            font-size: 12px;
 
             input {
                 flex: 1;
@@ -103,6 +103,7 @@
     }
 
     h2 {
+        font-family: "Archivo Black", sans-serif;
         text-align: center;
         margin: 0;
         font-size: 3em;
@@ -111,6 +112,8 @@
     }
 
     h3 {
+        font-family: "Archivo Black", sans-serif;
+        font-weight: 700;
         text-align: center;
     }
 
