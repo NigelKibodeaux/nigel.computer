@@ -50,6 +50,7 @@ Object.entries(data).forEach(([day, stages]) => {
 
     const dayContainer = document.createElement('div')
     dayContainer.classList.add('day')
+    dayContainer.classList.add(day.toLowerCase().replace(/\s/g, '-'))
 
     const stageContainer = document.createElement('table')
     stageContainer.classList.add('stage-container')

@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Knockout-HTF31-JuniorMiddlewt";
+    src: url("https://db.onlinewebfonts.com/t/0035905f200af0732a0724b47a17307e.woff") format("woff"),
+        url("https://db.onlinewebfonts.com/t/0035905f200af0732a0724b47a17307e.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "JohnDoe Bold";
+    src: url("https://db.onlinewebfonts.com/t/8c1a66d16b2e0e1731913c391da38b74.woff") format("woff"),
+        url("https://db.onlinewebfonts.com/t/8c1a66d16b2e0e1731913c391da38b74.ttf") format("truetype");
+}
+
+
 .riot-fest-schedule,
 .riot-fest-schedule * {
     box-sizing: border-box;
@@ -7,7 +20,9 @@
     --button-color: #f3bf08;
     --button-text-color: #000;
 
-    font-family: 'Readex Pro', Arial, sans-serif;
+    font-family: 'Knockout-HTF31-JuniorMiddlewt',
+        Arial,
+        sans-serif;
     background-color: #fff;
     color: #4a4a4a;
     font-size: 12px;
@@ -105,7 +120,7 @@
     }
 
     h2 {
-        font-family: "Archivo Black", sans-serif;
+        font-family: "JohnDoe Bold", sans-serif;
         text-align: center;
         margin: 0;
         font-size: 3em;
@@ -143,6 +158,10 @@
 
     thead tr {
         height: 50px;
+    }
+
+    thead th {
+        font-family: "JohnDoe Bold", sans-serif;
     }
 
     .day {
@@ -183,7 +202,7 @@
     }
 
     .event {
-        background-color: rgb(57, 57, 57);
+        background-color: #3C2623;
         color: white;
         padding: 5%;
         border-radius: 5px;
@@ -213,6 +232,69 @@
                 transparent 15px,
                 var(--friend-pick-color) 15px,
                 var(--friend-pick-color) 30px);
+    }
+
+    .friday {
+        .event.friend {
+            background-color: #A78200;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #F4C400;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #A78200 15px,
+                    #A78200 30px);
+            color: white;
+        }
+    }
+
+    .saturday {
+        .event.friend {
+            background-color: #008DB1;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #00C3F4;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #008DB1 15px,
+                    #008DB1 30px);
+            color: white;
+        }
+    }
+
+    .sunday {
+        .event.friend {
+            background-color: #A90030;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #FF0041;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #A90030 15px,
+                    #A90030 30px);
+            color: white;
+        }
     }
 
     @media only screen and (max-width: 600px) {
