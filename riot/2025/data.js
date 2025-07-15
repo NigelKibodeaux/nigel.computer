@@ -11,7 +11,8 @@ data = {
                 "name": "Alkaline Trio",
                 "start": "6:20",
                 "end": "7:20",
-                "id": "MSzX"
+                "id": "MSzX",
+                "notes": "Album Play: Maybe I’ll Catch Fire"
             },
             {
                 "name": "Rico Nasty",
@@ -70,7 +71,7 @@ data = {
                 "id": "1rsC"
             }
         ],
-        "WEIRD WORLD": [
+        "\"WEIRD AL\" YANKOVIC'S WEIRD WORLD\nHosted by Emo Philips": [
             {
                 "name": "\"Weird Al\" Yankovic",
                 "start": "7:00",
@@ -90,10 +91,10 @@ data = {
                 "id": "YvAT"
             },
             {
-                "name": "Puddles Pitty Party",
+                "name": "Puddles Pity Party",
                 "start": "2:15",
                 "end": "2:45",
-                "id": "ksSf"
+                "id": "1Yc2"
             },
             {
                 "name": "Mac Sabbath",
@@ -119,7 +120,8 @@ data = {
                 "name": "The Hold Steady",
                 "start": "4:00",
                 "end": "5:00",
-                "id": "1YAT"
+                "id": "1YAT",
+                "notes": "Album Play: Separation Sunday"
             },
             {
                 "name": "Shudder To Think",
@@ -145,7 +147,8 @@ data = {
                 "name": "The Pogues",
                 "start": "8:30",
                 "end": "10:00",
-                "id": "28sX"
+                "id": "28sX",
+                "notes": "Album Play: Rum Sodomy & the Lash"
             },
             {
                 "name": "Stiff Little Fingers",
@@ -163,13 +166,15 @@ data = {
                 "name": "Agnostic Front",
                 "start": "4:00",
                 "end": "5:00",
-                "id": "1QcK"
+                "id": "1QcK",
+                "notes": "Album Play: Victim in Pain"
             },
             {
                 "name": "Samiam",
                 "start": "2:40",
                 "end": "3:30",
-                "id": "1ZyV"
+                "id": "1ZyV",
+                "notes": "Album Play: Astray"
             },
             {
                 "name": "The Tossers",
@@ -191,7 +196,8 @@ data = {
                 "name": "Weezer",
                 "start": "8:30",
                 "end": "10:00",
-                "id": "1RzR"
+                "id": "1RzR",
+                "notes": "Album Play: The Blue Album"
             },
             {
                 "name": "Beach Boys",
@@ -235,7 +241,8 @@ data = {
                 "name": "The Front Bottoms",
                 "start": "5:15",
                 "end": "6:15",
-                "id": "2bIM"
+                "id": "2bIM",
+                "notes": "Album Play: Back on Top"
             },
             {
                 "name": "Panchiko",
@@ -273,7 +280,8 @@ data = {
                 "name": "Knuckle Puck",
                 "start": "5:20",
                 "end": "6:20",
-                "id": "1ITQ"
+                "id": "1ITQ",
+                "notes": "Album Play: Copacetic"
             },
             {
                 "name": "Citizen",
@@ -311,13 +319,15 @@ data = {
                 "name": "Bouncing Souls",
                 "start": "4:30",
                 "end": "5:15",
-                "id": "1YYQ"
+                "id": "1YYQ",
+                "notes": "Album Play: How I Spent My Summer Vacation"
             },
             {
                 "name": "Helmet",
                 "start": "2:50",
                 "end": "3:50",
-                "id": "2kCU"
+                "id": "2kCU",
+                "notes": "Album Play: Betty"
             },
             {
                 "name": "H20",
@@ -334,10 +344,11 @@ data = {
         ],
         "RADICAL": [
             {
-                "name": "Sex Pistols",
+                "name": "Frank Carter &\nSteve Jones • Paul Cook • Glen Matlock of the\nSex Pistols",
                 "start": "8:30",
                 "end": "10:00",
-                "id": "1QGV"
+                "id": "28po",
+                "notes": "Album Play: Never Mind the Bollocks…"
             },
             {
                 "name": "The Damned",
@@ -367,7 +378,8 @@ data = {
                 "name": "Agent Orange",
                 "start": "1:30",
                 "end": "2:15",
-                "id": "QSCU"
+                "id": "QSCU",
+                "notes": "Album Play: Living in Darkness"
             },
             {
                 "name": "Feral Tact",
@@ -395,7 +407,8 @@ data = {
                 "name": "Screeching Weasel",
                 "start": "4:10",
                 "end": "4:55",
-                "id": "3iir"
+                "id": "3iir",
+                "notes": "Album Play: My Brain Hurts"
             },
             {
                 "name": "The Linda Lindas",
@@ -407,13 +420,15 @@ data = {
                 "name": "Zero Boys",
                 "start": "1:15",
                 "end": "1:55",
-                "id": "1W2i"
+                "id": "1W2i",
+                "notes": "Album Play: Vicious Circle"
             },
             {
                 "name": "The Effigies",
                 "start": "12:00",
                 "end": "12:40",
-                "id": "1o5y"
+                "id": "1o5y",
+                "notes": "Album Play: For Ever Grounded"
             }
         ],
         "ROOTS": [
@@ -427,7 +442,8 @@ data = {
                 "name": "Bad Religion",
                 "start": "5:00",
                 "end": "6:00",
-                "id": "19rj"
+                "id": "19rj",
+                "notes": "Album Play: Suffer"
             },
             {
                 "name": "Dance Hall Crashers",
@@ -439,7 +455,8 @@ data = {
                 "name": "Pegboy",
                 "start": "2:00",
                 "end": "2:45",
-                "id": "258A"
+                "id": "258A",
+                "notes": "Album Play: Strong Reaction"
             },
             {
                 "name": "The Paradox",
@@ -477,7 +494,8 @@ data = {
                 "name": "Smoking Popes",
                 "start": "1:40",
                 "end": "2:25",
-                "id": "15IQ"
+                "id": "15IQ",
+                "notes": "Album Play: Born to Quit"
             },
             {
                 "name": "Dune Rats",
@@ -526,10 +544,11 @@ data = {
         ],
         "RADICAL": [
             {
-                "name": "The Academy Is",
+                "name": "The Academy Is...",
                 "start": "7:15",
                 "end": "8:15",
-                "id": "1dny"
+                "id": "Atg1",
+                "notes": "Album Play: Almost Here"
             },
             {
                 "name": "Cobra Starship",
@@ -553,7 +572,8 @@ data = {
                 "name": "The Ataris",
                 "start": "2:30",
                 "end": "3:30",
-                "id": "25r1"
+                "id": "25r1",
+                "notes": "Album Play: So Long, Astoria"
             },
             {
                 "name": "Delta Sleep",

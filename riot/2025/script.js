@@ -79,7 +79,8 @@ Object.entries(data).forEach(([day, stages]) => {
     Object.entries(stages).forEach(([stage, events]) => {
         if (stage !== 'day') {
             const th = document.createElement('th')
-            th.innerHTML = stage
+            const [stageName, subTitle] = stage.split('\n').filter(Boolean)
+            th.innerHTML = stageName + (subTitle ? `<div class="sub-title">${subTitle}</div>` : '')
             hr.appendChild(th)
         }
     })
@@ -89,9 +90,6 @@ Object.entries(data).forEach(([day, stages]) => {
 
     const timeColumn = document.createElement('div')
     timeColumn.classList.add('time-column')
-    timeColumn.style.position = 'absolute'
-    timeColumn.style.width = '100%'
-    timeColumn.style.marginTop = '50px'
 
     // Calculate where the day starts and ends (in decimal hours)
     let day_start_time
@@ -158,7 +156,9 @@ Object.entries(data).forEach(([day, stages]) => {
                     if (friendEvents.includes(event.id)) {
                         eventElement.classList.add('friend')
                     }
-                    eventElement.innerHTML = event.name.toLowerCase() + '<br>' + event.start + ' - ' + event.end
+                    eventElement.innerHTML = `<div class="name">${event.name}</div>` +
+                        `<div class="time">${event.start} - ${event.end}</div>` +
+                        (event.notes ? `<div class="notes">${event.notes}</div>` : '')
 
                     if (event.album) {
                         eventElement.innerHTML += '<br>Album Play: ' + event.album
