@@ -23,7 +23,7 @@
     --friend-pick-color: #2fb2e6;
     --button-color: #f3bf08;
     --button-text-color: #000;
-    --header-height: 100px;
+    --header-height: 55px;
 
     font-family: 'Knockout-HTF31-JuniorMiddlewt',
         Arial,
@@ -326,7 +326,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-        --header-height: 120px;
+        --header-height: 80px;
 
         header {
             flex-wrap: wrap;
@@ -337,9 +337,5 @@
             word-wrap: break-word;
             hyphens: auto;
         }
-
-        /* th div.sub-title {
-            display: none;
-        } */
     }
 }
