@@ -246,6 +246,18 @@
             margin: 4px 0 0 0;
             font-style: italic;
         }
+        .notes::before {
+            content: " ";
+            font-weight: bold;
+            background-image: url('./album.png');
+            background-repeat: no-repeat;
+            background-size: 1em 1em;
+            background-position: left center;
+            padding-left: 1.3em;
+        }
+        .notes::before {
+            filter: invert(1);
+        }
     }
 
     .event.friend {
@@ -254,6 +266,12 @@
 
     .event.chosen {
         background-color: var(--my-pick-color);
+    }
+
+    .event.chosen, .event.friend {
+        .notes::before {
+            filter: none;
+        }
     }
 
     .event.friend.chosen {
