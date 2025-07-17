@@ -1,7 +1,7 @@
 // Function that generates the schedule from the data
 document.addEventListener('DOMContentLoaded', async () => {
     // Fetch the schedule data from S3
-    const response = await fetch('https://riot-fest-schedule.s3.us-west-2.amazonaws.com/data.json')
+    const response = await fetch('https://riot-fest-schedule.s3.us-west-2.amazonaws.com/data-v2.json')
     const data = await response.json()
 
     // Get chosen events (mine and friend)from the query string
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Error if there are duplicate event IDs
     const eventIds = new Set()
-    Object.values(data).forEach((stages) => {
-        Object.values(stages).forEach((events) => {
-            events.forEach((event) => {
+    Object.values(data).forEach((day) => {
+        Object.values(day.stages).forEach((stage) => {
+            stage.forEach((event) => {
                 if (eventIds.has(event.id)) {
                     alert(`Duplicate event ID: ${event.id}`)
                     throw new Error(`Duplicate event ID: ${event.id}`)
@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
     })
 
-    Object.entries(data).forEach(([day, stages]) => {
+    Object.entries(data).forEach(([day, dayData]) => {
+        const stages = dayData.stages
+
         const heading = document.createElement('h2')
         heading.textContent = day
         scheduleContainer.appendChild(heading)
@@ -72,17 +74,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         hr.appendChild(blank_th)
         stageContainer.appendChild(thead)
 
-        // Place holder for stage subtitles
-        let stageSubTitle = null
-
         Object.entries(stages).forEach(([stage, events]) => {
             if (stage !== 'day') {
                 const th = document.createElement('th')
-                const [stageName, sub] = stage.split('\n').filter(Boolean)
-                th.innerHTML = stageName
-                if (sub) {
-                    stageSubTitle = sub
-                }
+                th.innerHTML = stage
                 hr.appendChild(th)
             }
         })
@@ -203,12 +198,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
         // Add table footer
-        if (stageSubTitle) {
+        if (dayData.notes) {
             const tfoot = document.createElement('tfoot')
             const footerRow = document.createElement('tr')
             const footerCell = document.createElement('td')
             footerCell.setAttribute('colspan', Object.keys(stages).length + 1) // +1 for the time column
-            footerCell.innerHTML = `<div class="sub-title">${stageSubTitle}</div>`
+            footerCell.innerHTML = `<div class="sub-title">${dayData.notes}</div>`
             footerRow.appendChild(footerCell)
             tfoot.appendChild(footerRow)
             stageContainer.appendChild(tfoot)
