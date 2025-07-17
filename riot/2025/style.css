@@ -245,15 +245,15 @@
             font-size: 0.8em;
             margin: 4px 0 0 0;
             font-style: italic;
-            line-height: 1em;
         }
+
         .notes::before {
             content: " ";
             background-image: url('./album_white.png');
             background-repeat: no-repeat;
-            background-size: 1em 1em;
+            background-size: 0.8em 0.8em;
             background-position: left center;
-            padding-left: 1.2em;
+            padding-left: 0.9em;
         }
     }
 
@@ -265,7 +265,8 @@
         background-color: var(--my-pick-color);
     }
 
-    .event.chosen, .event.friend {
+    .event.chosen,
+    .event.friend {
         .notes::before {
             background-image: url('./album_black.png');
         }
@@ -277,6 +278,10 @@
                 transparent 15px,
                 var(--friend-pick-color) 15px,
                 var(--friend-pick-color) 30px);
+
+        .notes::before {
+            background-image: url('./album_white.png');
+        }
     }
 
     .friday {
@@ -357,11 +362,17 @@
             div.notes {
                 font-size: 0.7em;
             }
+
+            .notes::before {
+                background-size: 0.7em 0.7em;
+                padding-left: 0.8em;
+            }
         }
     }
 
     @media only screen and (max-width: 400px) {
         .event {
+
             div,
             div.notes {
                 font-size: 0.7em;
