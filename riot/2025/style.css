@@ -167,11 +167,11 @@
         font-family: "JohnDoe Bold", sans-serif;
         vertical-align: bottom;
         padding-bottom: 10px;
+    }
 
-        .sub-title {
-            font-family: "JohnDoe Bold", sans-serif;
-            font-size: 0.8em;
-        }
+
+    tfoot div.sub-title {
+        font-family: "JohnDoe Bold", sans-serif;
     }
 
     .day {
