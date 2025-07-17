@@ -245,18 +245,15 @@
             font-size: 0.8em;
             margin: 4px 0 0 0;
             font-style: italic;
+            line-height: 1em;
         }
         .notes::before {
             content: " ";
-            font-weight: bold;
-            background-image: url('./album.png');
+            background-image: url('./album_white.png');
             background-repeat: no-repeat;
             background-size: 1em 1em;
             background-position: left center;
-            padding-left: 1.3em;
-        }
-        .notes::before {
-            filter: invert(1);
+            padding-left: 1.2em;
         }
     }
 
@@ -270,7 +267,7 @@
 
     .event.chosen, .event.friend {
         .notes::before {
-            filter: none;
+            background-image: url('./album_black.png');
         }
     }
 
