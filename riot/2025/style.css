@@ -241,7 +241,7 @@
         }
 
         .notes {
-            font-size: 10px;
+            font-size: 0.8em;
             margin: 4px 0 0 0;
             font-style: italic;
         }
@@ -334,9 +334,22 @@
         }
 
         .event {
-            font-size: 0.75em;
-            word-wrap: break-word;
-            hyphens: auto;
+            div {
+                font-size: 0.8em;
+            }
+
+            div.notes {
+                font-size: 0.7em;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        .event {
+            div,
+            div.notes {
+                font-size: 0.7em;
+            }
         }
     }
 }
