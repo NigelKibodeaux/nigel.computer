@@ -71,11 +71,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const blank_th = document.createElement('th')
         hr.appendChild(blank_th)
         stageContainer.appendChild(thead)
+
+        // Place holder for stage subtitles
+        let stageSubTitle = null
+
         Object.entries(stages).forEach(([stage, events]) => {
             if (stage !== 'day') {
                 const th = document.createElement('th')
-                const [stageName, subTitle] = stage.split('\n').filter(Boolean)
-                th.innerHTML = stageName + (subTitle ? `<div class="sub-title">${subTitle}</div>` : '')
+                const [stageName, sub] = stage.split('\n').filter(Boolean)
+                th.innerHTML = stageName
+                if (sub) {
+                    stageSubTitle = sub
+                }
                 hr.appendChild(th)
             }
         })
@@ -194,6 +201,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 row.appendChild(stageElement)
             }
         })
+
+        // Add table footer
+        if (stageSubTitle) {
+            const tfoot = document.createElement('tfoot')
+            const footerRow = document.createElement('tr')
+            const footerCell = document.createElement('td')
+            footerCell.setAttribute('colspan', Object.keys(stages).length + 1) // +1 for the time column
+            footerCell.innerHTML = `<div class="sub-title">${stageSubTitle}</div>`
+            footerRow.appendChild(footerCell)
+            tfoot.appendChild(footerRow)
+            stageContainer.appendChild(tfoot)
+        }
 
         dayContainer.appendChild(stageContainer)
         scheduleContainer.appendChild(dayContainer)
