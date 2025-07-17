@@ -1,206 +1,203 @@
-const chosenEvents = getMyEventsFromUrl(window.location.href)
+// Function that generates the schedule from the data
+document.addEventListener('DOMContentLoaded', async () => {
+    // Fetch the schedule data from S3
+    const response = await fetch('https://riot-fest-schedule.s3.us-west-2.amazonaws.com/data.json')
+    const data = await response.json()
 
-// Get friend events from the query string
-const friendEvents = []
-const url = new URL(window.location.href)
-const friendEventsFromQuery = url.searchParams.get('friend')
-if (friendEventsFromQuery) {
-    friendEventsFromQuery
-        .split('.')
-        .filter(Boolean)
-        .forEach((x) => friendEvents.push(x))
-}
+    // Get chosen events (mine and friend)from the query string
+    const chosenEvents = getMyEventsFromUrl(window.location.href)
 
-const scheduleContainer = document.getElementById('schedule')
-
-const minute_height = 2 // pixels per minute
-const increment = 0.25 // 15 minutes per horizontal line
-
-// Error if there are duplicate event IDs
-const eventIds = new Set()
-Object.values(data).forEach((stages) => {
-    Object.values(stages).forEach((events) => {
-        events.forEach((event) => {
-            if (eventIds.has(event.id)) {
-                alert(`Duplicate event ID: ${event.id}`)
-                throw new Error(`Duplicate event ID: ${event.id}`)
-            } else {
-                eventIds.add(event.id)
-            }
-        })
-    })
-})
-
-function calculateStartAndEndMinutes(event) {
-    let startHours = parseInt(event.start.split(':')[0])
-    if (startHours < 11) startHours += 12
-    let endHours = parseInt(event.end.split(':')[0])
-    if (endHours < 11) endHours += 12
-
-    const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
-    const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
-
-    return { startMinutes, endMinutes }
-}
-
-Object.entries(data).forEach(([day, stages]) => {
-    const heading = document.createElement('h2')
-    heading.textContent = day
-    scheduleContainer.appendChild(heading)
-
-    const dayContainer = document.createElement('div')
-    dayContainer.classList.add('day')
-    dayContainer.classList.add(day.toLowerCase().replace(/\s/g, '-'))
-
-    const stageContainer = document.createElement('table')
-    stageContainer.classList.add('stage-container')
-
-    // colgroups to set width
-    const colgroup = document.createElement('colgroup')
-    const timeCol = document.createElement('col')
-    timeCol.style.width = `${32}px`
-    colgroup.appendChild(timeCol)
-    Object.entries(stages).forEach(([stage, events]) => {
-        if (stage !== 'day') {
-            const col = document.createElement('col')
-            col.style.width = `${20}%`
-            colgroup.appendChild(col)
-        }
-    })
-    stageContainer.appendChild(colgroup)
-
-    // header row
-    const thead = document.createElement('thead')
-    const hr = document.createElement('tr')
-    thead.appendChild(hr)
-    const blank_th = document.createElement('th')
-    hr.appendChild(blank_th)
-    stageContainer.appendChild(thead)
-    Object.entries(stages).forEach(([stage, events]) => {
-        if (stage !== 'day') {
-            const th = document.createElement('th')
-            const [stageName, subTitle] = stage.split('\n').filter(Boolean)
-            th.innerHTML = stageName + (subTitle ? `<div class="sub-title">${subTitle}</div>` : '')
-            hr.appendChild(th)
-        }
-    })
-
-    const row = document.createElement('tr')
-    stageContainer.appendChild(row)
-
-    const timeColumn = document.createElement('div')
-    timeColumn.classList.add('time-column')
-
-    // Calculate where the day starts and ends (in decimal hours)
-    let day_start_time
-    let day_end_time
-    for (const [stage, events] of Object.entries(stages)) {
-        for (const event of events) {
-            const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
-            if (!day_start_time || startMinutes < day_start_time * 60) {
-                day_start_time = startMinutes / 60
-            }
-            if (!day_end_time || endMinutes > day_end_time * 60) {
-                day_end_time = endMinutes / 60
-            }
-        }
+    // Get friend events from the query string
+    const friendEvents = []
+    const url = new URL(window.location.href)
+    const friendEventsFromQuery = url.searchParams.get('friend')
+    if (friendEventsFromQuery) {
+        friendEventsFromQuery
+            .split('.')
+            .filter(Boolean)
+            .forEach((x) => friendEvents.push(x))
     }
 
-    // Round start time (in decimal hours) down to the nearest increment
-    day_start_time = Math.floor(day_start_time / increment) * increment
-    // Round end time up to the nearest increment
-    day_end_time = Math.ceil(day_end_time / increment) * increment
+    const scheduleContainer = document.getElementById('schedule')
 
-    // Create time slots
-    for (let i = day_start_time; i <= day_end_time; i = i + increment) {
-        const timeSlot = document.createElement('div')
-        const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
-        const minutes = 60 * (i % 1)
-        timeSlot.textContent = `${hour}:${Math.round(minutes).toString().padStart(2, '0')}`
-        timeSlot.style.top = `${i * 60 * minute_height}px`
-        timeSlot.style.height = `${60 * increment * minute_height}px`
-        timeColumn.appendChild(timeSlot)
-    }
-    dayContainer.appendChild(timeColumn)
+    const minute_height = 2 // pixels per minute
+    const increment = 0.25 // 15 minutes per horizontal line
 
-    // clone the time column and append it to the row to set the height
-    const timeColumnClone = timeColumn.cloneNode(true)
-    timeColumnClone.style.position = ''
-    timeColumnClone.style.width = '32px'
-    timeColumnClone.style.marginTop = '0'
-    const td = document.createElement('td')
-    td.classList.add('time-cell')
-    td.appendChild(timeColumnClone)
-    row.appendChild(td)
-
-    Object.entries(stages).forEach(([stage, events]) => {
-        if (stage !== 'day') {
-            const stageElement = document.createElement('td')
-            // stageElement.classList.add('stage')
-            // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
-
-            const eventsContainer = document.createElement('div')
-            eventsContainer.classList.add('eventsContainer')
-
+    // Error if there are duplicate event IDs
+    const eventIds = new Set()
+    Object.values(data).forEach((stages) => {
+        Object.values(stages).forEach((events) => {
             events.forEach((event) => {
-                try {
-                    const eventElement = document.createElement('div')
-                    eventElement.classList.add('event')
-
-                    const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
-                    eventElement.style.top = `${(startMinutes - day_start_time * 60) * minute_height}px`
-                    eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`
-                    if (chosenEvents.includes(event.id)) {
-                        eventElement.classList.add('chosen')
-                    }
-                    if (friendEvents.includes(event.id)) {
-                        eventElement.classList.add('friend')
-                    }
-                    eventElement.innerHTML = `<div class="name">${event.name}</div>` +
-                        `<div class="time">${event.start} - ${event.end}</div>` +
-                        (event.notes ? `<div class="notes">${event.notes}</div>` : '')
-
-                    if (event.album) {
-                        eventElement.innerHTML += '<br>Album Play: ' + event.album
-                    }
-
-                    eventsContainer.appendChild(eventElement)
-
-                    // when you click on an event, it will turn red
-                    eventElement.addEventListener('click', () => {
-                        const urlParams = new URLSearchParams(window.location.search)
-                        const chosenEvents = new Set((urlParams.get('mine') || '').split('.').filter(Boolean))
-
-                        if (eventElement.classList.contains('chosen')) {
-                            eventElement.classList.remove('chosen')
-                            chosenEvents.delete(event.id)
-                        } else {
-                            eventElement.classList.add('chosen')
-                            chosenEvents.add(event.id)
-                        }
-
-                        if (chosenEvents.size > 0) {
-                            urlParams.set('mine', Array.from(chosenEvents).join('.'))
-                        } else {
-                            urlParams.delete('mine')
-                        }
-                        window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
-                    })
-                } catch (e) {
-                    console.log(day)
-                    console.log(stage)
-                    console.log(event)
-                    console.log(e)
+                if (eventIds.has(event.id)) {
+                    alert(`Duplicate event ID: ${event.id}`)
+                    throw new Error(`Duplicate event ID: ${event.id}`)
+                } else {
+                    eventIds.add(event.id)
                 }
             })
-
-            stageElement.appendChild(eventsContainer)
-            row.appendChild(stageElement)
-        }
+        })
     })
 
-    dayContainer.appendChild(stageContainer)
-    scheduleContainer.appendChild(dayContainer)
+    Object.entries(data).forEach(([day, stages]) => {
+        const heading = document.createElement('h2')
+        heading.textContent = day
+        scheduleContainer.appendChild(heading)
+
+        const dayContainer = document.createElement('div')
+        dayContainer.classList.add('day')
+        dayContainer.classList.add(day.toLowerCase().replace(/\s/g, '-'))
+
+        const stageContainer = document.createElement('table')
+        stageContainer.classList.add('stage-container')
+
+        // colgroups to set width
+        const colgroup = document.createElement('colgroup')
+        const timeCol = document.createElement('col')
+        timeCol.style.width = `${32}px`
+        colgroup.appendChild(timeCol)
+        Object.entries(stages).forEach(([stage, events]) => {
+            if (stage !== 'day') {
+                const col = document.createElement('col')
+                col.style.width = `${20}%`
+                colgroup.appendChild(col)
+            }
+        })
+        stageContainer.appendChild(colgroup)
+
+        // header row
+        const thead = document.createElement('thead')
+        const hr = document.createElement('tr')
+        thead.appendChild(hr)
+        const blank_th = document.createElement('th')
+        hr.appendChild(blank_th)
+        stageContainer.appendChild(thead)
+        Object.entries(stages).forEach(([stage, events]) => {
+            if (stage !== 'day') {
+                const th = document.createElement('th')
+                const [stageName, subTitle] = stage.split('\n').filter(Boolean)
+                th.innerHTML = stageName + (subTitle ? `<div class="sub-title">${subTitle}</div>` : '')
+                hr.appendChild(th)
+            }
+        })
+
+        const row = document.createElement('tr')
+        stageContainer.appendChild(row)
+
+        const timeColumn = document.createElement('div')
+        timeColumn.classList.add('time-column')
+
+        // Calculate where the day starts and ends (in decimal hours)
+        let day_start_time
+        let day_end_time
+        for (const [stage, events] of Object.entries(stages)) {
+            for (const event of events) {
+                const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
+                if (!day_start_time || startMinutes < day_start_time * 60) {
+                    day_start_time = startMinutes / 60
+                }
+                if (!day_end_time || endMinutes > day_end_time * 60) {
+                    day_end_time = endMinutes / 60
+                }
+            }
+        }
+
+        // Round start time (in decimal hours) down to the nearest increment
+        day_start_time = Math.floor(day_start_time / increment) * increment
+        // Round end time up to the nearest increment
+        day_end_time = Math.ceil(day_end_time / increment) * increment
+
+        // Create time slots
+        for (let i = day_start_time; i <= day_end_time; i = i + increment) {
+            const timeSlot = document.createElement('div')
+            const hour = parseInt(i) <= 12 ? parseInt(i) : parseInt(i) - 12
+            const minutes = 60 * (i % 1)
+            timeSlot.textContent = `${hour}:${Math.round(minutes).toString().padStart(2, '0')}`
+            timeSlot.style.top = `${i * 60 * minute_height}px`
+            timeSlot.style.height = `${60 * increment * minute_height}px`
+            timeColumn.appendChild(timeSlot)
+        }
+        dayContainer.appendChild(timeColumn)
+
+        // clone the time column and append it to the row to set the height
+        const timeColumnClone = timeColumn.cloneNode(true)
+        timeColumnClone.style.position = ''
+        timeColumnClone.style.width = '32px'
+        timeColumnClone.style.marginTop = '0'
+        const td = document.createElement('td')
+        td.classList.add('time-cell')
+        td.appendChild(timeColumnClone)
+        row.appendChild(td)
+
+        Object.entries(stages).forEach(([stage, events]) => {
+            if (stage !== 'day') {
+                const stageElement = document.createElement('td')
+                // stageElement.classList.add('stage')
+                // stageElement.innerHTML = `<h3>${stage.split(' ').map(x => `<span>${x}</span>`).join(' ')}</h3>`;
+
+                const eventsContainer = document.createElement('div')
+                eventsContainer.classList.add('eventsContainer')
+
+                events.forEach((event) => {
+                    try {
+                        const eventElement = document.createElement('div')
+                        eventElement.classList.add('event')
+
+                        const { startMinutes, endMinutes } = calculateStartAndEndMinutes(event)
+                        eventElement.style.top = `${(startMinutes - day_start_time * 60) * minute_height}px`
+                        eventElement.style.height = `${(endMinutes - startMinutes) * minute_height}px`
+                        if (chosenEvents.includes(event.id)) {
+                            eventElement.classList.add('chosen')
+                        }
+                        if (friendEvents.includes(event.id)) {
+                            eventElement.classList.add('friend')
+                        }
+                        eventElement.innerHTML =
+                            `<div class="name">${event.name}</div>` +
+                            `<div class="time">${event.start} - ${event.end}</div>` +
+                            (event.notes ? `<div class="notes">${event.notes}</div>` : '')
+
+                        if (event.album) {
+                            eventElement.innerHTML += '<br>Album Play: ' + event.album
+                        }
+
+                        eventsContainer.appendChild(eventElement)
+
+                        // when you click on an event, it will turn red
+                        eventElement.addEventListener('click', () => {
+                            const urlParams = new URLSearchParams(window.location.search)
+                            const chosenEvents = new Set((urlParams.get('mine') || '').split('.').filter(Boolean))
+
+                            if (eventElement.classList.contains('chosen')) {
+                                eventElement.classList.remove('chosen')
+                                chosenEvents.delete(event.id)
+                            } else {
+                                eventElement.classList.add('chosen')
+                                chosenEvents.add(event.id)
+                            }
+
+                            if (chosenEvents.size > 0) {
+                                urlParams.set('mine', Array.from(chosenEvents).join('.'))
+                            } else {
+                                urlParams.delete('mine')
+                            }
+                            window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
+                        })
+                    } catch (e) {
+                        console.log(day)
+                        console.log(stage)
+                        console.log(event)
+                        console.log(e)
+                    }
+                })
+
+                stageElement.appendChild(eventsContainer)
+                row.appendChild(stageElement)
+            }
+        })
+
+        dayContainer.appendChild(stageContainer)
+        scheduleContainer.appendChild(dayContainer)
+    })
 })
 
 async function copy(event, button) {
@@ -335,4 +332,16 @@ function getMyEventsFromUrl(url_string) {
     }
 
     return chosenEvents
+}
+
+function calculateStartAndEndMinutes(event) {
+    let startHours = parseInt(event.start.split(':')[0])
+    if (startHours < 11) startHours += 12
+    let endHours = parseInt(event.end.split(':')[0])
+    if (endHours < 11) endHours += 12
+
+    const startMinutes = startHours * 60 + parseInt(event.start.split(':')[1])
+    const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
+
+    return { startMinutes, endMinutes }
 }
