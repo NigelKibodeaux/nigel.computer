@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const footerRow = document.createElement('tr')
             const footerCell = document.createElement('td')
             footerCell.setAttribute('colspan', Object.keys(stages).length + 1) // +1 for the time column
-            footerCell.innerHTML = `<div class="sub-title">${dayData.notes}</div>`
+            footerCell.innerHTML = `<div class="sub-title">${dayData.notes.replace('\n', '<br>')}</div>`
             footerRow.appendChild(footerCell)
             tfoot.appendChild(footerRow)
             stageContainer.appendChild(tfoot)
