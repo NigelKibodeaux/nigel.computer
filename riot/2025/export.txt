@@ -1,0 +1,43 @@
+<script src="https://nigel.computer/riot/2025/script.js"></script>
+<style>
+    @import url('https://nigel.computer/riot/2025/style.css');
+</style>
+<div class="riot-fest-schedule">
+    <header>
+        <div class="logo"><img src="https://nigel.computer/riot/2025/logo.png" /></div>
+
+        <div class="instructions">
+            <h3>Tap shows to select them</h3>
+            <!-- <p>Your picks are lighter, friend picks are darker</p> -->
+            <button onclick="copy(event, this)" style="width: 200px">Share your picks</button>
+            <div class="input-button-container" style="width: 200px">
+                <input id="import" type="text" style="width: 100%" placeholder="Paste friend's link" />
+                <button onclick="friendImport()">Go</button>
+            </div>
+            <button
+                style="width: 200px; margin-bottom: 0"
+                class="secondary"
+                onclick="document.location.href=document.location.origin+document.location.pathname"
+            >
+                Clear Selections
+            </button>
+        </div>
+    </header>
+
+    <div class="schedule" id="schedule">
+        <!-- Schedule visualization will be added here -->
+    </div>
+
+    <div class="instructions">
+        <h3>Tap shows to select them</h3>
+        <!-- <p>Your picks are lighter, friend picks are darker</p> -->
+        <button onclick="copy(event, this)" style="width: 200px">Share your picks</button>
+        <button
+            style="width: 200px"
+            class="secondary"
+            onclick="document.location.href=document.location.origin+document.location.pathname"
+        >
+            Clear Selections
+        </button>
+    </div>
+</div>

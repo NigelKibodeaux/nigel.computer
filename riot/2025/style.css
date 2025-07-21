@@ -15,7 +15,8 @@
     color: #4a4a4a;
 }
 
-.riot-fest-schedule,
+body.riot-fest-schedule,
+div.riot-fest-schedule,
 .riot-fest-schedule * {
     box-sizing: border-box;
 
@@ -23,7 +24,7 @@
     --friend-pick-color: #2fb2e6;
     --button-color: #f3bf08;
     --button-text-color: #000;
-    --header-height: 55px;
+    --header-height: 35px;
 
     font-family: 'Knockout-HTF31-JuniorMiddlewt',
         Arial,
@@ -348,7 +349,7 @@
     }
 
     @media only screen and (max-width: 600px) {
-        --header-height: 80px;
+        --header-height: 60px;
 
         header {
             flex-wrap: wrap;
