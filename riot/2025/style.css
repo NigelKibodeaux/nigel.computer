@@ -266,8 +266,7 @@ div.riot-fest-schedule,
         background-color: var(--my-pick-color);
     }
 
-    .event.chosen,
-    .event.friend {
+    .event.chosen {
         .notes::before {
             background-image: url('./album_black.png');
         }

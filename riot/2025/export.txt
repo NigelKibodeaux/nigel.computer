@@ -1,7 +1,7 @@
 <script>const ENABLE_LOCAL_STORAGE = true</script>
 <script src="https://nigel.computer/riot/2025/script.js?v=5"></script>
 <style>
-    @import url('https://nigel.computer/riot/2025/style.css');
+    @import url('https://nigel.computer/riot/2025/style.css?v=11');
 </style>
 <div class="riot-fest-schedule">
     <header>
