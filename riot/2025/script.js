@@ -7,6 +7,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get chosen events (mine and friend)from the query string
     const chosenEvents = getMyEventsFromUrl(window.location.href)
 
+    // If there were no chosenEvents in the URL, try to load them from localStorage
+    if (chosenEvents.length === 0 && isLocalStorageAvailable()) {
+        const storedEvents = localStorage.getItem('chosenEvents')
+        if (storedEvents) {
+            try {
+                const parsedEvents = JSON.parse(storedEvents)
+                if (Array.isArray(parsedEvents)) {
+                    parsedEvents.forEach((eventId) => {
+                        if (eventId) {
+                            chosenEvents.push(eventId)
+                        }
+                    })
+                }
+            } catch (e) {
+                console.error('Error parsing stored events:', e)
+            }
+        }
+    }
+
     // Get friend events from the query string
     const friendEvents = []
     const url = new URL(window.location.href)
@@ -182,7 +201,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                             } else {
                                 urlParams.delete('mine')
                             }
+
+                            // Store chosen events in the URL
                             window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
+                            
+                            // Also store them in localStorage
+                            if (isLocalStorageAvailable()) {
+                                localStorage.setItem('chosenEvents', JSON.stringify(Array.from(chosenEvents)))
+                            }
                         })
                     } catch (e) {
                         console.log(day)
@@ -316,6 +342,16 @@ function friendImport() {
     }
 }
 
+function clearChoices() {
+    // Clear the chosen events from localStorage
+    if (isLocalStorageAvailable()) {
+        localStorage.removeItem('chosenEvents')
+    }
+
+    // Reload the page without any query parameters
+    document.location.href=document.location.origin+document.location.pathname
+}
+
 function getFriendEventsFromUrl(url_string) {
     const friendEvents = []
     const url_object = new URL(url_string)
@@ -358,4 +394,18 @@ function calculateStartAndEndMinutes(event) {
     const endMinutes = endHours * 60 + parseInt(event.end.split(':')[1])
 
     return { startMinutes, endMinutes }
+}
+
+// Helper function to check localStorage availability
+function isLocalStorageAvailable() {
+    try {
+        if (!ENABLE_LOCAL_STORAGE) return false; // This is a global variable set in index.html
+
+        const test = '__localStorage_test__';
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }

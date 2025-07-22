@@ -1,4 +1,5 @@
-<script src="https://nigel.computer/riot/2025/script.js"></script>
+<script>const ENABLE_LOCAL_STORAGE = true</script>
+<script src="https://nigel.computer/riot/2025/script.js?v=5"></script>
 <style>
     @import url('https://nigel.computer/riot/2025/style.css');
 </style>
@@ -17,7 +18,7 @@
             <button
                 style="width: 200px; margin-bottom: 0"
                 class="secondary"
-                onclick="document.location.href=document.location.origin+document.location.pathname"
+                onclick="clearChoices()"
             >
                 Clear Selections
             </button>
@@ -35,7 +36,7 @@
         <button
             style="width: 200px"
             class="secondary"
-            onclick="document.location.href=document.location.origin+document.location.pathname"
+            onclick="clearChoices()"
         >
             Clear Selections
         </button>
