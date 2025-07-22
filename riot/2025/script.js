@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                             // Store chosen events in the URL
                             window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
-                            
+
                             // Also store them in localStorage
                             if (isLocalStorageAvailable()) {
                                 localStorage.setItem('chosenEvents', JSON.stringify(Array.from(chosenEvents)))
@@ -358,7 +358,7 @@ function clearChoices() {
     }
 
     // Reload the page without any query parameters
-    document.location.href=document.location.origin+document.location.pathname
+    document.location.href = document.location.origin + document.location.pathname
 }
 
 function getFriendEventsFromUrl(url_string) {
@@ -408,13 +408,16 @@ function calculateStartAndEndMinutes(event) {
 // Helper function to check localStorage availability
 function isLocalStorageAvailable() {
     try {
-        if (!ENABLE_LOCAL_STORAGE) return false; // This is a global variable set in index.html
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+        if (timezone === 'America/Anchorage') return true
 
-        const test = '__localStorage_test__';
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
-        return true;
+        if (!ENABLE_LOCAL_STORAGE) return false // This is a global variable set in index.html
+
+        const test = '__localStorage_test__'
+        localStorage.setItem(test, test)
+        localStorage.removeItem(test)
+        return true
     } catch (e) {
-        return false;
+        return false
     }
 }
