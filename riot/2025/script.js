@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }
                     })
                 }
+
+                // Update the URL with the chosen events from localStorage
+                const urlParams = new URLSearchParams(window.location.search)
+                if (chosenEvents.length > 0) {
+                    urlParams.set('mine', chosenEvents.join('.'))
+                } else {
+                    urlParams.delete('mine')
+                }
+                window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`)
             } catch (e) {
                 console.error('Error parsing stored events:', e)
             }
