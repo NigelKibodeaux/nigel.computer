@@ -408,9 +408,6 @@ function calculateStartAndEndMinutes(event) {
 // Helper function to check localStorage availability
 function isLocalStorageAvailable() {
     try {
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-        if (timezone === 'America/Anchorage') return true
-
         if (!ENABLE_LOCAL_STORAGE) return false // This is a global variable set in index.html
 
         const test = '__localStorage_test__'
