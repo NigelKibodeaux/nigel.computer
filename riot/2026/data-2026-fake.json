@@ -1,0 +1,617 @@
+{
+    "FRIDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "PATCHWORK-77",
+                    "start": "8:30",
+                    "end": "10:00",
+                    "id": "1trS"
+                },
+                {
+                    "name": "Bitter Sundial",
+                    "start": "6:20",
+                    "end": "7:20",
+                    "id": "MSzX",
+                    "notes": "Slow Burn Cathedral"
+                },
+                {
+                    "name": "Vex Marlow",
+                    "start": "4:30",
+                    "end": "5:10",
+                    "id": "1St0"
+                },
+                {
+                    "name": "Sugar \nMutiny",
+                    "start": "3:00",
+                    "end": "3:40",
+                    "id": "1sa6"
+                },
+                {
+                    "name": "Delia Frost",
+                    "start": "1:40",
+                    "end": "2:10",
+                    "id": "268P"
+                },
+                {
+                    "name": "Emmett Vance",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "1zhi"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "Concrete Gospel",
+                    "start": "7:25",
+                    "end": "8:25",
+                    "id": "hLL8"
+                },
+                {
+                    "name": "Static Compass",
+                    "start": "5:15",
+                    "end": "6:15",
+                    "id": "1xM9"
+                },
+                {
+                    "name": "Iron Verdict",
+                    "start": "3:45",
+                    "end": "4:25",
+                    "id": "1Jhl"
+                },
+                {
+                    "name": "Cœur Sauvage",
+                    "start": "2:15",
+                    "end": "2:55",
+                    "id": "1FrJ"
+                },
+                {
+                    "name": "Vandals of Nevada",
+                    "start": "1:05",
+                    "end": "1:35",
+                    "id": "1rsC"
+                },
+                {
+                    "name": "La Luna Gris",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "StOu"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "\"Odd Ollie\" Vandermeer",
+                    "start": "7:00",
+                    "end": "8:30",
+                    "id": "QdAp"
+                },
+                {
+                    "name": "Embers",
+                    "start": "5:05",
+                    "end": "5:50",
+                    "id": "1YEg"
+                },
+                {
+                    "name": "Trailer Van Tchaikovsky",
+                    "start": "3:25",
+                    "end": "3:55",
+                    "id": "YvAT"
+                },
+                {
+                    "name": "Sadsack Sock Hop",
+                    "start": "2:15",
+                    "end": "2:45",
+                    "id": "1Yc2"
+                },
+                {
+                    "name": "Drive-Thru \nDoom",
+                    "start": "1:05",
+                    "end": "1:35",
+                    "id": "1OSw"
+                },
+                {
+                    "name": "Bento Blade",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "24UZ"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "Mira Kelso",
+                    "start": "5:55",
+                    "end": "6:55",
+                    "id": "f9ga"
+                },
+                {
+                    "name": "The Long Haul",
+                    "start": "4:00",
+                    "end": "5:00",
+                    "id": "1YAT",
+                    "notes": "Departure Tuesday"
+                },
+                {
+                    "name": "Flinch And Recall",
+                    "start": "2:50",
+                    "end": "3:20",
+                    "id": "1Fje"
+                },
+                {
+                    "name": "Abyssal Plain",
+                    "start": "1:40",
+                    "end": "2:10",
+                    "id": "1T51"
+                },
+                {
+                    "name": "Novaire",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "2ceq"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "The Rovers",
+                    "start": "8:30",
+                    "end": "10:00",
+                    "id": "28sX",
+                    "notes": "Gin, Gospel & the Rope"
+                },
+                {
+                    "name": "Brittle Little \nKnuckles",
+                    "start": "7:00",
+                    "end": "8:00",
+                    "id": "rfnt"
+                },
+                {
+                    "name": "Gadgets",
+                    "start": "5:30",
+                    "end": "6:30",
+                    "id": "13OR"
+                },
+                {
+                    "name": "Skeptic Brigade",
+                    "start": "4:00",
+                    "end": "5:00",
+                    "id": "1QcK",
+                    "notes": "Witness in Pain"
+                },
+                {
+                    "name": "Halcyon",
+                    "start": "2:40",
+                    "end": "3:30",
+                    "id": "1ZyV",
+                    "notes": "Adrift"
+                },
+                {
+                    "name": "The Wastrels",
+                    "start": "1:40",
+                    "end": "2:10",
+                    "id": "1oPF"
+                },
+                {
+                    "name": "Big Rig Holiday IE",
+                    "start": "12:50",
+                    "end": "1:20",
+                    "id": "1c9a"
+                }
+            ]
+        }
+    },
+    "SATURDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "TANGERINE",
+                    "start": "8:30",
+                    "end": "10:00",
+                    "id": "1TDZ",
+                    "notes": "The Amber Album"
+                },
+                {
+                    "name": "The Shoreline Kids",
+                    "start": "6:20",
+                    "end": "7:20",
+                    "id": "1DP4"
+                },
+                {
+                    "name": "Hollis",
+                    "start": "4:10",
+                    "end": "5:10",
+                    "id": "4Pkl"
+                },
+                {
+                    "name": "Megabite",
+                    "start": "2:55",
+                    "end": "3:25",
+                    "id": "iRed"
+                },
+                {
+                    "name": "Sidearm Choir",
+                    "start": "1:45",
+                    "end": "2:15",
+                    "id": "1gSy"
+                },
+                {
+                    "name": "Velvetine",
+                    "start": "12:35",
+                    "end": "1:05",
+                    "id": "5EJ7"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "SILAS GRAY",
+                    "start": "7:25",
+                    "end": "8:25",
+                    "id": "PG42"
+                },
+                {
+                    "name": "The Back Porches",
+                    "start": "5:15",
+                    "end": "6:15",
+                    "id": "2bIM",
+                    "notes": "Bottom of the Hill"
+                },
+                {
+                    "name": "Kanashi",
+                    "start": "3:35",
+                    "end": "4:05",
+                    "id": "1e13"
+                },
+                {
+                    "name": "The Bunks",
+                    "start": "2:20",
+                    "end": "2:50",
+                    "id": "esg3"
+                },
+                {
+                    "name": "Boy in a Dream",
+                    "start": "1:10",
+                    "end": "1:40",
+                    "id": "bjrc"
+                },
+                {
+                    "name": "Terminal Velocity",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "1zug"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "Every Time High",
+                    "start": "7:30",
+                    "end": "8:30",
+                    "id": "vIBz"
+                },
+                {
+                    "name": "Elbow Check",
+                    "start": "5:20",
+                    "end": "6:20",
+                    "id": "1ITQ",
+                    "notes": "Kinetic"
+                },
+                {
+                    "name": "Denizen",
+                    "start": "3:55",
+                    "end": "4:25",
+                    "id": "20SN"
+                },
+                {
+                    "name": "Foul Line",
+                    "start": "2:15",
+                    "end": "2:45",
+                    "id": "qvMm"
+                },
+                {
+                    "name": "Hurled",
+                    "start": "1:05",
+                    "end": "1:35",
+                    "id": "1Xb1"
+                },
+                {
+                    "name": "Ledgejumper",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "BxBk"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "Roundhouse Delaney",
+                    "start": "6:25",
+                    "end": "7:25",
+                    "id": "1FR7"
+                },
+                {
+                    "name": "Rattling Spirits",
+                    "start": "4:30",
+                    "end": "5:15",
+                    "id": "1YYQ",
+                    "notes": "How I Wasted My Winter Break"
+                },
+                {
+                    "name": "Visor",
+                    "start": "2:50",
+                    "end": "3:50",
+                    "id": "2kCU",
+                    "notes": "Wanda"
+                },
+                {
+                    "name": "N2O",
+                    "start": "1:40",
+                    "end": "2:10",
+                    "id": "ipM"
+                },
+                {
+                    "name": "Vicious Nera",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "1Mkx"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "The Doomed",
+                    "start": "8:30",
+                    "end": "9:30",
+                    "id": "2a5g"
+                },
+                {
+                    "name": "Buzzsaws",
+                    "start": "7:00",
+                    "end": "8:00",
+                    "id": "1bFP"
+                },
+                {
+                    "name": "Sparky \nRomano",
+                    "start": "5:30",
+                    "end": "6:30",
+                    "id": "171a"
+                },
+                {
+                    "name": "SNARL",
+                    "start": "3:15",
+                    "end": "4:15",
+                    "id": "9exP"
+                },
+                {
+                    "name": "Agent \nMagenta",
+                    "start": "1:45",
+                    "end": "2:30",
+                    "id": "IdbW",
+                    "notes": "Sleeping in Darkness"
+                },
+                {
+                    "name": "Ferrous Tack",
+                    "start": "12:50",
+                    "end": "1:15",
+                    "id": "1w0Q"
+                },
+                {
+                    "name": "Milo Treble",
+                    "start": "12:05",
+                    "end": "12:20",
+                    "id": "7fJX"
+                }
+            ]
+        },
+        "notes": null
+    },
+    "SUNDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "AMBER NIGHT",
+                    "start": "8:15",
+                    "end": "10:00",
+                    "id": "BLgH"
+                },
+                {
+                    "name": "CHORES",
+                    "start": "6:05",
+                    "end": "7:05",
+                    "id": "4HGP"
+                },
+                {
+                    "name": "Howling Ferret",
+                    "start": "4:10",
+                    "end": "4:55",
+                    "id": "3iir",
+                    "notes": "My Skull Aches"
+                },
+                {
+                    "name": "The Lola Lolas",
+                    "start": "2:50",
+                    "end": "3:20",
+                    "id": "RUij"
+                },
+                {
+                    "name": "Null Kids",
+                    "start": "1:15",
+                    "end": "1:55",
+                    "id": "1W2i",
+                    "notes": "Vicious Spiral"
+                },
+                {
+                    "name": "The \nScarecrows",
+                    "start": "12:00",
+                    "end": "12:40",
+                    "id": "16Uv",
+                    "notes": "Forever Sinking"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "Toothache",
+                    "start": "7:10",
+                    "end": "8:10",
+                    "id": "xcaN"
+                },
+                {
+                    "name": "Poor \nDoctrine",
+                    "start": "5:00",
+                    "end": "6:00",
+                    "id": "110I",
+                    "notes": "Endure"
+                },
+                {
+                    "name": "Ballroom Wreckers",
+                    "start": "3:25",
+                    "end": "4:05",
+                    "id": "2jaq"
+                },
+                {
+                    "name": "Tackboy",
+                    "start": "2:00",
+                    "end": "2:45",
+                    "id": "258A",
+                    "notes": "Sharp Reaction"
+                },
+                {
+                    "name": "The \nParable",
+                    "start": "12:40",
+                    "end": "1:10",
+                    "id": "RS9W"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "Exhaler",
+                    "start": "7:15",
+                    "end": "8:15",
+                    "id": "KfIL"
+                },
+                {
+                    "name": "The Blunder Decades",
+                    "start": "5:35",
+                    "end": "6:20",
+                    "id": "1ikX"
+                },
+                {
+                    "name": "Convection",
+                    "start": "4:15",
+                    "end": "4:45",
+                    "id": "25fw"
+                },
+                {
+                    "name": "Prosecco Boys",
+                    "start": "3:05",
+                    "end": "3:35",
+                    "id": "Eu7x"
+                },
+                {
+                    "name": "Smoldering Cardinals",
+                    "start": "1:40",
+                    "end": "2:25",
+                    "id": "15IQ",
+                    "notes": "Born to Fold"
+                },
+                {
+                    "name": "Dust Mice",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "1gEY"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "Kansas Is \nThe Problem",
+                    "start": "6:25",
+                    "end": "7:10",
+                    "id": "1oND"
+                },
+                {
+                    "name": "GNAW",
+                    "start": "4:50",
+                    "end": "5:30",
+                    "id": "8MQB"
+                },
+                {
+                    "name": "Ozlow",
+                    "start": "3:40",
+                    "end": "4:10",
+                    "id": "5bka"
+                },
+                {
+                    "name": "Hard Rest",
+                    "start": "2:30",
+                    "end": "3:00",
+                    "id": "8Cfx"
+                },
+                {
+                    "name": "Quinnnex",
+                    "start": "1:05",
+                    "end": "1:35",
+                    "id": "1kBe"
+                },
+                {
+                    "name": "Fortified Strangers",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "m1zp"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "The Institute Was...",
+                    "start": "7:15",
+                    "end": "8:15",
+                    "id": "Atg1",
+                    "notes": "Nearly There"
+                },
+                {
+                    "name": "Viper Cruiser",
+                    "start": "6:00",
+                    "end": "6:45",
+                    "id": "VfKQ"
+                },
+                {
+                    "name": "Study Hall Legends",
+                    "start": "5:00",
+                    "end": "5:30",
+                    "id": "Zdyr"
+                },
+                {
+                    "name": "Jansen",
+                    "start": "4:00",
+                    "end": "4:30",
+                    "id": "2kS8"
+                },
+                {
+                    "name": "The Novaris",
+                    "start": "2:30",
+                    "end": "3:30",
+                    "id": "25r1",
+                    "notes": "Farewell, Peoria"
+                },
+                {
+                    "name": "Theta Dream",
+                    "start": "1:30",
+                    "end": "2:00",
+                    "id": "OPhF"
+                },
+                {
+                    "name": "Hunter \nPetal",
+                    "start": "12:45",
+                    "end": "1:15",
+                    "id": "1Dki"
+                },
+                {
+                    "name": "Baseballbrain",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "1vCy"
+                },
+                {
+                    "name": "Nu Clear Fission",
+                    "start": "11:20",
+                    "end": "11:45",
+                    "id": "1eCp"
+                }
+            ]
+        },
+        "notes": null
+    }
+}

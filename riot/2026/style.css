@@ -1,0 +1,373 @@
+@import url(https://db.onlinewebfonts.com/c/9d476c89b917332f9a199fe50bbeb161?family=Friz+Quadrata+Bold);
+
+.riot-fest-schedule {
+    background-color: #fff;
+    color: #4a4a4a;
+}
+
+body.riot-fest-schedule,
+div.riot-fest-schedule,
+.riot-fest-schedule * {
+    box-sizing: border-box;
+
+    --my-pick-color: #e10337;
+    --friend-pick-color: #2fb2e6;
+    --button-color: #00FFA7;
+    --button-text-color: #000;
+    --header-height: 35px;
+
+    font-family: 'Knockout-HTF31-JuniorMiddlewt',
+        Arial,
+        sans-serif;
+    font-size: 12px;
+    max-width: 1000px;
+    margin: auto;
+
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    header {
+        display: flex;
+        gap: 10px;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin: 10px 10px 20px 10px;
+
+        .logo {
+            flex: 1 1 auto;
+            min-width: 250px;
+
+            img {
+                min-width: 300px;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    .instructions {
+        flex: 0 0 auto;
+        text-align: center;
+
+        h3 {
+            font-size: 1.7em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px;
+            margin-top: 0;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            min-height: 34px;
+        }
+
+        button.secondary {
+            background-color: transparent;
+            color: black;
+            border: 1px solid var(--button-color);
+        }
+
+        input {
+            display: block;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            min-height: 34px;
+        }
+
+        .input-button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: auto;
+            margin-bottom: 10px;
+
+            input {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin: 0;
+                font-size: 12px;
+            }
+
+            button {
+                flex: 0 1;
+                margin: 0;
+            }
+        }
+    }
+
+    h2 {
+        font-family: "Friz Quadrata Bold";
+        text-align: center;
+        margin: 0;
+        font-size: 3em;
+        font-weight: 900;
+        color: black;
+    }
+
+    h3 {
+        font-family: "Friz Quadrata Bold";
+        font-weight: 700;
+        text-align: center;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+    table,
+    th,
+    tr,
+    td {
+        padding: 0;
+        margin: 0;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #fff;
+        text-transform: uppercase;
+    }
+
+    thead tr {
+        height: var(--header-height);
+    }
+
+    thead th {
+        font-family: "Friz Quadrata Bold";
+        vertical-align: bottom;
+        padding-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+
+    tfoot div.sub-title {
+        font-family: "Friz Quadrata Bold";
+        font-size: 1.2em;
+    }
+
+    .day {
+        border-radius: 5px;
+        margin-bottom: 100px;
+        /* display: flex; */
+        position: relative;
+        /* width: fit-content; */
+    }
+
+    .day:last-of-type {
+        margin-bottom: 50px;
+    }
+
+    .time-column {
+        width: 100%;
+        padding: 0 1px;
+        flex-shrink: 0;
+        margin-top: var(--header-height);
+        position: absolute;
+    }
+
+    .time-column div {
+        font-size: 0.8em;
+        border-top: 1px solid #ccc;
+        padding: 0px 5px;
+    }
+
+    .stage-container {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    td.time-cell {
+        color: rgba(0, 0, 0, 0);
+
+        .time-column {
+            margin-top: 0;
+            position: relative;
+        }
+    }
+
+    .eventsContainer {
+        position: relative;
+    }
+
+    .event {
+        background-color: #0A1B33;
+        color: white;
+        padding: 5%;
+        border-radius: 5px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0 1px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        .notes {
+            font-size: 0.8em;
+            margin: 4px 0 0 0;
+            font-style: italic;
+        }
+
+        .notes::before {
+            content: " ";
+            background-image: url('./album_white.png');
+            background-repeat: no-repeat;
+            background-size: 0.8em 0.8em;
+            background-position: left center;
+            padding-left: 0.9em;
+        }
+    }
+
+    .event.friend {
+        background-color: var(--friend-pick-color);
+    }
+
+    .event.chosen {
+        background-color: var(--my-pick-color);
+    }
+
+    .event.chosen {
+        .notes::before {
+            background-image: url('./album_black.png');
+        }
+    }
+
+    .event.friend.chosen {
+        background-image: repeating-linear-gradient(-45deg,
+                transparent,
+                transparent 15px,
+                var(--friend-pick-color) 15px,
+                var(--friend-pick-color) 30px);
+
+        .notes::before {
+            background-image: url('./album_white.png');
+        }
+    }
+
+    .friday {
+        .event.friend {
+            background-color: #B77E0B;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #FAA600;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #B77E0B 15px,
+                    #B77E0B 30px);
+            color: white;
+        }
+    }
+
+    .saturday {
+        .event.friend {
+            background-color: #008669;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #00C77A;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #008669 15px,
+                    #008669 30px);
+            color: white;
+        }
+    }
+
+    .sunday {
+        .event.friend {
+            background-color: #7535D8;
+            color: white;
+        }
+
+        .event.chosen {
+            background-color: #AD86C2;
+            color: #3C2623;
+        }
+
+        .event.friend.chosen {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 15px,
+                    #7535D8 15px,
+                    #7535D8 30px);
+            color: white;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        --header-height: 60px;
+
+        header {
+            flex-wrap: wrap;
+        }
+
+        .event {
+            div {
+                font-size: 0.8em;
+            }
+
+            div.notes {
+                font-size: 0.7em;
+            }
+
+            .notes::before {
+                background-size: 0.7em 0.7em;
+                padding-left: 0.8em;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        .event {
+
+            div,
+            div.notes {
+                font-size: 0.7em;
+            }
+        }
+    }
+}
