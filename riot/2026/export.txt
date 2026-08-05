@@ -1,5 +1,5 @@
 <script>const ENABLE_LOCAL_STORAGE = true</script>
-<script src="https://nigel.computer/riot/2026/script.js?v=1"></script>
+<script src="https://nigel.computer/riot/2026/script.js?v=2"></script>
 <style>
     @import url('https://nigel.computer/riot/2026/style.css?v=1');
 </style>
