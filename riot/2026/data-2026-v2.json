@@ -1,0 +1,687 @@
+{
+    "FRIDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "TWENTY ONE PILOTS",
+                    "start": "8:40",
+                    "end": "10:00",
+                    "id": "223s"
+                },
+                {
+                    "name": "THE ALL-AMERICAN REJECTS",
+                    "start": "6:30",
+                    "end": "7:30",
+                    "id": "EYOP"
+                },
+                {
+                    "name": "JOEY VALENCE & BRAE",
+                    "start": "4:40",
+                    "end": "5:20",
+                    "id": "2aVj"
+                },
+                {
+                    "name": "THE PARADOX",
+                    "start": "3:30",
+                    "end": "4:00",
+                    "id": "2iOS"
+                },
+                {
+                    "name": "VIOLET GROHL",
+                    "start": "2:20",
+                    "end": "2:50",
+                    "id": "8Pdb"
+                },
+                {
+                    "name": "JMSN",
+                    "start": "1:10",
+                    "end": "1:40",
+                    "id": "9zrg"
+                },
+                {
+                    "name": "CARDINALS",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "1U3a"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "RISE AGAINST",
+                    "start": "7:35",
+                    "end": "8:35",
+                    "id": "2rCE"
+                },
+                {
+                    "name": "ALKALINE TRIO",
+                    "start": "5:25",
+                    "end": "6:25",
+                    "id": "1kTA"
+                },
+                {
+                    "name": "BAYSIDE",
+                    "start": "4:05",
+                    "end": "4:35",
+                    "id": "qtZQ"
+                },
+                {
+                    "name": "3OH!3",
+                    "start": "2:55",
+                    "end": "3:25",
+                    "id": "3lNh"
+                },
+                {
+                    "name": "FLESHWATER",
+                    "start": "1:45",
+                    "end": "2:15",
+                    "id": "2ayo"
+                },
+                {
+                    "name": "TEEN MORTGAGE",
+                    "start": "12:35",
+                    "end": "1:05",
+                    "id": "228F"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "PIXIES",
+                    "start": "8:15",
+                    "end": "9:15",
+                    "id": "26V4"
+                },
+                {
+                    "name": "SANTIGOLD",
+                    "start": "6:15",
+                    "end": "7:15",
+                    "id": "ES9p"
+                },
+                {
+                    "name": "MOTION CITY SOUNDTRACK",
+                    "start": "4:45",
+                    "end": "5:25",
+                    "id": "g8G6"
+                },
+                {
+                    "name": "TRICKY",
+                    "start": "3:15",
+                    "end": "4:00",
+                    "id": "1YDA"
+                },
+                {
+                    "name": "RADIO FREE ALICE",
+                    "start": "2:15",
+                    "end": "2:45",
+                    "id": "Lto6"
+                },
+                {
+                    "name": "DIVISIÓN MINÚSCULA",
+                    "start": "1:15",
+                    "end": "1:45",
+                    "id": "qaPS"
+                },
+                {
+                    "name": "GLIXEN",
+                    "start": "12:15",
+                    "end": "12:45",
+                    "id": "2isR"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "IGGY POP",
+                    "start": "8:45",
+                    "end": "9:45",
+                    "id": "10f2"
+                },
+                {
+                    "name": "SEX PISTOLS",
+                    "start": "7:00",
+                    "end": "8:00",
+                    "id": "uumH"
+                },
+                {
+                    "name": "SLICK RICK",
+                    "start": "5:30",
+                    "end": "6:15",
+                    "id": "UbFI"
+                },
+                {
+                    "name": "GUTTERMOUTH",
+                    "start": "4:30",
+                    "end": "5:00",
+                    "id": "aLpg"
+                },
+                {
+                    "name": "BRATMOBILE",
+                    "start": "3:30",
+                    "end": "4:00",
+                    "id": "1eI4"
+                },
+                {
+                    "name": "MARIACHI EL BRONX",
+                    "start": "2:30",
+                    "end": "3:00",
+                    "id": "1p2S"
+                },
+                {
+                    "name": "SOUL GLO",
+                    "start": "1:30",
+                    "end": "2:00",
+                    "id": "1VXC"
+                },
+                {
+                    "name": "PANIC SHACK",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "20B7"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "GWAR",
+                    "start": "8:55",
+                    "end": "9:55",
+                    "id": "9exP"
+                },
+                {
+                    "name": "FOXY SHAZAM",
+                    "start": "7:15",
+                    "end": "7:45",
+                    "id": "1H1L"
+                },
+                {
+                    "name": "DEATHBYROMY",
+                    "start": "6:15",
+                    "end": "6:45",
+                    "id": "2aeT"
+                },
+                {
+                    "name": "THE CALLOUS DAOBOYS",
+                    "start": "5:15",
+                    "end": "5:45",
+                    "id": "1jWe"
+                },
+                {
+                    "name": "STEPHEN EGERTON",
+                    "start": "4:15",
+                    "end": "4:45",
+                    "id": "2399"
+                },
+                {
+                    "name": "WORRY CLUB",
+                    "start": "3:15",
+                    "end": "3:45",
+                    "id": "1UpM"
+                },
+                {
+                    "name": "SLOTHRUST",
+                    "start": "2:15",
+                    "end": "2:45",
+                    "id": "T1tl"
+                },
+                {
+                    "name": "GREET DEATH",
+                    "start": "1:15",
+                    "end": "1:45",
+                    "id": "qeMq"
+                },
+                {
+                    "name": "ALMOST THERE BUT NOT REALLY",
+                    "start": "12:15",
+                    "end": "12:45",
+                    "id": "tO62"
+                }
+            ]
+        },
+        "notes": null
+    },
+    "SATURDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "TOOL",
+                    "start": "8:20",
+                    "end": "10:00",
+                    "id": "aPpe"
+                },
+                {
+                    "name": "SOCIAL DISTORTION",
+                    "start": "5:55",
+                    "end": "6:55",
+                    "id": "vkYa"
+                },
+                {
+                    "name": "PUBLIC IMAGE LTD",
+                    "start": "4:05",
+                    "end": "4:45",
+                    "id": "2j9l"
+                },
+                {
+                    "name": "ANGINE DE POITRINE",
+                    "start": "2:45",
+                    "end": "3:15",
+                    "id": "cKmy"
+                },
+                {
+                    "name": "MELT-BANANA",
+                    "start": "1:35",
+                    "end": "2:05",
+                    "id": "2gkS"
+                },
+                {
+                    "name": "ASAVA",
+                    "start": "12:30",
+                    "end": "1:00",
+                    "id": "4ews"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "MORRISSEY",
+                    "start": "7:00",
+                    "end": "8:15",
+                    "id": "Ksf6"
+                },
+                {
+                    "name": "SUGAR",
+                    "start": "4:50",
+                    "end": "5:50",
+                    "id": "5mxN"
+                },
+                {
+                    "name": "BRIGHT EYES",
+                    "start": "3:20",
+                    "end": "4:00",
+                    "id": "Njts"
+                },
+                {
+                    "name": "BRIAN FALLON",
+                    "start": "2:10",
+                    "end": "2:40",
+                    "id": "1hyP"
+                },
+                {
+                    "name": "YARD ACT",
+                    "start": "1:00",
+                    "end": "1:30",
+                    "id": "vbTF"
+                },
+                {
+                    "name": "KIWI JR.",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "x6KE"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "BAD RELIGION",
+                    "start": "7:20",
+                    "end": "8:20",
+                    "id": "1f9e"
+                },
+                {
+                    "name": "DESCENDENTS",
+                    "start": "4:55",
+                    "end": "5:55",
+                    "id": "255d",
+                    "notes": "EVERYTHING SUCKS"
+                },
+                {
+                    "name": "THRICE",
+                    "start": "3:55",
+                    "end": "4:25",
+                    "id": "1Zfb"
+                },
+                {
+                    "name": "DESTROY BOYS",
+                    "start": "2:55",
+                    "end": "3:25",
+                    "id": "13SF"
+                },
+                {
+                    "name": "THE CHATS",
+                    "start": "1:55",
+                    "end": "2:25",
+                    "id": "1Euh"
+                },
+                {
+                    "name": "STRIKE ANYWHERE",
+                    "start": "1:00",
+                    "end": "1:30",
+                    "id": "h1CW"
+                },
+                {
+                    "name": "NOBRO",
+                    "start": "12:05",
+                    "end": "12:35",
+                    "id": "52oV"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "NAS",
+                    "start": "9:00",
+                    "end": "10:00",
+                    "id": "k2Q"
+                },
+                {
+                    "name": "GOGOL BORDELLO",
+                    "start": "6:30",
+                    "end": "7:30",
+                    "id": "eOhj"
+                },
+                {
+                    "name": "PUP",
+                    "start": "4:30",
+                    "end": "5:15",
+                    "id": "kHN",
+                    "notes": "THE DREAM IS OVER"
+                },
+                {
+                    "name": "LESS THAN JAKE",
+                    "start": "3:20",
+                    "end": "4:00",
+                    "id": "2cCh"
+                },
+                {
+                    "name": "THE SUICIDE MACHINES",
+                    "start": "2:00",
+                    "end": "2:50",
+                    "id": "8n7K",
+                    "notes": "DESTRUCTION BY DEFINITION"
+                },
+                {
+                    "name": "SHOW ME THE BODY",
+                    "start": "1:00",
+                    "end": "1:30",
+                    "id": "1kdU"
+                },
+                {
+                    "name": "WHISPERS",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "1tkv"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "AFROMAN",
+                    "start": "8:00",
+                    "end": "9:00",
+                    "id": "okRq"
+                },
+                {
+                    "name": "CHAT PILE",
+                    "start": "6:45",
+                    "end": "7:30",
+                    "id": "5Cbr"
+                },
+                {
+                    "name": "VANA",
+                    "start": "5:45",
+                    "end": "6:15",
+                    "id": "b1oy"
+                },
+                {
+                    "name": "FRANKIE AND THE WITCH FINGERS",
+                    "start": "4:45",
+                    "end": "5:15",
+                    "id": "5ixi"
+                },
+                {
+                    "name": "GURRIERS",
+                    "start": "3:45",
+                    "end": "4:15",
+                    "id": "hDfR"
+                },
+                {
+                    "name": "HOT ROD CIRCUIT",
+                    "start": "2:45",
+                    "end": "3:15",
+                    "id": "2cKb"
+                },
+                {
+                    "name": "BURNING AIRLINES",
+                    "start": "1:45",
+                    "end": "2:15",
+                    "id": "ztBp"
+                },
+                {
+                    "name": "THE IRON ROSES",
+                    "start": "12:45",
+                    "end": "1:15",
+                    "id": "230e"
+                },
+                {
+                    "name": "AIM HIGH",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "5xWt"
+                }
+            ]
+        },
+        "notes": null
+    },
+    "SUNDAY": {
+        "stages": {
+            "RIOT": [
+                {
+                    "name": "PIERCE THE VEIL",
+                    "start": "8:25",
+                    "end": "9:55",
+                    "id": "40Hq"
+                },
+                {
+                    "name": "TAKING BACK SUNDAY",
+                    "start": "6:15",
+                    "end": "7:15",
+                    "id": "27RY",
+                    "notes": "LOUDER NOW"
+                },
+                {
+                    "name": "PENNYWISE",
+                    "start": "4:25",
+                    "end": "5:05",
+                    "id": "2Y3m"
+                },
+                {
+                    "name": "ARM’S LENGTH",
+                    "start": "3:00",
+                    "end": "3:30",
+                    "id": "8Bmv"
+                },
+                {
+                    "name": "HOLDING ABSENCE",
+                    "start": "1:50",
+                    "end": "2:20",
+                    "id": "1mk0"
+                },
+                {
+                    "name": "STOMACH BOOK",
+                    "start": "12:40",
+                    "end": "1:10",
+                    "id": "bqdX"
+                }
+            ],
+            "ROOTS": [
+                {
+                    "name": "ALANIS MORISSETTE",
+                    "start": "7:20",
+                    "end": "8:20",
+                    "id": "1H7u"
+                },
+                {
+                    "name": "THE FORMAT",
+                    "start": "5:10",
+                    "end": "6:10",
+                    "id": "dTjg"
+                },
+                {
+                    "name": "THE BETHS",
+                    "start": "3:35",
+                    "end": "4:20",
+                    "id": "1Eq6"
+                },
+                {
+                    "name": "SINCERE ENGINEER",
+                    "start": "2:25",
+                    "end": "2:55",
+                    "id": "1bnA"
+                },
+                {
+                    "name": "DAISY GRENADE",
+                    "start": "1:15",
+                    "end": "1:45",
+                    "id": "1fFr"
+                },
+                {
+                    "name": "REMEMBER SPORTS",
+                    "start": "12:05",
+                    "end": "12:35",
+                    "id": "1Be6"
+                }
+            ],
+            "REBEL": [
+                {
+                    "name": "TWIN PEAKS",
+                    "start": "6:30",
+                    "end": "7:30",
+                    "id": "2gXD"
+                },
+                {
+                    "name": "WILLIAM SHATNER & THE *UCKERS",
+                    "start": "5:25",
+                    "end": "6:00",
+                    "id": "236V"
+                },
+                {
+                    "name": "THIS IS LORELEI",
+                    "start": "4:15",
+                    "end": "4:55",
+                    "id": "rf8I"
+                },
+                {
+                    "name": "JEJUNE",
+                    "start": "3:05",
+                    "end": "3:45",
+                    "id": "2iP1"
+                },
+                {
+                    "name": "PRETTY GIRLS MAKE GRAVES",
+                    "start": "2:05",
+                    "end": "2:35",
+                    "id": "JV4s"
+                },
+                {
+                    "name": "ALGERNON CADWALLADER",
+                    "start": "1:05",
+                    "end": "1:35",
+                    "id": "1gFe"
+                },
+                {
+                    "name": "LARGEMOUTH",
+                    "start": "12:00",
+                    "end": "12:30",
+                    "id": "1UTo"
+                }
+            ],
+            "RISE": [
+                {
+                    "name": "ELVIS COSTELLO & THE IMPOSTERS",
+                    "start": "8:30",
+                    "end": "9:30",
+                    "id": "1PbM"
+                },
+                {
+                    "name": "PATTI SMITH AND HER BAND",
+                    "start": "6:10",
+                    "end": "7:10",
+                    "id": "2bOR"
+                },
+                {
+                    "name": "MOM JEANS",
+                    "start": "5:00",
+                    "end": "5:40",
+                    "id": "Y258"
+                },
+                {
+                    "name": "CARTEL",
+                    "start": "3:50",
+                    "end": "4:30",
+                    "id": "2a2Q"
+                },
+                {
+                    "name": "SATURDAYS AT YOUR PLACE",
+                    "start": "2:50",
+                    "end": "3:20",
+                    "id": "1Bps"
+                },
+                {
+                    "name": "BEN QUAD",
+                    "start": "1:50",
+                    "end": "2:20",
+                    "id": "21Tu"
+                },
+                {
+                    "name": "MACSEAL",
+                    "start": "12:50",
+                    "end": "1:20",
+                    "id": "1GsR"
+                }
+            ],
+            "RADICAL": [
+                {
+                    "name": "INSANE CLOWN POSSE",
+                    "start": "8:55",
+                    "end": "9:55",
+                    "id": "28M2"
+                },
+                {
+                    "name": "BOWLING FOR SOUP",
+                    "start": "7:25",
+                    "end": "8:05",
+                    "id": "1YgX"
+                },
+                {
+                    "name": "GOOD RIDDANCE",
+                    "start": "6:15",
+                    "end": "6:55",
+                    "id": "1jd0"
+                },
+                {
+                    "name": "THE FLATLINERS",
+                    "start": "5:05",
+                    "end": "5:45",
+                    "id": "eGYy"
+                },
+                {
+                    "name": "DEAD TO ME",
+                    "start": "3:55",
+                    "end": "4:35",
+                    "id": "2ijP"
+                },
+                {
+                    "name": "HAYWIRE",
+                    "start": "2:45",
+                    "end": "3:25",
+                    "id": "1ycv"
+                },
+                {
+                    "name": "MURPHY’S LAW",
+                    "start": "1:35",
+                    "end": "2:15",
+                    "id": "1gk1"
+                },
+                {
+                    "name": "ROSE OF DEMISE",
+                    "start": "12:35",
+                    "end": "1:05",
+                    "id": "1Ezm"
+                }
+            ]
+        },
+        "notes": null
+    }
+}

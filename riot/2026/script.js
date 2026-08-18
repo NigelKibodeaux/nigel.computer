@@ -1,10 +1,10 @@
 // Function that generates the schedule from the data
 document.addEventListener('DOMContentLoaded', async () => {
     // Fetch the schedule data from S3
-    const response = await fetch('https://nigel.computer/riot/2026/data-2026-v1.json')
+    const response = await fetch('https://nigel.computer/riot/2026/data-2026-v2.json')
     const data = await response.json()
 
-    // Get chosen events (mine and friend)from the query string
+    // Get chosen events (mine and friend) from the query string
     const chosenEvents = getMyEventsFromUrl(window.location.href)
 
     // If there were no chosenEvents in the URL, try to load them from localStorage
